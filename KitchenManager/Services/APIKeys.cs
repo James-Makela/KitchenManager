@@ -8,7 +8,7 @@ namespace KitchenManager.Services
 {
     class APIKeys
     {
-        string app_id {  get; set; }
-        string api_key { get; set; }
+        public string app_id {  get; set; }
+        public string api_key { get; set; }
     }
 }
