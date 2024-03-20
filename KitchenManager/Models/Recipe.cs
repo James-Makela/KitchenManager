@@ -29,5 +29,10 @@ namespace KitchenManager.Models
         public List<FoodItem>? Ingredients {  get; set; }
 
         public Recipe() { }
+
+        public override string ToString()
+        {
+            return Label;
+        }
     }
 }

@@ -12,16 +12,15 @@ namespace KitchenManager.Services
 {
     internal class APIService
     {
-        APIKeys? accessKeys = JsonConvert.DeserializeObject<APIKeys>(File.ReadAllText("Keys/keys.json"));
         const string baseURL = "https://api.edamam.com/api/recipes/v2?type=public";
 
         public APIService() { }
 
-        public async Task<List<Recipe>> GetRecipes(RecipeSearchQuery searchQuery)
+        public async Task<List<Recipe>>? GetRecipes(RecipeSearchQuery searchQuery)
         {
             HttpClient client = new();
 
-            string fullURL = URLConstructor(searchQuery);
+            string fullURL = await URLConstructor(searchQuery);
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, fullURL);
 
             HttpResponseMessage response = await client.SendAsync(request);
@@ -29,21 +28,26 @@ namespace KitchenManager.Services
             string responseString = await response.Content.ReadAsStringAsync();
 
             // newtonsoft serialising json fragments
+            // TODO: protect for no results
             JObject recipeResults = JObject.Parse(responseString);
-            IList<JToken> results = recipeResults["hits"]["recipe"].Children().ToList();
+            IList<JToken> results = recipeResults["hits"].Children().ToList();
 
             List<Recipe> recipes = new List<Recipe>();
+
             foreach (JToken recipeResult in results)
             {
-                Recipe recipe = recipeResult.ToObject<Recipe>();
+                JToken singleRecipe = recipeResult.SelectToken("recipe");
+                Recipe recipe = singleRecipe.ToObject<Recipe>();
                 recipes.Add(recipe);
             }
 
             return recipes;
         }
 
-        public string URLConstructor(RecipeSearchQuery query)
+        public async Task<string> URLConstructor(RecipeSearchQuery query)
         {
+            string keysJson = await ReadTextFile("keys.json");
+            APIKeys? accessKeys = JsonConvert.DeserializeObject<APIKeys>(keysJson);
             string fullURL = baseURL;
             if (query.Query != null)
             {
@@ -75,6 +79,13 @@ namespace KitchenManager.Services
             }
 
             return fullURL;
+        }
+
+        public async Task<string> ReadTextFile(string path)
+        {
+            using Stream fileStream = await FileSystem.Current.OpenAppPackageFileAsync(path);
+            using StreamReader reader = new StreamReader(fileStream);
+            return await reader.ReadToEndAsync();
         }
 
     }
