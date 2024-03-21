@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace KitchenManager.Models
 {
-    internal class Recipe
+    public class Recipe
     {
         [JsonProperty("uri")]
         public string? URI { get; set; }
@@ -30,9 +30,9 @@ namespace KitchenManager.Models
 
         public Recipe() { }
 
-        public override string ToString()
+        /*public override string ToString()
         {
             return Label;
-        }
+        }*/
     }
 }

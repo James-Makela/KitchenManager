@@ -3,28 +3,38 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace KitchenManager.Models
 {
-    internal class FoodItem
+    public class FoodItem
     {
+        [JsonProperty("foodId")]
         public string ID {  get; set; }
-        public string Name { get; set; }
-        public decimal Price { get; set; }
+        [JsonProperty("quantity")]
+        public decimal Quantity { get; set; }
+        [JsonProperty("measure")]
+        public string Measure { get; set; }
+        [JsonProperty("food")]
+        public string FoodName { get; set; }
+        [JsonProperty("weight")]
+        public decimal GramsWeight { get; set; }
+        [JsonProperty("foodCategory")]
+        public string FoodType { get; set;}
 
-        // TODO: Do I want to create an enum for unit possibilities?
-        public string PriceUnit { get; set; }
-
-        // TODO: How will this initialise - will this start at 0?
-        public int CurrentStock { get; set; }
-
-        public FoodItem(string iD, string name, decimal price, string priceUnit, int currentStock)
+        public FoodItem(string iD, decimal quantity, string measure, string foodName, decimal gramsWeight, string foodType)
         {
             ID = iD;
-            Name = name;
-            Price = price;
-            PriceUnit = priceUnit;
-            CurrentStock = currentStock;
+            Quantity = quantity;
+            Measure = measure;
+            FoodName = foodName;
+            GramsWeight = gramsWeight;
+            FoodType = foodType;
+        }
+
+        public override string ToString()
+        {
+            return $"{Quantity} {Measure} {FoodName}";
         }
     }
 
