@@ -9,18 +9,20 @@ public partial class RecipesPage : ContentPage
 	{
 		InitializeComponent();
 		PopulateRecipes();
-
-		// Testing code
-		// ------------
-		async void PopulateRecipes()
-		{
-            APIService service = new APIService();
-            RecipeSearchQuery query = new RecipeSearchQuery("chicken", ["alcohol-free", "dairy-free"], ["Dinner"]);
-
-            List<Recipe> recipes = await service.GetRecipes(query);
-            CollectionView_Recipes.ItemsSource = recipes;
-        }
 	}
+
+    // Testing code
+    // ------------
+    async void PopulateRecipes()
+    {
+        APIService service = new APIService();
+        RecipeSearchQuery query = new RecipeSearchQuery("chicken", ["alcohol-free", "dairy-free"], ["Dinner"]);
+
+        List<Recipe> recipes = await service.GetRecipes(query);
+        CollectionView_Recipes.ItemsSource = recipes;
+    }
+    // -------------------
+    // End of testing code
 
     private async void CollectionView_Recipes_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
