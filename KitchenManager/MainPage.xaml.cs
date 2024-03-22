@@ -17,6 +17,11 @@ namespace KitchenManager
             await Navigation.PushModalAsync(recipiesPage);
             Button_Recipes.BackgroundColor = Color.Parse("#778DA9");
         }
+
+        private void Button_Inventory_Pressed(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }
