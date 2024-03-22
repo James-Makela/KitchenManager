@@ -19,21 +19,18 @@ namespace KitchenManager.Services
         public async Task<List<Recipe>>? GetRecipes(RecipeSearchQuery searchQuery)
         {
             HttpClient client = new();
-
             string fullURL = await URLConstructor(searchQuery);
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, fullURL);
 
-            HttpResponseMessage response = await client.SendAsync(request);
+            JObject recipeResults;
+            using (Stream stream = client.GetStreamAsync(fullURL).Result)
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                recipeResults = JObject.Parse(await reader.ReadToEndAsync());
+            }
 
-            string responseString = await response.Content.ReadAsStringAsync();
-
-            // newtonsoft serialising json fragments
-            // TODO: protect for no results
-            JObject recipeResults = JObject.Parse(responseString);
             IList<JToken> results = recipeResults["hits"].Children().ToList();
 
             List<Recipe> recipes = new List<Recipe>();
-
             foreach (JToken recipeResult in results)
             {
                 JToken singleRecipe = recipeResult.SelectToken("recipe");

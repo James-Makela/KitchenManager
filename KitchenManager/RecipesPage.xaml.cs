@@ -24,6 +24,12 @@ public partial class RecipesPage : ContentPage
     // -------------------
     // End of testing code
 
+
+    /// <summary>
+    /// Opens the recipe card for the selected recipe upon selection.
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private async void CollectionView_Recipes_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         Recipe selectedRecipe = (Recipe)CollectionView_Recipes.SelectedItem;
