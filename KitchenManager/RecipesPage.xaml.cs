@@ -5,21 +5,31 @@ namespace KitchenManager;
 
 public partial class RecipesPage : ContentPage
 {
-	public RecipesPage()
-	{
-		InitializeComponent();
-		PopulateRecipes();
-	}
+    public RecipesPage()
+    {
+        InitializeComponent();
+    }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        PopulateRecipes();
+    }
 
     // Testing code
     // ------------
-    async void PopulateRecipes()
+    async Task PopulateRecipes()
+    {
+        List<Recipe> recipes = await FetchRecipes();
+        CollectionView_Recipes.ItemsSource = recipes;
+    }
+
+    async Task<List<Recipe>> FetchRecipes()
     {
         APIService service = new APIService();
         RecipeSearchQuery query = new RecipeSearchQuery("chicken", ["alcohol-free", "dairy-free"], ["Dinner"]);
 
-        List<Recipe> recipes = await service.GetRecipes(query);
-        CollectionView_Recipes.ItemsSource = recipes;
+        return await service.GetRecipes(query);
     }
     // -------------------
     // End of testing code
