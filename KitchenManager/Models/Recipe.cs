@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 
 namespace KitchenManager.Models
 {
+    [Serializable]
     public class Recipe
     {
         [JsonProperty("uri")]

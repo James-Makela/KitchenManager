@@ -10,10 +10,10 @@ public partial class RecipesPage : ContentPage
         InitializeComponent();
     }
 
-    protected override void OnAppearing()
+    protected override async void OnAppearing()
     {
         base.OnAppearing();
-        PopulateRecipes();
+        await PopulateRecipes();
     }
 
     // Testing code
@@ -27,7 +27,7 @@ public partial class RecipesPage : ContentPage
     async Task<List<Recipe>> FetchRecipes()
     {
         APIService service = new APIService();
-        RecipeSearchQuery query = new RecipeSearchQuery("chicken", ["alcohol-free", "dairy-free"], ["Dinner"]);
+        RecipeSearchQuery query = new RecipeSearchQuery("Avocado", ["alcohol-free", "dairy-free"], ["Dinner"]);
 
         return await service.GetRecipes(query);
     }
