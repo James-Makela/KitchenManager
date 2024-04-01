@@ -27,7 +27,7 @@ public partial class RecipesPage : ContentPage
     async Task<List<Recipe>> FetchRecipes()
     {
         APIService service = new APIService();
-        RecipeSearchQuery query = new RecipeSearchQuery("Avocado", ["alcohol-free", "dairy-free"], ["Dinner"]);
+        RecipeSearchQuery query = new RecipeSearchQuery("Chicken", ["alcohol-free", "dairy-free"], ["Dinner"]);
 
         return await service.GetRecipes(query);
     }
