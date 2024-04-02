@@ -5,25 +5,41 @@ namespace KitchenManager;
 
 public partial class RecipesPage : ContentPage
 {
-	public RecipesPage()
-	{
-		InitializeComponent();
-		PopulateRecipes();
-	}
+    public RecipesPage()
+    {
+        InitializeComponent();
+    }
+
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+        await PopulateRecipes();
+    }
 
     // Testing code
     // ------------
-    async void PopulateRecipes()
+    async Task PopulateRecipes()
+    {
+        List<Recipe> recipes = await FetchRecipes();
+        CollectionView_Recipes.ItemsSource = recipes;
+    }
+
+    async Task<List<Recipe>> FetchRecipes()
     {
         APIService service = new APIService();
-        RecipeSearchQuery query = new RecipeSearchQuery("chicken", ["alcohol-free", "dairy-free"], ["Dinner"]);
+        RecipeSearchQuery query = new RecipeSearchQuery("Chicken", ["alcohol-free", "dairy-free"], ["Dinner"]);
 
-        List<Recipe> recipes = await service.GetRecipes(query);
-        CollectionView_Recipes.ItemsSource = recipes;
+        return await service.GetRecipes(query);
     }
     // -------------------
     // End of testing code
 
+
+    /// <summary>
+    /// Opens the recipe card for the selected recipe upon selection.
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private async void CollectionView_Recipes_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         Recipe selectedRecipe = (Recipe)CollectionView_Recipes.SelectedItem;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -18,33 +19,38 @@ namespace KitchenManager.Services
 
         public async Task<List<Recipe>>? GetRecipes(RecipeSearchQuery searchQuery)
         {
-            HttpClient client = new();
+            RecipeList? recipeResults = new();
+            List<Recipe>? recipes = new();
 
-            string fullURL = await URLConstructor(searchQuery);
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, fullURL);
+            using HttpClient client = new();
+            string fullUrl = await GetSymbols(searchQuery);
 
-            HttpResponseMessage response = await client.SendAsync(request);
+            HttpResponseMessage response = await client.GetAsync(fullUrl);
 
-            string responseString = await response.Content.ReadAsStringAsync();
+            JsonSerializer serializer = new();
 
-            // newtonsoft serialising json fragments
-            // TODO: protect for no results
-            JObject recipeResults = JObject.Parse(responseString);
-            IList<JToken> results = recipeResults["hits"].Children().ToList();
-
-            List<Recipe> recipes = new List<Recipe>();
-
-            foreach (JToken recipeResult in results)
+            using (Stream stream = await response.Content.ReadAsStreamAsync())
+            using (StreamReader reader = new StreamReader(stream))
+            using (JsonReader jsonReader = new JsonTextReader(reader))
             {
-                JToken singleRecipe = recipeResult.SelectToken("recipe");
-                Recipe recipe = singleRecipe.ToObject<Recipe>();
-                recipes.Add(recipe);
+                while (jsonReader.Read())
+                {
+                    if (jsonReader.TokenType ==  JsonToken.StartObject)
+                    {
+                        recipeResults = serializer.Deserialize<RecipeList>(jsonReader);
+                    }
+                }
+            }
+
+            foreach (Hit result in recipeResults.Results)
+            {
+                recipes.Add(result.Recipe);
             }
 
             return recipes;
         }
 
-        public async Task<string> URLConstructor(RecipeSearchQuery query)
+        public async Task<string> GetSymbols(RecipeSearchQuery query)
         {
             string keysJson = await ReadTextFile("keys.json");
             APIKeys? accessKeys = JsonConvert.DeserializeObject<APIKeys>(keysJson);

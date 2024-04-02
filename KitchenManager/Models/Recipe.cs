@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 
 namespace KitchenManager.Models
 {
+    [Serializable]
     public class Recipe
     {
         [JsonProperty("uri")]
@@ -20,7 +21,7 @@ namespace KitchenManager.Models
         [JsonProperty("url")]
         public string? SourceLink { get; set; }
         [JsonProperty("yield")]
-        public int? Yield {  get; set; }
+        public decimal? Yield {  get; set; }
         [JsonProperty("healthLabels")]
         public List<string>? HealthTags { get; set; }
         [JsonProperty("cautions")]
@@ -29,10 +30,5 @@ namespace KitchenManager.Models
         public List<FoodItem>? Ingredients {  get; set; }
 
         public Recipe() { }
-
-        /*public override string ToString()
-        {
-            return Label;
-        }*/
     }
 }
