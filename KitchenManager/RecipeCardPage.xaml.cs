@@ -28,16 +28,28 @@ public partial class RecipeCardPage : ContentPage
     private void Button_DecreaseYield_Pressed(object sender, EventArgs e)
     {
 		int.TryParse(Label_RecipeYield.Text.Split(":")[1], out int yield);
+		if (yield == 1)
+		{
+			return;
+		}
 		yield--;
-		manager.ChangeYield(yield);
-		PopulateFields(manager.CurrentRecipe);
+        Label_RecipeYield.Text = $"Yield: {yield}";
+
+        manager.ChangeYield(yield);
+
+        ListView_Ingredients.ItemsSource = null;
+        ListView_Ingredients.ItemsSource = manager.CurrentRecipe.Ingredients;
     }
 
     private void Button_IncreaseYield_Pressed(object sender, EventArgs e)
     {
         int.TryParse(Label_RecipeYield.Text.Split(":")[1], out int yield);
         yield++;
+		Label_RecipeYield.Text = $"Yield: {yield}";
+
         manager.ChangeYield(yield);
-        PopulateFields(manager.CurrentRecipe);
+
+        ListView_Ingredients.ItemsSource = null;
+        ListView_Ingredients.ItemsSource = manager.CurrentRecipe.Ingredients;
     }
 }

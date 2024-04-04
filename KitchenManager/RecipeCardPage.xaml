@@ -60,21 +60,50 @@
                 Grid.RowSpan="6"
                 Grid.ColumnSpan="2" />
 
+        <!-- Yield Changer -->
         <Border Stroke="#d9d9d9"
                 StrokeShape="RoundRectangle 20"
                 BackgroundColor="#d9d9d9"
                 Grid.Row="2"
                 Grid.Column="1"
-                HorizontalOptions="FillAndExpand"
-                Margin="5">
+                HorizontalOptions="Center"
+                Margin="8">
+            
             <HorizontalStackLayout>
-                <Button x:Name="Button_DecreaseYield" Text="-" Pressed="Button_DecreaseYield_Pressed"/>
+                <Button x:Name="Button_DecreaseYield"
+                        Text="-"
+                        CornerRadius="50"
+                        WidthRequest="25"
+                        HeightRequest="25"
+                        Padding="0"
+                        Margin="3"
+                        BackgroundColor="#d9d9d9"
+                        BorderColor="#415a77"
+                        BorderWidth="3"
+                        TextColor="#415a77"
+                        FontAttributes="Bold"
+                        FontSize="Large"
+                        Pressed="Button_DecreaseYield_Pressed"/>
                 <Label x:Name="Label_RecipeYield" Grid.Row="2" Grid.Column="1" VerticalOptions="Center" Margin="20, 0"/>
-                <Button x:Name="Button_IncreaseYield" Text="+" Pressed="Button_IncreaseYield_Pressed"/>
+                <Button x:Name="Button_IncreaseYield"
+                        Text="+"
+                        CornerRadius="50"
+                        WidthRequest="25"
+                        HeightRequest="25"
+                        Padding="0"
+                        Margin="3"
+                        BackgroundColor="#d9d9d9"
+                        BorderColor="#415a77"
+                        BorderWidth="3"
+                        TextColor="#415a77"
+                        FontAttributes="Bold"
+                        FontSize="Large"
+                        Pressed="Button_IncreaseYield_Pressed"/>
             </HorizontalStackLayout>
         </Border>
         
 
+        <!-- Image -->
         <Border Stroke="Transparent"
                 StrokeThickness="1"
                 StrokeShape="RoundRectangle 30"

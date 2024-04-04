@@ -48,7 +48,7 @@ public partial class RecipesPage : ContentPage
         {
             RecipeCardPage recipeCardPage = new RecipeCardPage(selectedRecipe);
             await Navigation.PushModalAsync(recipeCardPage);
-            ((CollectionView)CollectionView_Recipes).SelectedItem = null;
+            CollectionView_Recipes.SelectedItem = null;
         }
     }
 
