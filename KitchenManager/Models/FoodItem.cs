@@ -34,7 +34,11 @@ namespace KitchenManager.Models
 
         public override string ToString()
         {
-            return $"{Quantity} {Measure} {FoodName}";
+            if (Measure == "<unit>")
+            {
+                return $"{Quantity.ToString("0")} {FoodName}";
+            }
+            return $"{Quantity.ToString("0")} {Measure} {FoodName}";
         }
     }
 
