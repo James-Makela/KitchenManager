@@ -10,9 +10,10 @@ public partial class RecipesPage : ContentPage
         InitializeComponent();
     }
 
-    protected override async void OnAppearing()
+    protected override async void OnNavigatedTo(NavigatedToEventArgs args)
     {
-        base.OnAppearing();
+        // MAUI android quirk
+        await Task.Delay(500);
         await PopulateRecipes();
     }
 
