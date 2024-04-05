@@ -13,16 +13,20 @@ namespace KitchenManager.Controllers
 
         public RecipeManager() { }
 
-        public void ChangeYield(int newYield)
+        public async Task ChangeYield(int newYield)
         {
             int oldYield = Convert.ToInt32(CurrentRecipe.Yield);
             CurrentRecipe.Yield = newYield;
             List<FoodItem> ingredients = new();
-            foreach (FoodItem ingredient in CurrentRecipe.Ingredients)
+            await Task.Run(() =>
             {
-                decimal oldQuantity = ingredient.Quantity;
-                ingredient.Quantity = (oldQuantity / oldYield) * newYield;
-            }
+                foreach (FoodItem ingredient in CurrentRecipe.Ingredients)
+                {
+                    decimal oldQuantity = ingredient.Quantity;
+                    ingredient.Quantity = (oldQuantity / oldYield) * newYield;
+                }
+            });
+            
 
         }
     }

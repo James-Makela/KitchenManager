@@ -56,6 +56,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="environment.txt" />
 	  <None Remove="Keys\keys.json" />
 	  <None Remove="Resources\Images\home_icon.svg" />
 	  <None Remove="Resources\Images\logo.png" />
@@ -63,6 +64,10 @@
 
 	<ItemGroup>
 	  <MauiAsset Include="Keys\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <AndroidEnvironment Include="environment.txt" />
 	</ItemGroup>
 
 	<ItemGroup>

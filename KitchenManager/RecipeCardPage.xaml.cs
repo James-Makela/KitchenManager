@@ -25,7 +25,7 @@ public partial class RecipeCardPage : ContentPage
 		Image_RecipeImage.Source = recipe.ImageLink;
     }
 
-    private void Button_DecreaseYield_Pressed(object sender, EventArgs e)
+    private async void Button_DecreaseYield_Pressed(object sender, EventArgs e)
     {
 		int.TryParse(Label_RecipeYield.Text.Split(" ")[0], out int yield);
 		if (yield == 1)
@@ -35,19 +35,19 @@ public partial class RecipeCardPage : ContentPage
 		yield--;
         Label_RecipeYield.Text = $"{yield} People";
 
-        manager.ChangeYield(yield);
+        await manager.ChangeYield(yield);
 
         CollectionView_Ingredients.ItemsSource = null;
         CollectionView_Ingredients.ItemsSource = manager.CurrentRecipe.Ingredients;
     }
 
-    private void Button_IncreaseYield_Pressed(object sender, EventArgs e)
+    private async void Button_IncreaseYield_Pressed(object sender, EventArgs e)
     {
         int.TryParse(Label_RecipeYield.Text.Split(" ")[0], out int yield);
         yield++;
 		Label_RecipeYield.Text = $"{yield} People";
 
-        manager.ChangeYield(yield);
+        await manager.ChangeYield(yield);
 
         CollectionView_Ingredients.ItemsSource = null;
         CollectionView_Ingredients.ItemsSource = manager.CurrentRecipe.Ingredients;
