@@ -1,5 +1,6 @@
 ﻿using KitchenManager.Models;
 using KitchenManager.Controllers;
+using System.Collections.ObjectModel;
 
 namespace KitchenManager;
 
@@ -20,8 +21,7 @@ public partial class RecipeCardPage : ContentPage
 		Label_RecipeLabel.Text = recipe.Label;
 		Button_RecipeSource.Text = $"🔗 Source: {recipe.SourceName}";
 		Label_RecipeYield.Text = $"{yield} People";
-		ListView_Ingredients.ItemsSource = null;
-		ListView_Ingredients.ItemsSource = recipe.Ingredients;
+		CollectionView_Ingredients.ItemsSource = manager.CurrentRecipe.Ingredients;
 		Image_RecipeImage.Source = recipe.ImageLink;
     }
 
@@ -37,8 +37,8 @@ public partial class RecipeCardPage : ContentPage
 
         manager.ChangeYield(yield);
 
-        ListView_Ingredients.ItemsSource = null;
-        ListView_Ingredients.ItemsSource = manager.CurrentRecipe.Ingredients;
+        CollectionView_Ingredients.ItemsSource = null;
+        CollectionView_Ingredients.ItemsSource = manager.CurrentRecipe.Ingredients;
     }
 
     private void Button_IncreaseYield_Pressed(object sender, EventArgs e)
@@ -49,8 +49,8 @@ public partial class RecipeCardPage : ContentPage
 
         manager.ChangeYield(yield);
 
-        ListView_Ingredients.ItemsSource = null;
-        ListView_Ingredients.ItemsSource = manager.CurrentRecipe.Ingredients;
+        CollectionView_Ingredients.ItemsSource = null;
+        CollectionView_Ingredients.ItemsSource = manager.CurrentRecipe.Ingredients;
     }
 
     private async void Button_RecipeSource_Pressed(object sender, EventArgs e)
@@ -64,7 +64,7 @@ public partial class RecipeCardPage : ContentPage
         }
         catch (Exception ex)
         {
-            // An unexpected error occurred. No browser may be installed on the device.
+            // TODO: handle exceptions
         }
     }
 }

@@ -85,6 +85,7 @@
                 Margin="10, 0, 10, 0">
             <CollectionView x:Name="CollectionView_Recipes"
                             SelectionMode="Single"
+                            ItemSizingStrategy="MeasureFirstItem"
                             SelectionChanged="CollectionView_Recipes_SelectionChanged">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="local:Recipe">
