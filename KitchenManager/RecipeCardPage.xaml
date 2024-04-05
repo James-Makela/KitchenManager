@@ -34,7 +34,9 @@
                     Text="Ingredients"
                     CornerRadius="10"
                     Background="Transparent"
-                    TextColor="#d9d9d9"/>
+                    TextColor="#d9d9d9"
+                    FontSize="20"
+                    FontAttributes="Bold"/>
         </Border>
         <Border x:Name="Border_Nutrition"
                 Padding="0"
@@ -48,7 +50,9 @@
                     Text="Nutrition"
                     CornerRadius="10"
                     Background="Transparent"
-                    TextColor="#415a77"/>
+                    TextColor="#415a77"
+                    FontSize="20"
+                    FontAttributes="Bold"/>
         </Border>
         
         <!-- Main Background-->
@@ -117,6 +121,7 @@
         
         <Label x:Name="Label_RecipeLabel"
                HorizontalOptions="Center"
+               VerticalOptions="Center"
                Grid.Row="4"
                Grid.ColumnSpan="2"
                FontSize="24"
@@ -125,7 +130,7 @@
 
         <!-- Background for ingredients -->
         <Border x:Name="Border_TableView" 
-                Stroke="#c5c4c4"
+                Stroke="#d9d9d9"
                 StrokeShape="RoundRectangle 10"
                 Background="#c5c4c4"
                 Grid.Row="5"
@@ -137,20 +142,31 @@
         <!-- Background for Costing -->
         <Border x:Name="Border_Costs" Stroke="#c5c4c4"
         StrokeShape="RoundRectangle 10"
-        Background="#c5c4c4"
+        Background="#d9d9d9"
         Grid.Row="6"
         Grid.ColumnSpan="2"
         Margin="10">
+            <VerticalStackLayout VerticalOptions="Center"
+                                 HorizontalOptions="Center">
+                <Label x:Name="Label_TotalCost" Text="Total Cost: $0.00" />
+                <Label x:Name="Label_CostPerServe" Text="Cost Per Serve: $0.00"/>
+            </VerticalStackLayout>
         </Border>
         
         <!-- Background for link -->
         <Border x:Name="Border_CollectionView" Stroke="#c5c4c4"
         StrokeShape="RoundRectangle 50"
-        Background="#c5c4c4"
+        Background="#d9d9d9"
         Grid.Row="7"
         Grid.ColumnSpan="2"
         Margin="10, 0, 10, 10">
-            <Label x:Name="Label_RecipeSourceName" VerticalOptions="Center" Margin="10"/>
+        <Button x:Name="Button_RecipeSource"
+                BackgroundColor="Transparent"
+                Padding="0"
+                TextColor="Black"
+                HorizontalOptions="Start"
+                Margin="10, -2, 0, 0"
+                Pressed="Button_RecipeSource_Pressed"/>
         </Border>
     </Grid>
 </ContentPage>
