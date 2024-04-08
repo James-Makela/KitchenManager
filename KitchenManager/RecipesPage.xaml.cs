@@ -5,6 +5,7 @@ namespace KitchenManager;
 
 public partial class RecipesPage : ContentPage
 {
+    List<Recipe> recipes;
     public RecipesPage()
     {
         InitializeComponent();
@@ -21,7 +22,7 @@ public partial class RecipesPage : ContentPage
     // ------------
     async Task PopulateRecipes()
     {
-        List<Recipe> recipes = await FetchRecipes();
+        recipes = await FetchRecipes();
         CollectionView_Recipes.ItemsSource = recipes;
     }
 
@@ -59,6 +60,10 @@ public partial class RecipesPage : ContentPage
         Border_NewRecipes.Stroke = Color.Parse("#d9d9d9");
         Border_SavedRecipes.Background = Color.Parse("#415a77");
         Border_NewRecipes.Background = Color.Parse("#d9d9d9");
+        Button_SavedRecipes.TextColor = Color.Parse("#d9d9d9");
+        Button_NewRecipes.TextColor = Color.Parse("#415a77");
+
+        CollectionView_Recipes.ItemsSource = null;
     }
 
     private void Button_NewRecipes_Pressed(object sender, EventArgs e)
@@ -67,5 +72,9 @@ public partial class RecipesPage : ContentPage
         Border_SavedRecipes.Stroke = Color.Parse("#d9d9d9");
         Border_NewRecipes.Background = Color.Parse("#415a77");
         Border_SavedRecipes.Background = Color.Parse("#d9d9d9");
+        Button_NewRecipes.TextColor = Color.Parse("#d9d9d9");
+        Button_SavedRecipes.TextColor = Color.Parse("#415a77");
+
+        CollectionView_Recipes.ItemsSource = recipes;
     }
 }

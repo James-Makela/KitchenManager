@@ -86,6 +86,7 @@
             <CollectionView x:Name="CollectionView_Recipes"
                             SelectionMode="Single"
                             ItemSizingStrategy="MeasureFirstItem"
+                            EmptyView="Loading..."
                             SelectionChanged="CollectionView_Recipes_SelectionChanged">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="local:Recipe">
