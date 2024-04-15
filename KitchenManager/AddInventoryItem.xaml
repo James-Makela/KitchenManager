@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+               x:Class="KitchenManager.AddInventoryItem"
+               Color="Transparent">
+    <Border StrokeShape="RoundRectangle 30"
+            Stroke="#415a77"
+            Background="#415a77">
+        <VerticalStackLayout
+            WidthRequest="250"
+            HeightRequest="280"
+            Padding="25"
+            Spacing="10">
+            <Entry
+                x:Name="Entry_StockName"
+                Placeholder="Ingredient Name"
+                WidthRequest="180"
+                Background="#d9d9d9"/>
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <Label 
+                    Text="Amount:"
+                    Padding="10"/>
+                <Entry 
+                    x:Name="Entry_StockAmount"
+                    WidthRequest="50"
+                    Background="#d9d9d9"/>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <Label 
+                    Text="Unit:"
+                    Padding="10"/>
+                <Entry 
+                    x:Name="Entry_StockUnit"
+                    WidthRequest="50"
+                    Background="#d9d9d9"/>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <Label 
+                    Text="Cost(per unit):"
+                    Padding="10"/>
+                <Entry 
+                    x:Name="Entry_StockCost"
+                    WidthRequest="50"
+                    Background="#d9d9d9"/>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout>
+                <Button
+                    x:Name="Button_Save"
+                    Text="Save"
+                    Padding="10"
+                    BackgroundColor="#d9d9d9"
+                    Pressed="Button_Save_Pressed"/>
+                <Button
+                    x:Name="Button_Cancel"
+                    Text="Cancel"
+                    Padding="10"
+                    BackgroundColor="#d9d9d9"
+                    Pressed="Button_Cancel_Pressed"/>
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </Border>
+    
+</toolkit:Popup>
