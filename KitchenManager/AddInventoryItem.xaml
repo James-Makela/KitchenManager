@@ -4,61 +4,121 @@
                xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
                x:Class="KitchenManager.AddInventoryItem"
                Color="Transparent">
-    <Border StrokeShape="RoundRectangle 30"
+    <Border StrokeShape="RoundRectangle 20"
             Stroke="#415a77"
             Background="#415a77">
-        <VerticalStackLayout
+        <Grid
+            RowDefinitions="1*, 1*, 1*, 1*, 1*"
+            ColumnDefinitions="1*, 1*"
             WidthRequest="250"
-            HeightRequest="280"
-            Padding="25"
-            Spacing="10">
-            <Entry
-                x:Name="Entry_StockName"
-                Placeholder="Ingredient Name"
-                WidthRequest="180"
-                Background="#d9d9d9"/>
-            <HorizontalStackLayout HorizontalOptions="Center">
-                <Label 
-                    Text="Amount:"
-                    Padding="10"/>
+            HeightRequest="300">
+            <Border
+                Stroke="#d9d9d9"
+                StrokeShape="RoundRectangle 10"
+                Background="#d9d9d9"
+                Grid.ColumnSpan="2"
+                HeightRequest="35"
+                Padding="0"
+                Margin="20">
+                <Entry
+                    x:Name="Entry_StockName"
+                    Placeholder="Ingredient Name"
+                    WidthRequest="180"
+                    TextColor="Black"
+                    FontAttributes="Bold"
+                    HorizontalTextAlignment="Center"
+                    VerticalTextAlignment="Center"
+                    VerticalOptions="Center"/>
+            </Border>
+            <Label
+                Text="Amount:"
+                Grid.Row="1"
+                HorizontalOptions="End"
+                VerticalOptions="Center"
+                Margin="10"
+                TextColor="#d9d9d9"/>
+            <Border
+                Stroke="#d9d9d9"
+                StrokeShape="RoundRectangle 10"
+                Background="#d9d9d9"
+                Grid.Row="1"
+                Grid.Column="1"
+                WidthRequest="50"
+                HeightRequest="35"
+                Padding="0"
+                Margin="10"
+                HorizontalOptions="Start">
                 <Entry 
                     x:Name="Entry_StockAmount"
-                    WidthRequest="50"
-                    Background="#d9d9d9"/>
-            </HorizontalStackLayout>
-            <HorizontalStackLayout HorizontalOptions="Center">
-                <Label 
-                    Text="Unit:"
-                    Padding="10"/>
+                    Placeholder="0"
+                    BackgroundColor="#d9d9d9"/>
+            </Border>
+            <Label 
+                Text="Unit:"
+                Grid.Row="2"
+                HorizontalOptions="End"
+                VerticalOptions="Center"
+                Margin="10"
+                TextColor="#d9d9d9"/>
+            <Border
+                Stroke="#d9d9d9"
+                StrokeShape="RoundRectangle 10"
+                Background="#d9d9d9"
+                Grid.Row="2"
+                Grid.Column="1"
+                WidthRequest="50"
+                HeightRequest="35"
+                Padding="0"
+                Margin="10"
+                HorizontalOptions="Start">
                 <Entry 
                     x:Name="Entry_StockUnit"
-                    WidthRequest="50"
-                    Background="#d9d9d9"/>
-            </HorizontalStackLayout>
-            <HorizontalStackLayout HorizontalOptions="Center">
-                <Label 
-                    Text="Cost(per unit):"
-                    Padding="10"/>
+                    Placeholder="g"
+                    BackgroundColor="#d9d9d9"/>
+            </Border>
+            <Label 
+                Text="Cost:"
+                Grid.Row="3"
+                HorizontalOptions="End"
+                VerticalOptions="Center"
+                Margin="10"
+                TextColor="#d9d9d9"/>
+            <Border
+                Stroke="#d9d9d9"
+                StrokeShape="RoundRectangle 10"
+                Background="#d9d9d9"
+                Grid.Row="3"
+                Grid.Column="1"
+                WidthRequest="50"
+                HeightRequest="35"
+                Padding="0"
+                Margin="10"
+                HorizontalOptions="Start">
                 <Entry 
-                    x:Name="Entry_StockCost"
-                    WidthRequest="50"
-                    Background="#d9d9d9"/>
-            </HorizontalStackLayout>
-            <HorizontalStackLayout>
-                <Button
-                    x:Name="Button_Save"
-                    Text="Save"
-                    Padding="10"
-                    BackgroundColor="#d9d9d9"
-                    Pressed="Button_Save_Pressed"/>
-                <Button
-                    x:Name="Button_Cancel"
-                    Text="Cancel"
-                    Padding="10"
-                    BackgroundColor="#d9d9d9"
-                    Pressed="Button_Cancel_Pressed"/>
-            </HorizontalStackLayout>
-        </VerticalStackLayout>
+                x:Name="Entry_StockCost"
+                Placeholder="$0.00"
+                BackgroundColor="#d9d9d9"/>
+            </Border>
+            <Button
+                x:Name="Button_Save"
+                Text="Save"
+                Grid.Row="5"
+                Margin="10"
+                BackgroundColor="#d9d9d9"
+                TextColor="#0d1b2a"
+                HeightRequest="35"
+                Pressed="Button_Save_Pressed"/>
+            <Button
+                x:Name="Button_Cancel"
+                Text="Cancel"
+                Grid.Row="5"
+                Grid.Column="1"
+                Margin="10"
+                BackgroundColor="#d9d9d9"
+                TextColor="#0d1b2a"
+                HeightRequest="35"
+                Pressed="Button_Cancel_Pressed"/>
+        </Grid>
     </Border>
     
 </toolkit:Popup>

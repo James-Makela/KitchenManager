@@ -14,6 +14,20 @@ public partial class InventoryPage : FramePage
         RefreshList();
 	}
 
+    protected override void LeftTab_Pressed()
+    {
+        base.LeftTab_Pressed();
+        CollectionView_Costs.IsVisible = false;
+        CollectionView_Stock.IsVisible = true;
+    }
+
+    protected override void RightTab_Pressed()
+    {
+        base.RightTab_Pressed();
+        CollectionView_Stock.IsVisible = false;
+        CollectionView_Costs.IsVisible = true;
+    }
+
     private void CollectionView_Stock_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
 
@@ -40,5 +54,11 @@ public partial class InventoryPage : FramePage
     {
         List<InventoryItem> items = await service.GetInventory();
         CollectionView_Stock.ItemsSource = items;
+        CollectionView_Costs.ItemsSource = items;
+    }
+
+    private void CollectionView_Costs_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+
     }
 }

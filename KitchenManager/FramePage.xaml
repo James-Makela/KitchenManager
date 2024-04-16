@@ -5,12 +5,24 @@
              Title="Frame">
     <ContentPage.ControlTemplate>
         <ControlTemplate>
-            <Grid RowDefinitions="1*, 1*, 1*, 3*, 1*, auto, 2*, 1*, 1*"
-      ColumnDefinitions="1*, 1*"
-      BackgroundColor="#0d1b2a"
-      RowSpacing="0">
+            <Grid 
+                RowDefinitions="65, 50, 1*, 3*, 1*, auto, 2*, 1*, 1*"
+                ColumnDefinitions="1*, 1*"
+                BackgroundColor="#0d1b2a"
+                RowSpacing="0">
 
                 <!-- Header -->
+                <Button
+                    x:Name="Button_Back"
+                    Text="&lt; Back"
+                    WidthRequest="50"
+                    BackgroundColor="Transparent"
+                    FontAttributes="Bold"
+                    FontSize="25"
+                    TextColor="#d9d9d9"
+                    HorizontalOptions="Start"
+                    Padding="0"
+                    Pressed="Button_Back_Pressed"/>
                 <Label x:Name="Label_PageHeader"
                        Grid.Row="0"
                        Grid.ColumnSpan="2"
@@ -37,7 +49,8 @@
                             Background="Transparent"
                             TextColor="#d9d9d9"
                             FontSize="20"
-                            FontAttributes="Bold"/>
+                            FontAttributes="Bold"
+                            Pressed="Button_LeftTab_Pressed"/>
                 </Border>
                 <Border x:Name="Border_RightTab"
                         Padding="0"
@@ -52,7 +65,8 @@
                             Background="Transparent"
                             TextColor="#415a77"
                             FontSize="20"
-                            FontAttributes="Bold"/>
+                            FontAttributes="Bold"
+                            Pressed="Button_RightTab_Pressed"/>
                 </Border>
 
                 <!-- Main Background-->
