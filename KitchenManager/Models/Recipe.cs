@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,7 +31,19 @@ namespace KitchenManager.Models
         [JsonProperty("ingredients")]
         public List<FoodItem>? Ingredients {  get; set; }
         [JsonProperty("cuisineType")]
-        public List<string>? CuisineType {  get; set; }
+        public List<string>? CuisineTypeList {  get; set; }
+
+        string? _cuisineType;
+        public string CuisineType
+        {
+            get
+            {
+                TextInfo ti = CultureInfo.CurrentCulture.TextInfo;
+                string cuisine = CuisineTypeList[0];
+                cuisine = ti.ToTitleCase(cuisine);
+                return cuisine;
+            }
+        }
 
         public Recipe() { }
     }
