@@ -54,6 +54,14 @@ namespace KitchenManager.Services
         {
             string keysJson = await ReadTextFile("keys.json");
             APIKeys? accessKeys = JsonConvert.DeserializeObject<APIKeys>(keysJson);
+
+            // TODO: Further implement a key error notification
+            // This must be fed through to the page that calls the function that calls this
+            if (accessKeys == null)
+            {
+                return "keyError";
+            }
+
             string fullURL = baseURL;
             if (query.Query != null)
             {
@@ -62,6 +70,7 @@ namespace KitchenManager.Services
 
             fullURL += $"&app_id={accessKeys.app_id}";
             fullURL += $"&app_key={accessKeys.api_key}";
+            fullURL += "&ingr=5%2B"; // Only return recipes with at least 5 ingredients
 
             if (query.HealthTags != null)
             {

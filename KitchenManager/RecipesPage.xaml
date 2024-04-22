@@ -113,6 +113,7 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
         </Border>
+        <Image Source="edamam_badge_transparent.svg" Grid.Row="4" Grid.Column="1" HorizontalOptions="End" Margin="10"/>
     </Grid>
     
 </ContentPage>

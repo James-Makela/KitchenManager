@@ -58,6 +58,9 @@
 	<ItemGroup>
 	  <None Remove="environment.txt" />
 	  <None Remove="Keys\keys.json" />
+	  <None Remove="Resources\Images\Edamam_Badge.svg" />
+	  <None Remove="Resources\Images\Edamam_Badge_Light.svg" />
+	  <None Remove="Resources\Images\edamam_badge_transparent.svg" />
 	  <None Remove="Resources\Images\home_icon.svg" />
 	  <None Remove="Resources\Images\logo.png" />
 	</ItemGroup>
