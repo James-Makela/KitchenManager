@@ -5,7 +5,7 @@ namespace KitchenManager;
 
 public partial class RecipesPage : FramePage
 {
-    List<Recipe> recipes;
+    List<Recipe>? recipes;
 
     public RecipesPage(string[] labelStrings) : base(labelStrings)
     {
@@ -14,25 +14,27 @@ public partial class RecipesPage : FramePage
 
     protected override async void OnNavigatedTo(NavigatedToEventArgs args)
     {
-        // MAUI android quirk
-        await Task.Delay(500);
-        await PopulateRecipes();
+        if (recipes == null)
+        {
+            await PopulateRecipes();
+        }
     }
 
     // Testing code
     // ------------
     async Task PopulateRecipes()
     {
+        recipes = null;
         recipes = await FetchRecipes();
         CollectionView_Recipes.ItemsSource = recipes;
     }
 
-    async Task<List<Recipe>> FetchRecipes()
+    async Task<List<Recipe>> FetchRecipes(string query="Blueberry")
     {
         APIService service = new APIService();
-        RecipeSearchQuery query = new RecipeSearchQuery("Chicken", ["alcohol-free", "dairy-free"], ["Dinner"]);
+        RecipeSearchQuery searchQuery = new RecipeSearchQuery(query, ["alcohol-free", "dairy-free"], ["Dinner"]);
 
-        return await service.GetRecipes(query);
+        return await service.GetRecipes(searchQuery);
     }
     // -------------------
     // End of testing code
@@ -65,5 +67,22 @@ public partial class RecipesPage : FramePage
     {
         base.RightTab_Pressed();
         CollectionView_Recipes.ItemsSource = null;
+    }
+
+    private async void SearchBar_SearchBox_SearchButtonPressed(object sender, EventArgs e)
+    {
+        string searchText = SearchBar_SearchBox.Text;
+
+        if (SearchBar_SearchBox.IsSoftInputShowing())
+        {
+            await SearchBar_SearchBox.HideSoftInputAsync(System.Threading.CancellationToken.None);
+        }
+
+        if (!string.IsNullOrEmpty(searchText))
+        {
+            CollectionView_Recipes.ItemsSource = null;
+            recipes = await FetchRecipes(searchText);
+            CollectionView_Recipes.ItemsSource = recipes;
+        }
     }
 }
