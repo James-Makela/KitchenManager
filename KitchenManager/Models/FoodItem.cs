@@ -22,6 +22,9 @@ namespace KitchenManager.Models
         [JsonProperty("foodCategory")]
         public string FoodType { get; set;}
 
+
+        public FoodItem() { }
+
         public FoodItem(string iD, decimal quantity, string measure, string foodName, decimal gramsWeight, string foodType)
         {
             ID = iD;

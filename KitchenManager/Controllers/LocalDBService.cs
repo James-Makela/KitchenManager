@@ -1,6 +1,7 @@
 ﻿using SQLite;
 using System;
 using System.Collections.Generic;
+using SQLiteNetExtensionsAsync.Extensions;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,7 +17,8 @@ namespace KitchenManager.Controllers
         public LocalDBService()
         {
             _connection = new SQLiteAsyncConnection(Path.Combine(FileSystem.AppDataDirectory, DB_NAME));
-            _connection.CreateTableAsync<InventoryItem>();
+            var tables = _connection.CreateTablesAsync<InventoryItem, Recipe, FoodItem>();
+            Console.WriteLine(tables);
         }
 
         public async Task<List<InventoryItem>>? GetInventory()
@@ -41,6 +43,26 @@ namespace KitchenManager.Controllers
         public async Task AddInventoryItem(InventoryItem item)
         {
             await _connection.InsertAsync(item);
+        }
+
+        public async Task AddRecipe(Recipe recipe)
+        {
+            // TODO: Add error handling for recipe already saved
+            await _connection.InsertWithChildrenAsync(recipe);
+        }
+
+        public async Task<List<Recipe>>? GetSavedRecipes()
+        {
+            List<Recipe> items = new List<Recipe>();
+            try
+            {
+                items = await _connection.GetAllWithChildrenAsync<Recipe>();
+            }
+            catch (Exception ex)
+            {
+                return items;
+            }
+            return items;
         }
     }
 }

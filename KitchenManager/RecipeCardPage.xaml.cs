@@ -6,6 +6,8 @@ namespace KitchenManager;
 
 public partial class RecipeCardPage : ContentPage
 {
+    LocalDBService localDBService = new();
+
 	RecipeManager manager = new();
 	public RecipeCardPage(Recipe recipe)
 	{
@@ -66,5 +68,10 @@ public partial class RecipeCardPage : ContentPage
         {
             // TODO: handle exceptions
         }
+    }
+
+    private async void Button_SaveRecipe_Pressed(object sender, EventArgs e)
+    {
+        await localDBService.AddRecipe(manager.CurrentRecipe);
     }
 }

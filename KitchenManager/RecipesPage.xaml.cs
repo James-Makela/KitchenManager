@@ -1,11 +1,14 @@
 using KitchenManager.Models;
 using KitchenManager.Services;
+using KitchenManager.Controllers;
 
 namespace KitchenManager;
 
 public partial class RecipesPage : FramePage
 {
     List<Recipe>? recipes;
+    List<Recipe>? savedRecipes;
+    LocalDBService localDBService = new();
 
     public RecipesPage(string[] labelStrings) : base(labelStrings)
     {
@@ -24,8 +27,8 @@ public partial class RecipesPage : FramePage
     // ------------
     async Task PopulateRecipes()
     {
-        recipes = null;
         recipes = await FetchRecipes();
+        savedRecipes = await localDBService.GetSavedRecipes();
         CollectionView_Recipes.ItemsSource = recipes;
     }
 
@@ -66,7 +69,7 @@ public partial class RecipesPage : FramePage
     protected override void RightTab_Pressed()
     {
         base.RightTab_Pressed();
-        CollectionView_Recipes.ItemsSource = null;
+        CollectionView_Recipes.ItemsSource = savedRecipes;
     }
 
     private async void SearchBar_SearchBox_SearchButtonPressed(object sender, EventArgs e)

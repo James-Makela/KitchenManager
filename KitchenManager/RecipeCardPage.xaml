@@ -236,6 +236,11 @@
                 Margin="10, -2, 0, 0"
                 Pressed="Button_RecipeSource_Pressed"/>
         </Border>
+
+        <!-- Save recipe button -->
+        <Button x:Name="Button_SaveRecipe" Text="Save" Grid.Row="8" Pressed="Button_SaveRecipe_Pressed" />
+
+        <!-- Edamam Attribution -->
         <Image Source="edamam_badge_transparent.svg" Grid.Row="8" Grid.Column="1" HorizontalOptions="End" Margin="10"/>
     </Grid>
 </ContentPage>
