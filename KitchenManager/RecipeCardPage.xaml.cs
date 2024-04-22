@@ -1,6 +1,8 @@
 ﻿using KitchenManager.Models;
 using KitchenManager.Controllers;
 using System.Collections.ObjectModel;
+using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Core;
 
 namespace KitchenManager;
 
@@ -72,6 +74,14 @@ public partial class RecipeCardPage : ContentPage
 
     private async void Button_SaveRecipe_Pressed(object sender, EventArgs e)
     {
+        CancellationTokenSource cancellationTokenSource = new();
+        string message = "Recipe Saved.";
+        ToastDuration duration = ToastDuration.Short;
+        double fontSize = 12;
+
+        var toast = Toast.Make(message, duration, fontSize);
+
         await localDBService.AddRecipe(manager.CurrentRecipe);
+        await toast.Show(cancellationTokenSource.Token);
     }
 }

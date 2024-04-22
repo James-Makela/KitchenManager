@@ -21,6 +21,7 @@ public partial class RecipesPage : FramePage
         {
             await PopulateRecipes();
         }
+        savedRecipes = await localDBService.GetSavedRecipes();
     }
 
     // Testing code
@@ -28,7 +29,6 @@ public partial class RecipesPage : FramePage
     async Task PopulateRecipes()
     {
         recipes = await FetchRecipes();
-        savedRecipes = await localDBService.GetSavedRecipes();
         CollectionView_Recipes.ItemsSource = recipes;
     }
 
