@@ -13,8 +13,8 @@ namespace KitchenManager
         private async void Button_Recipes_Clicked(object sender, EventArgs e)
         {
             Button_Recipes.BackgroundColor = Color.Parse("#415a77");
-            RecipesPage recipiesPage = new RecipesPage();
-            await Navigation.PushModalAsync(recipiesPage);
+            RecipesPage recipesPage = new RecipesPage(["Recipes", "New", "Saved"]);
+            await Navigation.PushModalAsync(recipesPage);
             Button_Recipes.BackgroundColor = Color.Parse("#778DA9");
         }
 

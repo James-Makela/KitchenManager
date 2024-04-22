@@ -6,7 +6,7 @@
     <ContentPage.ControlTemplate>
         <ControlTemplate>
             <Grid 
-                RowDefinitions="65, 50, 1*, 3*, 1*, auto, 2*, 1*, 1*"
+                RowDefinitions="65, 50, 1*, 3*, 1*, auto, 2*, 1*, 42"
                 ColumnDefinitions="1*, 1*"
                 BackgroundColor="#0d1b2a"
                 RowSpacing="0">
@@ -81,6 +81,9 @@
                 <ContentPresenter Grid.Row="2"
                                   Grid.RowSpan="6"
                                   Grid.ColumnSpan="2" />
+
+                <!-- Edamam badge for attribution -->
+                <Image x:Name="Image_edamamLogo" Source="edamam_badge_transparent.svg" Grid.Row="8" Grid.Column="1" HorizontalOptions="End" Margin="10"/>
             </Grid>
         </ControlTemplate>
     </ContentPage.ControlTemplate>

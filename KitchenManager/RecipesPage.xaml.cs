@@ -3,11 +3,11 @@ using KitchenManager.Services;
 
 namespace KitchenManager;
 
-public partial class RecipesPage : ContentPage
+public partial class RecipesPage : FramePage
 {
     List<Recipe> recipes;
 
-    public RecipesPage()
+    public RecipesPage(string[] labelStrings) : base(labelStrings)
     {
         InitializeComponent();
     }
@@ -55,29 +55,15 @@ public partial class RecipesPage : ContentPage
         }
     }
 
-    private void Button_SavedRecipes_Pressed(object sender, EventArgs e)
+    protected override void LeftTab_Pressed()
     {
-        Border_SavedRecipes.Stroke = Color.Parse("#415a77");
-        Border_NewRecipes.Stroke = Color.Parse("#d9d9d9");
-        Border_SavedRecipes.Background = Color.Parse("#415a77");
-        Border_NewRecipes.Background = Color.Parse("#d9d9d9");
-
-        Button_SavedRecipes.TextColor = Color.Parse("#d9d9d9");
-        Button_NewRecipes.TextColor = Color.Parse("#415a77");
-
-        CollectionView_Recipes.ItemsSource = null;
+        base.LeftTab_Pressed();
+        CollectionView_Recipes.ItemsSource = recipes;
     }
 
-    private void Button_NewRecipes_Pressed(object sender, EventArgs e)
+    protected override void RightTab_Pressed()
     {
-        Border_NewRecipes.Stroke = Color.Parse("#415a77");
-        Border_SavedRecipes.Stroke = Color.Parse("#d9d9d9");
-        Border_NewRecipes.Background = Color.Parse("#415a77");
-        Border_SavedRecipes.Background = Color.Parse("#d9d9d9");
-
-        Button_NewRecipes.TextColor = Color.Parse("#d9d9d9");
-        Button_SavedRecipes.TextColor = Color.Parse("#415a77");
-
-        CollectionView_Recipes.ItemsSource = recipes;
+        base.RightTab_Pressed();
+        CollectionView_Recipes.ItemsSource = null;
     }
 }
