@@ -52,16 +52,22 @@
                                     MinimumHeightRequest="100">
                                     <Grid 
                                         ColumnDefinitions="1*, 1*, 1*, 1*" 
-                                        RowDefinitions="1*, 2*">
+                                        RowDefinitions="1*, 1*, 1*">
                                         <Label 
                                             Text="{Binding Label, Mode=OneWay}"
-                                            Grid.ColumnSpan="3" />
+                                            Grid.ColumnSpan="2" />
+                                        <Label
+                                            Text="{Binding Ingredients.Count, StringFormat='{0} Ingredients'}"
+                                            Grid.Row="1" />
+                                        <Label
+                                            Text="{Binding CuisineType[0]}"
+                                            Grid.Row="2"/>
                                         <Border 
                                             Stroke="Transparent"
                                             StrokeThickness="0"
                                             StrokeShape="RoundRectangle 10"
                                             Grid.Column="3"
-                                            Grid.RowSpan="2">
+                                            Grid.RowSpan="3">
                                             <Image Source="{Binding ImageLink, Mode=OneWay}"/>
                                         </Border>
                                     </Grid>

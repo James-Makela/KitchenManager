@@ -18,7 +18,7 @@ namespace KitchenManager.Models
             Query = query;
             HealthTags = healthTags;
             MealType = mealType;
-            ReturnFields = ["uri", "label", "image", "source", "url", "yield", "healthLabels", "cautions", "ingredients"];
+            ReturnFields = ["uri", "label", "image", "source", "url", "yield", "healthLabels", "cautions", "ingredients", "cuisineType"];
         }
     }
 }

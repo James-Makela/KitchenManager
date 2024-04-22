@@ -10,6 +10,7 @@ namespace KitchenManager.Models
     [Serializable]
     public class Recipe
     {
+
         [JsonProperty("uri")]
         public string? URI { get; set; }
         [JsonProperty("label")]
@@ -28,6 +29,8 @@ namespace KitchenManager.Models
         public List<string>? FoodCautions { get; set; }
         [JsonProperty("ingredients")]
         public List<FoodItem>? Ingredients {  get; set; }
+        [JsonProperty("cuisineType")]
+        public List<string>? CuisineType {  get; set; }
 
         public Recipe() { }
     }
