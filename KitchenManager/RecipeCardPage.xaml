@@ -176,7 +176,7 @@
                             <Label Text="{Binding Quantity, StringFormat='{0:F2}'}" Grid.Column="0" Grid.Row="1" Margin="10, 0" VerticalOptions="Center"/>
                             <Label Text="{Binding Measure}" Grid.Column="2" Grid.Row="1" Margin="10, 0" VerticalOptions="Center"/>
                             <Label Text="{Binding FoodName}" Grid.Column="4" Grid.Row="1" Margin="10, 0" VerticalOptions="Center"/>
-                            <Label Text="$0.00" Grid.Column="8" Margin="10, 0" Grid.Row="1" VerticalOptions="Center"/>
+                            <Label Text="{Binding Cost, StringFormat='${0:F2}'}" Grid.Column="8" Margin="10, 0" Grid.Row="1" VerticalOptions="Center"/>
                             
                             <BoxView Grid.Column="1"
                                      Grid.RowSpan="3"
@@ -237,8 +237,9 @@
                 Pressed="Button_RecipeSource_Pressed"/>
         </Border>
 
-        <!-- Save recipe button -->
+        <!-- Save/Delete recipe buttons -->
         <Button x:Name="Button_SaveRecipe" Text="Save" Grid.Row="8" Pressed="Button_SaveRecipe_Pressed" />
+        <Button x:Name="Button_DeleteRecipe" Text="Delete" Grid.Row="8" IsVisible="False" Pressed="Button_DeleteRecipe_Pressed" />
 
         <!-- Edamam Attribution -->
         <Image Source="edamam_badge_transparent.svg" Grid.Row="8" Grid.Column="1" HorizontalOptions="End" Margin="10"/>

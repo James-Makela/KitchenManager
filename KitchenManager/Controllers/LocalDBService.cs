@@ -21,6 +21,7 @@ namespace KitchenManager.Controllers
             Console.WriteLine(tables);
         }
 
+        // Inventory Functions
         public async Task<List<InventoryItem>>? GetInventory()
         {
             List<InventoryItem> items = new List<InventoryItem>();
@@ -45,10 +46,36 @@ namespace KitchenManager.Controllers
             await _connection.InsertAsync(item);
         }
 
+        public async Task<InventoryItem?> FindInventoryItem(string itemName)
+        {
+            try
+            {
+                return await _connection.GetAsync<InventoryItem>(itemName);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        // Recipe Functions
         public async Task AddRecipe(Recipe recipe)
         {
             // TODO: Add error handling for recipe already saved
-            await _connection.InsertWithChildrenAsync(recipe);
+            try
+            {
+                await _connection.InsertWithChildrenAsync(recipe);
+            }
+            catch (Exception ex) 
+            {
+                // TODO: What do I want to happen here?
+            }
+            
+        }
+
+        public async Task RemoveRecipe(Recipe recipe)
+        {
+            await _connection.DeleteAsync(recipe);
         }
 
         public async Task<List<Recipe>>? GetSavedRecipes()

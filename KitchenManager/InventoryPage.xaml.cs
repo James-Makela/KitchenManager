@@ -8,9 +8,17 @@ public partial class InventoryPage : FramePage
 {
     private readonly LocalDBService service = new();
 
-	public InventoryPage(string[] labelStrings) : base(labelStrings)
+	public InventoryPage()
 	{
 		InitializeComponent();
+
+        // TODO: Tidy this up
+        Button button_LeftTab = (Button)this.GetTemplateChild("Button_LeftTab");
+        Button button_RightTab = (Button)this.GetTemplateChild("Button_RightTab");
+        Image imageEdamamLogo = (Image)this.GetTemplateChild("Image_edamamLogo");
+        button_LeftTab.Text = "Stock";
+        button_RightTab.Text = "Costs";
+        imageEdamamLogo.IsVisible = false;
         RefreshList();
 	}
 

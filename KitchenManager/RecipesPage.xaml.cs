@@ -9,10 +9,15 @@ public partial class RecipesPage : FramePage
     List<Recipe>? recipes;
     List<Recipe>? savedRecipes;
     LocalDBService localDBService = new();
+    bool viewingSaved = false;
 
-    public RecipesPage(string[] labelStrings) : base(labelStrings)
+    public RecipesPage()
     {
         InitializeComponent();
+        Button button_LeftTab = (Button)this.GetTemplateChild("Button_LeftTab");
+        Button button_RightTab = (Button)this.GetTemplateChild("Button_RightTab");
+        button_LeftTab.Text = "New";
+        button_RightTab.Text = "Saved";
     }
 
     protected override async void OnNavigatedTo(NavigatedToEventArgs args)
@@ -54,7 +59,7 @@ public partial class RecipesPage : FramePage
 
         if (selectedRecipe != null)
         {
-            RecipeCardPage recipeCardPage = new RecipeCardPage(selectedRecipe);
+            RecipeCardPage recipeCardPage = new RecipeCardPage(selectedRecipe, viewingSaved);
             await Navigation.PushModalAsync(recipeCardPage);
             CollectionView_Recipes.SelectedItem = null;
         }
@@ -63,12 +68,14 @@ public partial class RecipesPage : FramePage
     protected override void LeftTab_Pressed()
     {
         base.LeftTab_Pressed();
+        viewingSaved = false;
         CollectionView_Recipes.ItemsSource = recipes;
     }
 
     protected override void RightTab_Pressed()
     {
         base.RightTab_Pressed();
+        viewingSaved = true;
         CollectionView_Recipes.ItemsSource = savedRecipes;
     }
 

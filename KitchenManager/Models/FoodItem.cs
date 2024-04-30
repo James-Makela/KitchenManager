@@ -9,23 +9,27 @@ namespace KitchenManager.Models
 {
     public class FoodItem
     {
+        private string measure;
+
         [JsonProperty("foodId")]
         public string ID {  get; set; }
         [JsonProperty("quantity")]
         public decimal Quantity { get; set; }
         [JsonProperty("measure")]
-        public string Measure { get; set; }
+        // Converting "<unit>" to "ea" where necessary
+        public string Measure { get => measure; set => measure = value == "<unit>" ? "ea" : value; }
         [JsonProperty("food")]
         public string FoodName { get; set; }
         [JsonProperty("weight")]
         public decimal GramsWeight { get; set; }
         [JsonProperty("foodCategory")]
-        public string FoodType { get; set;}
+        public string FoodType { get; set; }
+        public decimal? Cost { get; set; }
 
 
         public FoodItem() { }
 
-        public FoodItem(string iD, decimal quantity, string measure, string foodName, decimal gramsWeight, string foodType)
+        public FoodItem(string iD, decimal quantity, string measure, string foodName, decimal gramsWeight, string foodType, decimal cost=0)
         {
             ID = iD;
             Quantity = quantity;
@@ -33,6 +37,7 @@ namespace KitchenManager.Models
             FoodName = foodName;
             GramsWeight = gramsWeight;
             FoodType = foodType;
+            Cost = cost;
         }
 
         //public override string ToString()

@@ -10,23 +10,41 @@ public partial class RecipeCardPage : ContentPage
 {
     LocalDBService localDBService = new();
 
-	RecipeManager manager = new();
-	public RecipeCardPage(Recipe recipe)
-	{
-		manager.CurrentRecipe = recipe;
-		InitializeComponent();
-		PopulateFields(manager.CurrentRecipe);
-	}
-
-    void PopulateFields(Recipe recipe)
+    RecipeManager manager = new();
+    public RecipeCardPage(Recipe recipe, bool saved)
     {
-		int yield = Convert.ToInt32(recipe.Yield);
+        manager.CurrentRecipe = recipe;
+        InitializeComponent();
+        PopulateFields(manager.CurrentRecipe, saved);
+    }
 
-		Label_RecipeLabel.Text = recipe.Label;
-		Button_RecipeSource.Text = $"🔗 Source: {recipe.SourceName}";
-		Label_RecipeYield.Text = $"{yield} People";
-		CollectionView_Ingredients.ItemsSource = manager.CurrentRecipe.Ingredients;
-		Image_RecipeImage.Source = recipe.ImageLink;
+    async Task PopulateFields(Recipe recipe, bool saved)
+    {
+        int yield = Convert.ToInt32(recipe.Yield);
+
+        Label_RecipeLabel.Text = recipe.Label;
+        Button_RecipeSource.Text = $"🔗 Source: {recipe.SourceName}";
+        Label_RecipeYield.Text = $"{yield} People";
+        Image_RecipeImage.Source = recipe.ImageLink;
+
+        // Calculate costs
+        foreach (FoodItem ingredient in recipe.Ingredients)
+        {
+            InventoryItem? item = await localDBService.GetItem(ingredient.FoodName);
+            if (item != null)
+            {
+                ingredient.Cost = item.Cost;
+            }
+            else { ingredient.Cost = 0; }
+        }
+
+        CollectionView_Ingredients.ItemsSource = recipe.Ingredients;
+
+        if (saved)
+        {
+            Button_SaveRecipe.IsVisible = false;
+            Button_DeleteRecipe.IsVisible = true;
+        }
     }
 
     private async void Button_DecreaseYield_Pressed(object sender, EventArgs e)
@@ -49,7 +67,7 @@ public partial class RecipeCardPage : ContentPage
     {
         int.TryParse(Label_RecipeYield.Text.Split(" ")[0], out int yield);
         yield++;
-		Label_RecipeYield.Text = $"{yield} People";
+        Label_RecipeYield.Text = $"{yield} People";
 
         await manager.ChangeYield(yield);
 
@@ -83,5 +101,11 @@ public partial class RecipeCardPage : ContentPage
 
         await localDBService.AddRecipe(manager.CurrentRecipe);
         await toast.Show(cancellationTokenSource.Token);
+    }
+
+    private async void Button_DeleteRecipe_Pressed(object sender, EventArgs e)
+    {
+        await localDBService.RemoveRecipe(manager.CurrentRecipe);
+        await Navigation.PopModalAsync();
     }
 }
