@@ -15,6 +15,12 @@
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />-->
 
+
+    <FlyoutItem  Title="Home">
+        <ShellContent Title="Home"
+                  ContentTemplate="{DataTemplate local:MainPage}" />
+    </FlyoutItem>
+
     <FlyoutItem  Title="Inventory">
         <ShellContent Title="Inventory"
                       ContentTemplate="{DataTemplate local:InventoryPage}" />

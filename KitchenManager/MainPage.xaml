@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="KitchenManager.MainPage"
-             Shell.NavBarIsVisible="False">
+             >
 
     <Grid RowDefinitions="4.5*, 3*, 1*, 1*, 1*, 1*, 1*, 1*"
           BackgroundColor="#778DA9"

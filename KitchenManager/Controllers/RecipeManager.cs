@@ -26,8 +26,6 @@ namespace KitchenManager.Controllers
                     ingredient.Quantity = (oldQuantity / oldYield) * newYield;
                 }
             });
-            
-
         }
     }
 }
