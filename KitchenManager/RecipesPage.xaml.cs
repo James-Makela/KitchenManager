@@ -27,6 +27,8 @@ public partial class RecipesPage : FramePage
             await PopulateRecipes();
         }
         savedRecipes = await localDBService.GetSavedRecipes();
+        ActivityIndicator_Loading.IsRunning = false;
+        CollectionView_Recipes.IsVisible = true;
     }
 
     // Testing code
