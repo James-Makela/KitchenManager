@@ -78,7 +78,8 @@
                 FontSize="Title"
                 VerticalOptions="Center"
                 HorizontalTextAlignment="End"
-                Margin="20, 0">
+                Margin="20, 0"
+                SelectedIndexChanged="Picker_Unit_SelectedIndexChanged">
             <Picker.ItemsSource>
                 <x:Array Type="{x:Type x:String}">
                     <x:String>Metric</x:String>
