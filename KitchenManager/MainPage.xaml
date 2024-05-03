@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="KitchenManager.MainPage"
+             Shell.NavBarIsVisible="False"
              >
 
     <Grid RowDefinitions="4.5*, 3*, 1*, 1*, 1*, 1*, 1*, 1*"
@@ -17,7 +18,9 @@
                 Grid.RowSpan="7"
                 Stroke="#0D1B2A"
                 StrokeShape="RoundRectangle 40, 40, 0, 0"
-                BackgroundColor="#0D1B2A" Margin="-0.4"/>
+                StrokeThickness="0"
+                BackgroundColor="#0D1B2A"
+                Margin="-0.5" />
         <Image x:Name="HomeIcon"
                Source="home_icon.svg"
                Grid.Row="1" Grid.RowSpan="2"

@@ -10,29 +10,28 @@
     Shell.FlyoutBackgroundColor="#0d1b2a"
     Title="KitchenManager">
 
-    <!--<ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />-->
-
-
     <FlyoutItem  Title="Home">
         <ShellContent Title="Home"
-                  ContentTemplate="{DataTemplate local:MainPage}" />
+                  ContentTemplate="{DataTemplate local:MainPage}"
+                  Route="home"/>
     </FlyoutItem>
 
     <FlyoutItem  Title="Inventory">
         <ShellContent Title="Inventory"
-                      ContentTemplate="{DataTemplate local:InventoryPage}" />
+                      ContentTemplate="{DataTemplate local:InventoryPage}"
+                      Route="inventory" />
     </FlyoutItem>
 
     <FlyoutItem Title="Recipes">
         <ShellContent Title="Recipes"
-                      ContentTemplate="{DataTemplate local:RecipesPage}" />
+                      ContentTemplate="{DataTemplate local:RecipesPage}"
+                      Route="recipes" />
     </FlyoutItem>
 
     <FlyoutItem Title="Preferences">
-        <ShellContent Title="Preferences" ContentTemplate="{DataTemplate local:PreferencesPage}" />
+        <ShellContent Title="Preferences"
+                      ContentTemplate="{DataTemplate local:PreferencesPage}" 
+                      Route="preferences" />
     </FlyoutItem>
 
 

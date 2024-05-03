@@ -6,15 +6,8 @@ public partial class FramePage : ContentPage
     {
         InitializeComponent();
 
-        Label header = (Label)this.GetTemplateChild("Label_PageHeader");
         Button button_LeftTab = (Button)this.GetTemplateChild("Button_LeftTab");
         Button button_RightTab = (Button)this.GetTemplateChild("Button_RightTab");
-        Image imageEdamamLogo = (Image)this.GetTemplateChild("Image_edamamLogo");
-    }
-
-    private async void Button_Back_Pressed(object sender, EventArgs e)
-    {
-        await Navigation.PopModalAsync();
     }
 
     public void Button_LeftTab_Pressed(object sender, EventArgs e)
@@ -25,6 +18,17 @@ public partial class FramePage : ContentPage
     private void Button_RightTab_Pressed(object sender, EventArgs e)
     {
         RightTab_Pressed();
+    }
+
+    protected override bool OnBackButtonPressed()
+    {
+        //Shell.Current.GoToAsync("home");
+        Dispatcher.Dispatch(async () =>
+        {
+            await Shell.Current.GoToAsync("////home");
+        });
+
+        return true;
     }
 
     protected virtual void LeftTab_Pressed()
