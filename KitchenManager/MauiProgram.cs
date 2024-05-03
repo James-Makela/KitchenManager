@@ -26,6 +26,17 @@ namespace KitchenManager
 #endif
             });
 
+            // Remove underline from picker
+            Microsoft.Maui.Handlers.PickerHandler.Mapper.AppendToMapping("Borderless", (handler, view) =>
+            {
+#if ANDROID
+                // Picker
+                handler.PlatformView.Background = null;
+                handler.PlatformView.SetBackgroundColor(Android.Graphics.Color.Transparent);
+                handler.PlatformView.BackgroundTintList = Android.Content.Res.ColorStateList.ValueOf(Android.Graphics.Color.Transparent);
+#endif
+            });
+
             Microsoft.Maui.Handlers.SearchBarHandler.Mapper.AppendToMapping("MyCustomizationSearchBar", (handler, view) =>
             {
 #if ANDROID
