@@ -69,14 +69,14 @@
 
         <Label Text="Units"
                Grid.Row="1"
-               FontSize="Title"
+               FontSize="22"
                FontAttributes="Bold"
                VerticalOptions="Center"
                Margin="20"/>
         <Picker x:Name="Picker_Unit"
                 Grid.Row="1"
                 Grid.Column="2"
-                FontSize="Title"
+                FontSize="22"
                 VerticalOptions="Center"
                 HorizontalTextAlignment="End"
                 Margin="20, 0"
@@ -91,14 +91,14 @@
 
         <Label Text="People"
                 Grid.Row="2"
-                FontSize="Title"
+                FontSize="22"
                 FontAttributes="Bold"
                 VerticalOptions="Center"
                 Margin="20"/>
         <Picker x:Name="Picker_People"
                 Grid.Row="2"
                 Grid.Column="2"
-                FontSize="Title"
+                FontSize="22"
                 VerticalOptions="Center"
                 HorizontalTextAlignment="End"
                 Margin="20, 0"
@@ -121,14 +121,14 @@
 
         <Label Text="Theme"
                 Grid.Row="3"
-                FontSize="Title"
+                FontSize="22"
                 FontAttributes="Bold"
                 VerticalOptions="Center"
                 Margin="20"/>
         <Picker x:Name="Picker_Theme"
                 Grid.Row="3"
                 Grid.Column="2"
-                FontSize="Title"
+                FontSize="22"
                 VerticalOptions="Center"
                 HorizontalTextAlignment="End"
                 Margin="20, 0">
@@ -142,14 +142,14 @@
 
         <Label Text="Feedback"
                 Grid.Row="4"
-                FontSize="Title"
+                FontSize="22"
                 FontAttributes="Bold"
                 VerticalOptions="Center"
                 Margin="20"/>
 
         <Label Text="About"
                 Grid.Row="5"
-                FontSize="Title"
+                FontSize="22"
                 FontAttributes="Bold"
                 VerticalOptions="Center"
                 Margin="20"/>
