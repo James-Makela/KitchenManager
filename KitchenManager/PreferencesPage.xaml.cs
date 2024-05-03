@@ -37,4 +37,15 @@ public partial class PreferencesPage : ContentPage
     {
 		PreferencesManager.SetPeople(Picker_People.SelectedIndex + 1);
     }
+
+    protected override bool OnBackButtonPressed()
+    {
+        //Shell.Current.GoToAsync("home");
+        Dispatcher.Dispatch(async () =>
+        {
+            await Shell.Current.GoToAsync("////home");
+        });
+
+        return true;
+    }
 }
