@@ -17,6 +17,9 @@ public partial class PreferencesPage : ContentPage
 
 		int people = PreferencesManager.GetPeople();
 		Picker_People.SelectedIndex = people - 1;
+
+		int theme = PreferencesManager.GetTheme();
+		Picker_Theme.SelectedIndex = theme;
 	}
 
     private void Picker_Unit_SelectedIndexChanged(object sender, EventArgs e)

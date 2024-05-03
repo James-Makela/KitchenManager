@@ -16,7 +16,7 @@
         </Grid>
     </Shell.TitleView>
 
-    <Grid RowDefinitions="4*, 1*, 1*, 1*, 1*, 1*"
+    <Grid RowDefinitions="5*, 1*, 1*, 1*, 1*, 1*"
           ColumnDefinitions="1*, auto, 1*"
           Margin="10, 0">
 
@@ -72,13 +72,23 @@
                FontSize="22"
                FontAttributes="Bold"
                VerticalOptions="Center"
-               Margin="20"/>
+               Margin="20, 0"/>
+        <Border Grid.Row="1"
+                Grid.Column="2"
+                StrokeShape="RoundRectangle 50"
+                StrokeThickness="0"
+                BackgroundColor="#415a77"
+                HorizontalOptions="End"
+                WidthRequest="80"
+                Margin="10, 10"/>
         <Picker x:Name="Picker_Unit"
                 Grid.Row="1"
                 Grid.Column="2"
                 FontSize="22"
+                TextColor="White"
                 VerticalOptions="Center"
-                HorizontalTextAlignment="End"
+                HorizontalOptions="End"
+                HorizontalTextAlignment="Center"
                 Margin="20, 0"
                 SelectedIndexChanged="Picker_Unit_SelectedIndexChanged">
             <Picker.ItemsSource>
@@ -94,13 +104,23 @@
                 FontSize="22"
                 FontAttributes="Bold"
                 VerticalOptions="Center"
-                Margin="20"/>
+                Margin="20, 0"/>
+        <Border Grid.Row="2"
+                Grid.Column="2"
+                StrokeShape="RoundRectangle 50"
+                StrokeThickness="0"
+                BackgroundColor="#415a77"
+                HorizontalOptions="End"
+                WidthRequest="65"
+                Margin="10, 10"/>
         <Picker x:Name="Picker_People"
                 Grid.Row="2"
                 Grid.Column="2"
                 FontSize="22"
+                TextColor="White"
                 VerticalOptions="Center"
-                HorizontalTextAlignment="End"
+                HorizontalOptions="End"
+                HorizontalTextAlignment="Center"
                 Margin="20, 0"
                 SelectedIndexChanged="Picker_People_SelectedIndexChanged">
             <Picker.ItemsSource>
@@ -124,13 +144,23 @@
                 FontSize="22"
                 FontAttributes="Bold"
                 VerticalOptions="Center"
-                Margin="20"/>
+                Margin="20, 0"/>
+        <Border Grid.Row="3"
+                Grid.Column="2"
+                StrokeShape="RoundRectangle 50"
+                StrokeThickness="0"
+                BackgroundColor="#415a77"
+                HorizontalOptions="End"
+                WidthRequest="70"
+                Margin="10, 10"/>
         <Picker x:Name="Picker_Theme"
                 Grid.Row="3"
                 Grid.Column="2"
                 FontSize="22"
+                TextColor="White"
                 VerticalOptions="Center"
-                HorizontalTextAlignment="End"
+                HorizontalOptions="End"
+                HorizontalTextAlignment="Center"
                 Margin="20, 0">
             <Picker.ItemsSource>
                 <x:Array Type="{x:Type x:String}">
@@ -140,19 +170,20 @@
             </Picker.ItemsSource>
         </Picker>
 
-        <Label Text="Feedback"
+        <Label Text="🪲 Report A Bug"
                 Grid.Row="4"
+                Grid.ColumnSpan="3"
                 FontSize="22"
                 FontAttributes="Bold"
                 VerticalOptions="Center"
-                Margin="20"/>
+                Margin="20, 0"/>
 
-        <Label Text="About"
+        <Label Text="ⓘ   About"
                 Grid.Row="5"
                 FontSize="22"
                 FontAttributes="Bold"
                 VerticalOptions="Center"
-                Margin="20"/>
+                Margin="20, 0"/>
 
     </Grid>
 </ContentPage>

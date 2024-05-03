@@ -28,5 +28,15 @@ namespace KitchenManager.Controllers
         {
             Preferences.Default.Set<int>("people", value);
         }
+
+        public static int GetTheme()
+        {
+            return Preferences.Default.Get<int>("theme", 0);
+        }
+
+        public static void SetTheme(int value)
+        {
+            Preferences.Default.Set<int>("theme", value);
+        }
     }
 }
