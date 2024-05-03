@@ -48,7 +48,7 @@
 
                 <!-- Main Background-->
                 <Border Margin="-2"
-                        StrokeThickness="2"
+                        StrokeThickness="0"
                         Stroke="#415a77"
                         Background="#415a77"
                         Grid.Row="1"

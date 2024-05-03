@@ -25,15 +25,16 @@ public partial class InventoryPage : FramePage
     protected override void LeftTab_Pressed()
     {
         base.LeftTab_Pressed();
-        CollectionView_Costs.IsVisible = false;
-        CollectionView_Stock.IsVisible = true;
+        
+        Border_Costs.IsVisible = false;
+        Border_Stock.IsVisible = true;
     }
 
     protected override void RightTab_Pressed()
     {
         base.RightTab_Pressed();
-        CollectionView_Stock.IsVisible = false;
-        CollectionView_Costs.IsVisible = true;
+        Border_Stock.IsVisible = false;
+        Border_Costs.IsVisible = true;
     }
 
     private void CollectionView_Stock_SelectionChanged(object sender, SelectionChangedEventArgs e)

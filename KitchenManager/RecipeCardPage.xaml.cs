@@ -20,7 +20,9 @@ public partial class RecipeCardPage : ContentPage
 
     async Task PopulateFields(Recipe recipe, bool saved)
     {
-        int yield = Convert.ToInt32(recipe.Yield);
+        int yield = PreferencesManager.GetPeople();
+
+        await manager.ChangeYield(PreferencesManager.GetPeople());
 
         Label_RecipeLabel.Text = recipe.Label;
         Button_RecipeSource.Text = $"🔗 Source: {recipe.SourceName}";

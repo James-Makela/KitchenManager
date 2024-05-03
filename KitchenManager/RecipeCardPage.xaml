@@ -11,7 +11,6 @@
 
         <!-- Header -->
         <Label Text="Recipe Card"
-               Grid.Row="0"
                Grid.ColumnSpan="2"
                FontSize="25"
                TextColor="WhiteSmoke"
@@ -20,6 +19,7 @@
 
         <!-- Tabs -->
         <Border Stroke="#d9d9d9"
+                StrokeThickness="0"
                 StrokeShape="RoundRectangle 10, 10, 0, 0"
                 Background="#d9d9d9"
                 Grid.Row="1"
@@ -27,6 +27,7 @@
         <Border x:Name="Border_Ingredients"
                 Padding="0"
                 Stroke="#415a77"
+                StrokeThickness="0"
                 StrokeShape="RoundRectangle 10, 10, 0, 0"
                 Background="#415a77"
                 Grid.Row="1"
@@ -57,9 +58,8 @@
         </Border>
         
         <!-- Main Background-->
-        <Border Margin="-2"
-                StrokeThickness="2"
-                Stroke="#415a77"
+        <Border Margin="0"
+                StrokeThickness="0"
                 Background="#415a77"
                 Grid.Row="2"
                 Grid.RowSpan="6"

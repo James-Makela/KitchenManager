@@ -18,5 +18,15 @@ namespace KitchenManager.Controllers
         {
             Preferences.Default.Set<bool>("units", value);
         }
+
+        public static int GetPeople()
+        {
+            return Preferences.Default.Get<int>("people", 4);
+        }
+
+        public static void SetPeople(int value)
+        {
+            Preferences.Default.Set<int>("people", value);
+        }
     }
 }
