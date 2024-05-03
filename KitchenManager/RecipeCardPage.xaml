@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:KitchenManager.Models"
              x:Class="KitchenManager.RecipeCardPage"
              Title="RecipeCardPage">
-    <Grid RowDefinitions="50, 50, 50, 3*, 1*, auto, 2*, 1*, 42"
+    <Grid RowDefinitions="50, 50, 50, 3*, 1*, auto, 2*, 1*, 45"
           ColumnDefinitions="1*, 1*"
           BackgroundColor="#0d1b2a"
           RowSpacing="0">
@@ -58,7 +58,7 @@
         </Border>
         
         <!-- Main Background-->
-        <Border Margin="0"
+        <Border Margin="-1"
                 StrokeThickness="0"
                 Background="#415a77"
                 Grid.Row="2"
@@ -195,7 +195,7 @@
 
                 <!-- Background for Costing -->
                 <Border x:Name="Border_Costs"
-                    Stroke="#c5c4c4"
+                    StrokeThickness="0"
                     StrokeShape="RoundRectangle 10"
                     Background="#d9d9d9"
                     HeightRequest="50"
@@ -221,7 +221,7 @@
                 </Border>
 
                 <!-- Background for link -->
-                <Border x:Name="Border_CollectionView" Stroke="#c5c4c4"
+                <Border x:Name="Border_CollectionView" StrokeThickness="0"
             StrokeShape="RoundRectangle 50"
             Background="#d9d9d9"
             Grid.Row="7"
@@ -239,10 +239,22 @@
         </ScrollView>
 
         <!-- Save/Delete recipe buttons -->
-        <Button x:Name="Button_SaveRecipe" Text="Save" Grid.Row="8" Pressed="Button_SaveRecipe_Pressed" />
-        <Button x:Name="Button_DeleteRecipe" Text="Delete" Grid.Row="8" IsVisible="False" Pressed="Button_DeleteRecipe_Pressed" />
+        <Button x:Name="Button_SaveRecipe"
+                Text="Save"
+                Grid.Row="8"
+                CornerRadius="10"
+                Margin="5"
+                BackgroundColor="#415a77"
+                Pressed="Button_SaveRecipe_Pressed" />
+        <Button x:Name="Button_DeleteRecipe"
+                Text="Delete"
+                Grid.Row="8"
+                Margin="5"
+                IsVisible="False"
+                BackgroundColor="#800000"
+                Pressed="Button_DeleteRecipe_Pressed" />
 
         <!-- Edamam Attribution -->
-        <Image Source="edamam_badge_transparent.svg" Grid.Row="8" Grid.Column="1" HorizontalOptions="End" Margin="10"/>
+        <Image Source="edamam_badge_transparent.svg" Grid.Row="8" Grid.Column="1" HorizontalOptions="End" Margin="12"/>
     </Grid>
 </ContentPage>
