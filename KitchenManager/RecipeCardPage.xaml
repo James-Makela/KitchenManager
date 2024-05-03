@@ -18,14 +18,14 @@
                HorizontalOptions="Center"/>
 
         <!-- Tabs -->
-        <Border Stroke="#d9d9d9"
-                StrokeThickness="0"
+        <Border StrokeThickness="0"
                 StrokeShape="RoundRectangle 10, 10, 0, 0"
-                Background="#d9d9d9"
+                Background="#0d1b2a"
                 Grid.Row="1"
                 Grid.ColumnSpan="2" />
         <Border x:Name="Border_Ingredients"
                 Padding="0"
+                Margin="-1"
                 Stroke="#415a77"
                 StrokeThickness="0"
                 StrokeShape="RoundRectangle 10, 10, 0, 0"
@@ -42,21 +42,32 @@
         </Border>
         <Border x:Name="Border_Nutrition"
                 Padding="0"
+                Margin="-1"
                 Stroke="#d9d9d9"
-                StrokeThickness="1"
+                StrokeThickness="0"
                 StrokeShape="RoundRectangle 10, 10, 0, 0"
                 Background="#d9d9d9"
                 Grid.Row="1"
                 Grid.Column="1">
-            <Button x:Name="Button_Nutrition"
+            <!--<Button x:Name="Button_Nutrition"
                     Text="Nutrition"
                     CornerRadius="10"
                     Background="Transparent"
                     TextColor="#415a77"
                     FontSize="20"
-                    FontAttributes="Bold"/>
+                    FontAttributes="Bold"/>-->
+            <Image Source="workinprogress"
+                   Aspect="AspectFill" />
         </Border>
-        
+        <Label Text="Nutrition"
+                   Grid.Row="1"
+                   Grid.Column="1"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   TextColor="#d9d9d9"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"/>
+
         <!-- Main Background-->
         <Border Margin="-1"
                 StrokeThickness="0"
