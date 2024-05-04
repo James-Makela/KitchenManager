@@ -52,6 +52,18 @@ namespace KitchenManager.Models
         public string CuisineTypeListBlobbed { get; set; }
         public string IngredientsBlobbed { get; set; }
 
+        private bool isSaved;
+
+        public bool GetIsSaved()
+        {
+            return isSaved ? true : false;
+        }
+
+        public void SetIsSaved(bool value)
+        {
+            isSaved = value;
+        }
+
         public string? CuisineType
         {
             get

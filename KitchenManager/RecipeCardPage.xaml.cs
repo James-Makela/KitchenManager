@@ -10,11 +10,12 @@ public partial class RecipeCardPage : ContentPage
 {
     LocalDBService localDBService = new();
 
-    RecipeManager manager = new();
-    public RecipeCardPage(Recipe recipe, bool saved)
+    RecipeManager manager = ((App)Application.Current).recipeManager;
+    public RecipeCardPage()
     {
-        manager.CurrentRecipe = recipe;
         InitializeComponent();
+
+        bool saved = manager.CurrentRecipe.GetIsSaved();
         PopulateFields(manager.CurrentRecipe, saved);
     }
 

@@ -28,6 +28,12 @@
                       Route="recipes" />
     </FlyoutItem>
 
+    <FlyoutItem Title="Cook Now">
+        <ShellContent Title="Cook Now"
+                      ContentTemplate="{DataTemplate local:RecipeCardPage}"
+                      Route="cooknow" />
+    </FlyoutItem>
+
     <FlyoutItem Title="Preferences">
         <ShellContent Title="Preferences"
                       ContentTemplate="{DataTemplate local:PreferencesPage}" 

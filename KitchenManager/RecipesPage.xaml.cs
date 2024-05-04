@@ -1,6 +1,5 @@
 using KitchenManager.Models;
 using KitchenManager.Controllers;
-using KitchenManager.Controllers;
 
 namespace KitchenManager;
 
@@ -10,6 +9,7 @@ public partial class RecipesPage : FramePage
     List<Recipe>? savedRecipes;
     LocalDBService localDBService = new();
     bool viewingSaved = false;
+    RecipeManager recipeManager = ((App)Application.Current).recipeManager;
 
     public RecipesPage()
     {
@@ -29,10 +29,9 @@ public partial class RecipesPage : FramePage
         savedRecipes = await localDBService.GetSavedRecipes();
         ActivityIndicator_Loading.IsRunning = false;
         CollectionView_Recipes.IsVisible = true;
+        CollectionView_Recipes.SelectedItem = null;
     }
 
-    // Testing code
-    // ------------
     async Task PopulateRecipes()
     {
         recipes = await FetchRecipes();
@@ -46,24 +45,14 @@ public partial class RecipesPage : FramePage
 
         return await service.GetRecipes(searchQuery);
     }
-    // -------------------
-    // End of testing code
 
-
-    /// <summary>
-    /// Opens the recipe card for the selected recipe upon selection.
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
     private async void CollectionView_Recipes_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        Recipe selectedRecipe = (Recipe)CollectionView_Recipes.SelectedItem;
+        recipeManager.CurrentRecipe = (Recipe)CollectionView_Recipes.SelectedItem;
 
-        if (selectedRecipe != null)
+        if (recipeManager.CurrentRecipe != null)
         {
-            RecipeCardPage recipeCardPage = new RecipeCardPage(selectedRecipe, viewingSaved);
-            await Navigation.PushModalAsync(recipeCardPage);
-            CollectionView_Recipes.SelectedItem = null;
+            await Shell.Current.GoToAsync($"recipecard");
         }
     }
 

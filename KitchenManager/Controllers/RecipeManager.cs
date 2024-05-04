@@ -7,7 +7,7 @@ using KitchenManager.Models;
 
 namespace KitchenManager.Controllers
 {
-    class RecipeManager
+    public class RecipeManager
     {
         public Recipe CurrentRecipe { get; set; }
 
