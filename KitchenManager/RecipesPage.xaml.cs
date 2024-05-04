@@ -37,10 +37,10 @@ public partial class RecipesPage : FramePage
         CollectionView_Recipes.ItemsSource = recipes;
     }
 
-    async Task<List<Recipe>> FetchRecipes(string query="Blueberry")
+    async Task<List<Recipe>> FetchRecipes(string? query=null)
     {
         APIService service = new APIService();
-        RecipeSearchQuery searchQuery = new RecipeSearchQuery(query, ["alcohol-free", "dairy-free"], ["Dinner"]);
+        RecipeSearchQuery searchQuery = new RecipeSearchQuery(query);
 
         return await service.GetRecipes(searchQuery);
     }
@@ -82,5 +82,11 @@ public partial class RecipesPage : FramePage
             recipes = await FetchRecipes(searchText);
             CollectionView_Recipes.ItemsSource = recipes;
         }
+    }
+
+    private async void RefreshView_Recipes_Refreshing(object sender, EventArgs e)
+    {
+        await PopulateRecipes();
+        RefreshView_Recipes.IsRefreshing = false;
     }
 }

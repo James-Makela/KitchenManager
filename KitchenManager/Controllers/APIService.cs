@@ -67,6 +67,10 @@ namespace KitchenManager.Controllers
             {
                 fullURL += $"&q={query.Query}";
             }
+            else
+            {
+                fullURL += "&random=true";
+            }
 
             fullURL += $"&app_id={accessKeys.app_id}";
             fullURL += $"&app_key={accessKeys.api_key}";
