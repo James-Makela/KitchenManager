@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using KitchenManager.Models;
+using Kotlin.Jvm;
 
 namespace KitchenManager.Controllers
 {
@@ -90,6 +91,28 @@ namespace KitchenManager.Controllers
                 return items;
             }
             return items;
+        }
+
+        public async Task<bool> CheckRecipeIsSaved(string recipeName)
+        {
+            if (string.IsNullOrEmpty(recipeName)) { return false; }
+
+            try
+            {
+                Recipe savedRecipe = await _connection.Table<Recipe>().Where(recipe => recipe.Label == recipeName).FirstOrDefaultAsync();
+                if (savedRecipe != null)
+                {
+                    return true;
+                }
+                else 
+                { 
+                    return false; 
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
 }

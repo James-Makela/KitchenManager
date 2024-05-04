@@ -7,8 +7,7 @@ public partial class RecipesPage : FramePage
 {
     List<Recipe>? recipes;
     List<Recipe>? savedRecipes;
-    LocalDBService localDBService = new();
-    bool viewingSaved = false;
+    LocalDBService localDBService = ((App)Application.Current).localDBService;
     RecipeManager recipeManager = ((App)Application.Current).recipeManager;
 
     public RecipesPage()
@@ -59,14 +58,12 @@ public partial class RecipesPage : FramePage
     protected override void LeftTab_Pressed()
     {
         base.LeftTab_Pressed();
-        viewingSaved = false;
         CollectionView_Recipes.ItemsSource = recipes;
     }
 
     protected override void RightTab_Pressed()
     {
         base.RightTab_Pressed();
-        viewingSaved = true;
         CollectionView_Recipes.ItemsSource = savedRecipes;
     }
 

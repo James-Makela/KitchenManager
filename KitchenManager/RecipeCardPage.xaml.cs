@@ -14,13 +14,18 @@ public partial class RecipeCardPage : ContentPage
     public RecipeCardPage()
     {
         InitializeComponent();
-
-        bool saved = manager.CurrentRecipe.GetIsSaved();
-        PopulateFields(manager.CurrentRecipe, saved);
+        PopulateFields(manager.CurrentRecipe);
     }
 
-    async Task PopulateFields(Recipe recipe, bool saved)
+    async Task PopulateFields(Recipe recipe)
     {
+        if (recipe.Ingredients == null || recipe.Label == null) { return; }
+
+        if (await localDBService.CheckRecipeIsSaved(recipe.Label))
+        {
+            Button_SaveRecipe.IsVisible = false;
+            Button_DeleteRecipe.IsVisible = true;
+        }
         int yield = PreferencesManager.GetPeople();
 
         await manager.ChangeYield(PreferencesManager.GetPeople());
@@ -43,11 +48,7 @@ public partial class RecipeCardPage : ContentPage
 
         CollectionView_Ingredients.ItemsSource = recipe.Ingredients;
 
-        if (saved)
-        {
-            Button_SaveRecipe.IsVisible = false;
-            Button_DeleteRecipe.IsVisible = true;
-        }
+        
     }
 
     private async void Button_DecreaseYield_Pressed(object sender, EventArgs e)

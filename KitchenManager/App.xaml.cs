@@ -6,6 +6,7 @@ namespace KitchenManager
     {
 
         public RecipeManager recipeManager = new();
+        public LocalDBService localDBService = new();
         public App()
         {
             InitializeComponent();
