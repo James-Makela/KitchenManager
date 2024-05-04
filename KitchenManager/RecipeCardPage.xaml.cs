@@ -103,11 +103,19 @@ public partial class RecipeCardPage : ContentPage
 
         await localDBService.AddRecipe(manager.CurrentRecipe);
         await toast.Show(cancellationTokenSource.Token);
+
+        ToggleButtons(false);
     }
 
     private async void Button_DeleteRecipe_Pressed(object sender, EventArgs e)
     {
         await localDBService.RemoveRecipe(manager.CurrentRecipe);
-        await Navigation.PopModalAsync();
+        ToggleButtons(true);
+    }
+
+    private void ToggleButtons(bool wasSaved)
+    {
+        Button_SaveRecipe.IsVisible = wasSaved ? true : false;
+        Button_DeleteRecipe.IsVisible = wasSaved ? false: true;
     }
 }

@@ -57,7 +57,7 @@
 
                 <ContentPresenter Grid.Row="1"
                                   Grid.RowSpan="6"
-                                  Grid.ColumnSpan="2" />
+                                  Grid.ColumnSpan="2"/>
 
                 <!-- Edamam badge for attribution -->
                 <Image x:Name="Image_edamamLogo" Source="edamam_badge_transparent.svg" Grid.Row="7" Grid.Column="1" HorizontalOptions="End" Margin="10"/>

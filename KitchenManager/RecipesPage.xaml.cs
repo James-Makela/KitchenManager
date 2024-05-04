@@ -1,5 +1,5 @@
 using KitchenManager.Models;
-using KitchenManager.Services;
+using KitchenManager.Controllers;
 using KitchenManager.Controllers;
 
 namespace KitchenManager;

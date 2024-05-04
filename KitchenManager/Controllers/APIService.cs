@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using KitchenManager.Models;
 
-namespace KitchenManager.Services
+namespace KitchenManager.Controllers
 {
     internal class APIService
     {
