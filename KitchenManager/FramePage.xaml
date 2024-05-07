@@ -59,6 +59,9 @@
                                   Grid.RowSpan="6"
                                   Grid.ColumnSpan="2"/>
 
+                <!-- Button -->
+                <Button x:Name="Button_Add" Text="Add" Grid.Row="7" CornerRadius="10" Margin="5" Style="{DynamicResource Key=ButtonStyle}" Pressed="Button_Add_Pressed" />
+
                 <!-- Edamam badge for attribution -->
                 <Image x:Name="Image_edamamLogo" Source="edamam_badge_transparent.svg" Grid.Row="7" Grid.Column="1" HorizontalOptions="End" Margin="10"/>
             </Grid>

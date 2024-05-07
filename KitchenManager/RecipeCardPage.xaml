@@ -228,15 +228,13 @@
                 <Border x:Name="Border_CollectionView" StrokeThickness="0"
             StrokeShape="RoundRectangle 50"
             Background="#d9d9d9"
-            Grid.Row="7"
-            Grid.ColumnSpan="2"
             Margin="10, 0, 10, 10">
                     <Button x:Name="Button_RecipeSource"
                     BackgroundColor="Transparent"
                     Padding="0"
                     TextColor="Black"
                     HorizontalOptions="Start"
-                    Margin="10, -2, 0, 0"
+                    Margin="15, 10, 0, 10"
                     Pressed="Button_RecipeSource_Pressed"/>
                 </Border>
             </VerticalStackLayout>

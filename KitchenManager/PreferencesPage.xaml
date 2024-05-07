@@ -32,7 +32,7 @@
         <Border Grid.Row="1"
                 Grid.RowSpan="5"
                 Grid.ColumnSpan="3"
-                BackgroundColor="#c5c4c4c4"
+                BackgroundColor="#c5c4c4"
                 StrokeShape="RoundRectangle 10, 10, 0, 0"
                 StrokeThickness="0"/>
         <Border Grid.Row="1"
@@ -161,7 +161,8 @@
                 VerticalOptions="Center"
                 HorizontalOptions="End"
                 HorizontalTextAlignment="Center"
-                Margin="20, 0">
+                Margin="20, 0"
+                SelectedIndexChanged="Picker_Theme_SelectedIndexChanged">
             <Picker.ItemsSource>
                 <x:Array Type="{x:Type x:String}">
                     <x:String>Day</x:String>

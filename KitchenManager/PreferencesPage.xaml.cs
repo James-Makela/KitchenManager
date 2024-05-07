@@ -51,4 +51,10 @@ public partial class PreferencesPage : ContentPage
 
         return true;
     }
+
+    private void Picker_Theme_SelectedIndexChanged(object sender, EventArgs e)
+    {
+		PreferencesManager.SetTheme(Picker_Theme.SelectedIndex);
+		PreferencesManager.ApplyTheme();
+    }
 }

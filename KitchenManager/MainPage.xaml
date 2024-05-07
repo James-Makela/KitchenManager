@@ -4,10 +4,11 @@
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="KitchenManager.MainPage"
              Shell.NavBarIsVisible="False"
+             Style="{DynamicResource Key=PageStyle}"
              >
 
     <Grid RowDefinitions="4.5*, 3*, 1*, 1*, 1*, 1*, 1*, 1*"
-          BackgroundColor="#778DA9"
+          Style="{DynamicResource Key=AccentGridStyle}"
           RowSpacing="10">
         <Image Source="logo.png"
                Grid.Row="0"
@@ -36,39 +37,39 @@
                 Text="Inventory"
                 FontFamily="Roboto Flex"
                 CharacterSpacing=".7"
-                BackgroundColor="#778DA9"
                 Grid.Row="3" FontSize="20"
                 HorizontalOptions="Center"
                 WidthRequest="250"
+                Style="{DynamicResource Key=ButtonStyle}"
                 Pressed="Button_Inventory_Pressed"/>
         <Button x:Name="Button_Recipes"
                 Text="Recipes"
                 FontFamily="Roboto Flex"
                 CharacterSpacing=".7"
-                BackgroundColor="#778DA9"
                 Grid.Row="4"
                 FontSize="20"
                 HorizontalOptions="Center"
                 WidthRequest="250"
+                Style="{DynamicResource Key=ButtonStyle}"
                 Pressed="Button_Recipes_Clicked"/>
         <Button x:Name="Button_CookNow"
                 Text="Cook Now"
                 FontFamily="Roboto Flex"
                 CharacterSpacing=".7"
-                BackgroundColor="#778DA9"
                 Grid.Row="5" FontSize="20"
                 HorizontalOptions="Center"
                 WidthRequest="250"
+                Style="{DynamicResource Key=ButtonStyle}"
                 Pressed="Button_CookNow_Pressed"/>
         <Button x:Name="Button_Settings"
                 Text="Settings"
                 FontFamily="Roboto Flex"
                 CharacterSpacing=".7"
-                BackgroundColor="#778DA9"
                 Grid.Row="6"
                 FontSize="20"
                 HorizontalOptions="Center"
                 WidthRequest="250"
+                Style="{DynamicResource Key=ButtonStyle}"
                 Pressed="Button_Settings_Pressed"/>
     </Grid>
 

@@ -42,7 +42,7 @@ public partial class InventoryPage : FramePage
 
     }
 
-    private async void Button_Add_Stock_Pressed(object sender, EventArgs e)
+    protected async override void Add_Pressed()
     {
         await AddItemPopUp();
     }

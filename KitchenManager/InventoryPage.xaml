@@ -8,7 +8,7 @@
     <ContentPage.Content>
         <ContentView>
             <Grid
-                RowDefinitions="1*, 50"
+                RowDefinitions="1*"
                 Padding="0, 10, 0, 0">
                 <!-- Stock Levels Display -->
                 <Border x:Name="Border_Stock"
@@ -96,13 +96,6 @@
                         </CollectionView.ItemTemplate>
                     </CollectionView>
                 </Border>
-                <Button
-                    x:Name="Button_Add_Stock"
-                    Text="Add"
-                    Grid.Row="1"
-                    Margin="5"
-                    BackgroundColor="#0d1b2a"
-                    Pressed="Button_Add_Stock_Pressed"/>
             </Grid>
         </ContentView>
     </ContentPage.Content>

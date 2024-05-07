@@ -1,4 +1,5 @@
 ﻿using KitchenManager.Controllers;
+using KitchenManager.Themes;
 
 namespace KitchenManager
 {
@@ -12,6 +13,26 @@ namespace KitchenManager
             InitializeComponent();
 
             MainPage = new AppShell();
+
+            PreferencesManager.ApplyTheme();
+            RequestedThemeChanged += App_RequestedThemeChanged;
+        }
+        private void App_RequestedThemeChanged(object sender, AppThemeChangedEventArgs e)
+        {
+            Resources.MergedDictionaries.Clear();
+            if (PreferencesManager.CheckThemeSet())
+            {
+                PreferencesManager.ApplyTheme();
+            }
+            switch (e.RequestedTheme)
+            {
+                case AppTheme.Light:
+                    Resources.MergedDictionaries.Add(new DefaultTheme());
+                    break;
+                case AppTheme.Dark:
+                    Resources.MergedDictionaries.Add(new DarkTheme());
+                    break;
+            }
         }
     }
 }

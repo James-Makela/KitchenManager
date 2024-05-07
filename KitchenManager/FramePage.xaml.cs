@@ -62,4 +62,14 @@ public partial class FramePage : ContentPage
         Button_LeftTab.TextColor = Color.Parse("#415a77");
         Button_RightTab.TextColor = Color.Parse("#d9d9d9");
     }
+
+    private void Button_Add_Pressed(object sender, EventArgs e)
+    {
+        Add_Pressed();
+    }
+
+    protected virtual void Add_Pressed()
+    {
+
+    }
 }

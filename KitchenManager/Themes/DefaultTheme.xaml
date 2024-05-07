@@ -3,4 +3,44 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="KitchenManager.Themes.DefaultTheme">
 
+    <Color x:Key="AlmostWhite">#d9d9d9</Color>
+    <Color x:Key="MedGrey">#c5c4c4</Color>
+    <Color x:Key="LightBlue">#415a77</Color>
+    <Color x:Key="DarkBlue">#0d1b2a</Color>
+
+    <Style x:Key="PageStyle"
+       TargetType="Page">
+        <Setter Property="BackgroundColor" Value="{StaticResource LightBlue}"/>
+    </Style>
+
+    <Style x:Key="ButtonStyle"
+       TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource LightBlue}" />
+        <Setter Property="TextColor" Value="{StaticResource AlmostWhite}" />
+    </Style>
+
+    <Style x:Key="AccentGridStyle"
+       TargetType="Grid">
+        <Setter Property="BackgroundColor" Value="{StaticResource LightBlue}" />
+    </Style>
+
+    <Style x:Key="AccentBorderStyle"
+           TargetType="Border">
+        <Setter Property="BackgroundColor" Value="{StaticResource LightBlue}" />
+    </Style>
+
+    <Style x:Key="PrimaryBorderStyle"
+           TargetType="Border">
+        <Setter Property="BackgroundColor" Value="{StaticResource DarkBlue}" />
+    </Style>
+
+    <Style x:Key="BorderContainerStyle"
+           TargetType="Border">
+        <Setter Property="BackgroundColor" Value="{StaticResource MedGrey}" />
+    </Style>
+
+    <Style x:Key="BorderItemStyle"
+           TargetType="Border">
+        <Setter Property="BackgroundColor" Value="{StaticResource AlmostWhite}" />
+    </Style>
 </ResourceDictionary>
