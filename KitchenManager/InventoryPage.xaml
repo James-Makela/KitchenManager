@@ -7,96 +7,82 @@
              Title="Inventory">
     <ContentPage.Content>
         <ContentView>
-            <Grid
+            <Border BackgroundColor="Transparent" StrokeShape="RoundRectangle 10">
+                <Grid
                 RowDefinitions="1*"
                 Padding="0, 10, 0, 0">
                 <!-- Stock Levels Display -->
-                <Border x:Name="Border_Stock"
-                        Background="#c5c4c4c4"
-                        StrokeShape="RoundRectangle 10, 10, 0, 0"
-                        StrokeThickness="0"
-                        Margin="10, 0, 10, 0"
-                        Padding="0">
+                
                     <CollectionView
                         x:Name="CollectionView_Stock"
                         SelectionMode="Single"
                         ItemSizingStrategy="MeasureFirstItem"
+                        Margin="10"
                         SelectionChanged="CollectionView_Stock_SelectionChanged">
                         <CollectionView.ItemTemplate>
                             <DataTemplate 
                                 x:DataType="local:InventoryItem">
                                 <Border
-                                    Padding="10"
-                                    Stroke="#d9d9d9"
-                                    StrokeShape="RoundRectangle 5, 5, 5, 5"
-                                    Background="#d9d9d9"
+                                    Style="{DynamicResource ItemBorder}"
                                     MinimumHeightRequest="40">
                                     <Grid
                                         ColumnDefinitions="1*, 1*, 1*, 1*">
                                         <Label
                                             Text="{Binding ItemName, Mode=OneWay}"
-                                            Grid.ColumnSpan="2"
-                                            TextColor="Black"/>
+                                            Grid.ColumnSpan="2"/>
                                         <Label
                                             Text="{Binding StockLevel}"
                                             Grid.Column="2"
-                                            TextColor="Black"
                                             HorizontalOptions="End"/>
                                         <Label
                                             Text="{Binding Unit, StringFormat=' {0}'}"
-                                            Grid.Column="3"
-                                            TextColor="Black"/>
+                                            Grid.Column="3"/>
                                     </Grid>
                                 </Border>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
+                        <CollectionView.Footer>
+                            <Button x:Name="Button_Add" Text="Add Item" Pressed="Button_Add_Pressed"/>
+                        </CollectionView.Footer>
                     </CollectionView>
-                </Border>
 
-                <!-- Costings Display -->
-                <Border x:Name="Border_Costs"
-                        Background="#c5c4c4c4"
-                        StrokeShape="RoundRectangle 10, 10, 0, 0"
-                        StrokeThickness="0"
-                        Margin="10, 0, 10, 0"
-                        Padding="0"
-                        IsVisible="False">
+                        <!-- Costings Display -->
                     <CollectionView
-                        x:Name="CollectionView_Costs"
-                        SelectionMode="Single"
-                        ItemSizingStrategy="MeasureFirstItem"
-                        SelectionChanged="CollectionView_Costs_SelectionChanged">
+                            x:Name="CollectionView_Costs"
+                            SelectionMode="Single"
+                            ItemSizingStrategy="MeasureFirstItem"
+                            IsVisible="False"
+                            Margin="10"
+                            SelectionChanged="CollectionView_Costs_SelectionChanged">
                         <CollectionView.ItemTemplate>
                             <DataTemplate 
-                                    x:DataType="local:InventoryItem">
+                                        x:DataType="local:InventoryItem">
                                 <Border
-                                    Padding="10"
-                                    Stroke="#d9d9d9"
-                                    StrokeShape="RoundRectangle 5, 5, 5, 5"
-                                    Background="#d9d9d9"
-                                    MinimumHeightRequest="40">
+                                        Style="{DynamicResource ItemBorder}"
+                                        MinimumHeightRequest="40">
                                     <Grid
-                                        ColumnDefinitions="1*, 1*, 1*, 1*">
+                                            ColumnDefinitions="1*, 1*, 1*, 1*">
                                         <Label
-                                            Text="{Binding ItemName, Mode=OneWay}"
-                                            Grid.ColumnSpan="2"
-                                            TextColor="Black"/>
+                                                Text="{Binding ItemName, Mode=OneWay}"
+                                                Grid.ColumnSpan="2"/>
                                         <Label
-                                            Text="{Binding Cost, StringFormat='${0:F2}'}"
-                                            Grid.Column="2"
-                                            TextColor="Black"
-                                            HorizontalOptions="End"/>
+                                                Text="{Binding Cost, StringFormat='${0:F2}'}"
+                                                Grid.Column="2"
+                                                HorizontalOptions="End"/>
                                         <Label
-                                            Text="{Binding Unit, StringFormat='/{0}'}"
-                                            Grid.Column="3"
-                                            TextColor="Black"/>
+                                                Text="{Binding Unit, StringFormat='/{0}'}"
+                                                Grid.Column="3"/>
                                     </Grid>
                                 </Border>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
+                        <CollectionView.Footer>
+                            <Button x:Name="Button_OtherAdd" Text="Add Item" Pressed="Button_Add_Pressed"/>
+                        </CollectionView.Footer>
                     </CollectionView>
-                </Border>
-            </Grid>
+                
+                </Grid>
+            </Border>
         </ContentView>
     </ContentPage.Content>
 </base:FramePage>

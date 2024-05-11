@@ -1,5 +1,4 @@
 ﻿using KitchenManager;
-using KitchenManager.Themes;
 
 namespace KitchenManager
 {

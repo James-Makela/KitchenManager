@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using KitchenManager.Themes;
 
 namespace KitchenManager.Controllers
 {
@@ -49,15 +48,14 @@ namespace KitchenManager.Controllers
         public static void ApplyTheme()
         {
             int theme = Preferences.Get("theme", 0);
-            Application.Current.Resources.MergedDictionaries.Clear();
-            switch(theme)
+            switch (theme)
             {
                 case 0:
-                    Application.Current.Resources.MergedDictionaries.Add(new DefaultTheme());
+                    Application.Current.UserAppTheme = AppTheme.Light;
                     break;
 
                 case 1:
-                    Application.Current.Resources.MergedDictionaries.Add(new DarkTheme());
+                    Application.Current.UserAppTheme = AppTheme.Dark;
                     break;
             }
         }

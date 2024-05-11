@@ -38,10 +38,13 @@ public partial class FramePage : ContentPage
         Button Button_LeftTab = (Button)this.GetTemplateChild("Button_LeftTab");
         Button Button_RightTab = (Button)this.GetTemplateChild("Button_RightTab");
 
-        Border_LeftTab.Stroke = Color.Parse("#415a77");
-        Border_RightTab.Stroke = Color.Parse("#d9d9d9");
-        Border_LeftTab.Background = Color.Parse("#415a77");
-        Border_RightTab.Background = Color.Parse("#d9d9d9");
+        //Border_LeftTab.Stroke = Color.Parse("#415a77");
+        //Border_RightTab.Stroke = Color.Parse("#d9d9d9");
+        //Border_LeftTab.Background = Color.Parse("#415a77");
+        //Border_RightTab.Background = Color.Parse("#d9d9d9");
+
+        Border_LeftTab.Style = (Style)Resources["SelectedTabBorderLocal"];
+        Border_RightTab.Style = (Style)Resources["UnselectedTabBorderLocal"];
 
         Button_LeftTab.TextColor = Color.Parse("#d9d9d9");
         Button_RightTab.TextColor = Color.Parse("#415a77");
@@ -54,22 +57,15 @@ public partial class FramePage : ContentPage
         Button Button_LeftTab = (Button)this.GetTemplateChild("Button_LeftTab");
         Button Button_RightTab = (Button)this.GetTemplateChild("Button_RightTab");
 
-        Border_LeftTab.Stroke = Color.Parse("#d9d9d9");
-        Border_RightTab.Stroke = Color.Parse("#415a77");
-        Border_LeftTab.Background = Color.Parse("#d9d9d9");
-        Border_RightTab.Background = Color.Parse("#415a77");
+        //Border_LeftTab.Stroke = Color.Parse("#d9d9d9");
+        //Border_RightTab.Stroke = Color.Parse("#415a77");
+        //Border_LeftTab.Background = Color.Parse("#d9d9d9");
+        //Border_RightTab.Background = Color.Parse("#415a77");
+
+        Border_LeftTab.Style = (Style)Resources["UnselectedTabBorderLocal"];
+        Border_RightTab.Style = (Style)Resources["SelectedTabBorderLocal"];
 
         Button_LeftTab.TextColor = Color.Parse("#415a77");
         Button_RightTab.TextColor = Color.Parse("#d9d9d9");
-    }
-
-    private void Button_Add_Pressed(object sender, EventArgs e)
-    {
-        Add_Pressed();
-    }
-
-    protected virtual void Add_Pressed()
-    {
-
     }
 }

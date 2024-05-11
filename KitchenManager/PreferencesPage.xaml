@@ -30,41 +30,20 @@
                Margin="40"/>
 
         <Border Grid.Row="1"
-                Grid.RowSpan="5"
                 Grid.ColumnSpan="3"
-                BackgroundColor="#c5c4c4"
-                StrokeShape="RoundRectangle 10, 10, 0, 0"
-                StrokeThickness="0"/>
-        <Border Grid.Row="1"
-                Grid.ColumnSpan="3"
-                BackgroundColor="#d9d9d9"
-                StrokeShape="RoundRectangle 10, 10, 5, 5"
-                StrokeThickness="0"
-                Margin="1, 0.5"/>
+                Style="{DynamicResource ItemBorder}"/>
         <Border Grid.Row="2"
                 Grid.ColumnSpan="3"
-                BackgroundColor="#d9d9d9"
-                StrokeShape="RoundRectangle 5, 5, 5, 5"
-                StrokeThickness="0"
-                Margin="1, 0.5"/>
+                Style="{DynamicResource ItemBorder}"/>
         <Border Grid.Row="3"
                 Grid.ColumnSpan="3"
-                BackgroundColor="#d9d9d9"
-                StrokeShape="RoundRectangle 5, 5, 5, 5"
-                StrokeThickness="0"
-                Margin="1, 0.5"/>
+                Style="{DynamicResource ItemBorder}"/>
         <Border Grid.Row="4"
                 Grid.ColumnSpan="3"
-                BackgroundColor="#d9d9d9"
-                StrokeShape="RoundRectangle 5, 5, 5, 5"
-                StrokeThickness="0"
-                Margin="1, 0.5"/>
+                Style="{DynamicResource ItemBorder}"/>
         <Border Grid.Row="5"
                 Grid.ColumnSpan="3"
-                BackgroundColor="#d9d9d9"
-                StrokeShape="RoundRectangle 5, 5, 5, 5"
-                StrokeThickness="0"
-                Margin="1, 0.5"/>
+                Style="{DynamicResource ItemBorder}"/>
 
 
         <Label Text="Units"
