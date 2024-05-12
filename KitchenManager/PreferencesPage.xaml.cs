@@ -2,12 +2,16 @@ using KitchenManager.Controllers;
 
 namespace KitchenManager;
 
-public partial class PreferencesPage : ContentPage
+public partial class PreferencesPage : FramePage
 {
 	public PreferencesPage()
 	{
 		InitializeComponent();
-		PopulateFields();
+        Button button_LeftTab = (Button)this.GetTemplateChild("Button_LeftTab");
+        Button button_RightTab = (Button)this.GetTemplateChild("Button_RightTab");
+        button_LeftTab.Text = "Settings";
+        button_RightTab.Text = "About";
+        PopulateFields();
 	}
 
 	private void PopulateFields()

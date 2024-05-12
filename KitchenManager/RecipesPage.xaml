@@ -63,7 +63,7 @@
                                                     Text="{Binding Label, Mode=OneWay}"
                                                     Grid.ColumnSpan="3"
                                                     FontAttributes="Bold"
-                                                    FontSize="Medium"/>
+                                                    FontSize="16"/>
                                             <Label
                                                     Text="{Binding Ingredients.Count, StringFormat='{0} Ingredients'}"
                                                     Grid.Row="1" />
