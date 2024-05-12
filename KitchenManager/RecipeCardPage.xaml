@@ -73,46 +73,6 @@
                            Margin="10"
                            TextColor="#d9d9d9"/>
 
-                    <!-- Yield Changer -->
-                    <Border Style="{DynamicResource IngredientsBorder}"
-                            Grid.Row="2"
-                            Grid.Column="1"
-                            HorizontalOptions="End">
-
-                        <!-- TODO: Fix styling here -->
-                        <HorizontalStackLayout>
-                            <!--<Button x:Name="Button_DecreaseYield"
-                                    Text="-"
-                                    CornerRadius="50"
-                                    WidthRequest="25"
-                                    HeightRequest="25"
-                                    Padding="0"
-                                    Margin="3"
-                                    BackgroundColor="#d9d9d9"
-                                    BorderColor="#415a77"
-                                    BorderWidth="3"
-                                    TextColor="#415a77"
-                                    FontAttributes="Bold"
-                                    FontSize="Large"
-                                    Pressed="Button_DecreaseYield_Pressed"/>-->
-                            <!--<Label x:Name="Label_RecipeYield" Grid.Row="2" Grid.Column="1" VerticalOptions="Center" Margin="20, 0"/>-->
-                            <!--<Button x:Name="Button_IncreaseYield"
-                                    Text="+"
-                                    CornerRadius="50"
-                                    WidthRequest="25"
-                                    HeightRequest="25"
-                                    Padding="0"
-                                    Margin="3"
-                                    BackgroundColor="#d9d9d9"
-                                    BorderColor="#415a77"
-                                    BorderWidth="3"
-                                    TextColor="#415a77"
-                                    FontAttributes="Bold"
-                                    FontSize="Large"
-                                    Pressed="Button_IncreaseYield_Pressed"/>-->
-                        </HorizontalStackLayout>
-                    </Border>
-
                     <!-- Background for ingredients -->
                     <Border x:Name="Border_TableView" 
                         Style="{DynamicResource IngredientsBorder}">
@@ -234,28 +194,13 @@
                                    Grid.Row="2"
                                    Grid.Column="2"
                                    Margin="10, 0"/>
-
-                            <!--<VerticalStackLayout VerticalOptions="Center">
-                                <Label Text="Total Cost:"
-                                       HorizontalOptions="End"/>
-                                <Label Text="Cost Per Serve:"
-                                       Grid.ColumnSpan="2"
-                                       HorizontalOptions="End"/>
-                            </VerticalStackLayout>
-                            <VerticalStackLayout Grid.Column="1"
-                                             VerticalOptions="Center">
-                                <Label x:Name="Label_TotalCost"
-                                   Text="$0.00"/>
-                                <Label x:Name="Label_CostPerServe"
-                                   Text="$0.00"/>
-                            </VerticalStackLayout>-->
                         </Grid>
                     </Border>
 
                     <!-- Background for link -->
                     <Border x:Name="Border_CollectionView" 
                             Style="{DynamicResource IngredientsBorder}"
-                            HeightRequest="30">
+                            HeightRequest="38">
                         <Button x:Name="Button_RecipeSource"
                         BackgroundColor="Transparent"
                         Padding="0"

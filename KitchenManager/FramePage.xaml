@@ -3,14 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="KitchenManager.FramePage"
              Title="Frame">
-    <Shell.TitleView>
+    <!--<Shell.TitleView>
         <Grid>
             <Label Text="{Binding Title, Source={x:Reference Preferences}}"
                    VerticalOptions="Center"
                    FontSize="Title"
                    FontAttributes="Bold" />
         </Grid>
-    </Shell.TitleView>
+    </Shell.TitleView>-->
     <ContentPage.Resources>
         <Style x:Key="SelectedTabBorderLocal" TargetType="Border" BasedOn="{StaticResource SelectedTabBorder}" />
         <Style x:Key="UnselectedTabBorderLocal" TargetType="Border" BasedOn="{StaticResource UnselectedTabBorder}" />
