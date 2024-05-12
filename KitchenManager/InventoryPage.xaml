@@ -17,7 +17,7 @@
                         x:Name="CollectionView_Stock"
                         SelectionMode="Single"
                         ItemSizingStrategy="MeasureFirstItem"
-                        Margin="10"
+                        Margin="10, 0"
                         SelectionChanged="CollectionView_Stock_SelectionChanged">
                         <CollectionView.ItemTemplate>
                             <DataTemplate 

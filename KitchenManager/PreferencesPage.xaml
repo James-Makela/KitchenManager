@@ -11,7 +11,6 @@
             <Label Text="{Binding Title, Source={x:Reference Preferences}}"
                    VerticalOptions="Center"
                    FontSize="Title"
-                   TextColor="#d9d9d9"
                    FontAttributes="Bold" />
         </Grid>
     </Shell.TitleView>
