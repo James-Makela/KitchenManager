@@ -10,9 +10,11 @@ namespace KitchenManager.Models
     [Table("curent_stock")]
     public class InventoryItem
     {
+        private string itemName;
+
         [PrimaryKey]
         [Column("name")]
-        public string ItemName { get; set; }
+        public string ItemName { get => itemName; set => itemName = value.ToLower(); }
         [Column("stock_level")]
         public decimal StockLevel { get; set; }
         [Column("unit")]

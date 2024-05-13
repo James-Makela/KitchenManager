@@ -36,9 +36,10 @@ public partial class RecipeCardPage : ContentPage
         Image_RecipeImage.Source = recipe.ImageLink;
 
         // Calculate costs
+        //TODO: Move to Controllers
         foreach (FoodItem ingredient in recipe.Ingredients)
         {
-            InventoryItem? item = await localDBService.GetItem(ingredient.FoodName);
+            InventoryItem? item = await localDBService.GetItem(ingredient.FoodName.ToLower());
             if (item != null)
             {
                 ingredient.Cost = item.Cost;

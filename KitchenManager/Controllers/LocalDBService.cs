@@ -58,6 +58,20 @@ namespace KitchenManager.Controllers
             }
         }
 
+        public async Task<int> RemoveInventoryItem(InventoryItem itemToDelete)
+        {
+            try
+            {
+                return await _connection.DeleteAsync(itemToDelete);
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
+        }
+
+
+
         // Recipe Functions
         public async Task AddRecipe(Recipe recipe)
         {

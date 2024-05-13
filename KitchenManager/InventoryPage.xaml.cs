@@ -39,7 +39,7 @@ public partial class InventoryPage : FramePage
 
     private void CollectionView_Stock_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-
+        
     }
 
     public async Task AddItemPopUp()
@@ -69,5 +69,12 @@ public partial class InventoryPage : FramePage
     private async void Button_Add_Pressed(object sender, EventArgs e)
     {
         await AddItemPopUp();
+    }
+
+    private async void SwipeItem_Invoked(object sender, EventArgs e)
+    {
+        InventoryItem item = (InventoryItem)CollectionView_Stock.SelectedItem;
+        await service.RemoveInventoryItem(item);
+        RefreshList();
     }
 }

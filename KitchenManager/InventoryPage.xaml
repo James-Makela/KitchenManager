@@ -22,23 +22,31 @@
                         <CollectionView.ItemTemplate>
                             <DataTemplate 
                                 x:DataType="local:InventoryItem">
-                                <Border
-                                    Style="{DynamicResource ItemBorder}"
-                                    MinimumHeightRequest="40">
-                                    <Grid
-                                        ColumnDefinitions="1*, 1*, 1*, 1*">
-                                        <Label
-                                            Text="{Binding ItemName, Mode=OneWay}"
-                                            Grid.ColumnSpan="2"/>
-                                        <Label
-                                            Text="{Binding StockLevel}"
-                                            Grid.Column="2"
-                                            HorizontalOptions="End"/>
-                                        <Label
-                                            Text="{Binding Unit, StringFormat=' {0}'}"
-                                            Grid.Column="3"/>
-                                    </Grid>
-                                </Border>
+                                <SwipeView>
+                                    <SwipeView.RightItems>
+                                        <SwipeItem Text="Delete"
+                                                   IconImageSource="delete.png"
+                                                   BackgroundColor="#800000"
+                                                   Invoked="SwipeItem_Invoked" />
+                                    </SwipeView.RightItems>
+                                    <Border
+                                        Style="{DynamicResource ItemBorder}"
+                                        MinimumHeightRequest="40">
+                                        <Grid
+                                            ColumnDefinitions="1*, 1*, 1*, 1*">
+                                            <Label
+                                                Text="{Binding ItemName, Mode=OneWay}"
+                                                Grid.ColumnSpan="2"/>
+                                            <Label
+                                                Text="{Binding StockLevel}"
+                                                Grid.Column="2"
+                                                HorizontalOptions="End"/>
+                                            <Label
+                                                Text="{Binding Unit, StringFormat=' {0}'}"
+                                                Grid.Column="3"/>
+                                        </Grid>
+                                    </Border>
+                                </SwipeView>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                         <CollectionView.Footer>

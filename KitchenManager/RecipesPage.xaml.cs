@@ -78,9 +78,11 @@ public partial class RecipesPage : FramePage
 
         if (!string.IsNullOrEmpty(searchText))
         {
+            ActivityIndicator_Loading.IsRunning = true;
             CollectionView_Recipes.ItemsSource = null;
             recipes = await FetchRecipes(searchText);
             CollectionView_Recipes.ItemsSource = recipes;
+            ActivityIndicator_Loading.IsRunning = false;
         }
     }
 
