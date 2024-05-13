@@ -42,7 +42,7 @@ public partial class RecipeCardPage : ContentPage
             InventoryItem? item = await localDBService.GetItem(ingredient.FoodName.ToLower());
             if (item != null)
             {
-                ingredient.Cost = item.Cost;
+                ingredient.Cost = item.Cost / UnitHandler.GetCostUnits()[item.CostUnit] * ingredient.GramsWeight;
             }
             else { ingredient.Cost = 0; }
         }

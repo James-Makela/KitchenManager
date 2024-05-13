@@ -33,8 +33,7 @@
                 Grid.Row="1"
                 HorizontalOptions="End"
                 VerticalOptions="Center"
-                Margin="10"
-                TextColor="#d9d9d9"/>
+                Margin="10"/>
             <Border
                 Stroke="#d9d9d9"
                 StrokeShape="RoundRectangle 10"
@@ -56,8 +55,7 @@
                 Grid.Row="2"
                 HorizontalOptions="End"
                 VerticalOptions="Center"
-                Margin="10"
-                TextColor="#d9d9d9"/>
+                Margin="10"/>
             <Border
                 Stroke="#d9d9d9"
                 StrokeShape="RoundRectangle 10"
@@ -69,18 +67,36 @@
                 Padding="0"
                 Margin="10"
                 HorizontalOptions="Start">
-                <Entry 
-                    x:Name="Entry_StockUnit"
-                    Placeholder="g"
-                    BackgroundColor="#d9d9d9"/>
+                <Picker 
+                    x:Name="Picker_StockUnit"
+                    BackgroundColor="#d9d9d9">
+                </Picker>
             </Border>
             <Label 
                 Text="Cost:"
                 Grid.Row="3"
-                HorizontalOptions="End"
                 VerticalOptions="Center"
-                Margin="10"
-                TextColor="#d9d9d9"/>
+                Margin="20, 10, 10, 10"/>
+            <Border Stroke="#d9d9d9"
+                    StrokeShape="RoundRectangle 10"
+                    Background="#d9d9d9"
+                    Grid.Row="3"
+                    WidthRequest="50"
+                    HeightRequest="35"
+                    Padding="0"
+                    Margin="10"
+                    HorizontalOptions="End">
+                <Entry 
+                x:Name="Entry_StockCost"
+                Placeholder="$0.00"
+                BackgroundColor="#d9d9d9"/>
+            </Border>
+            <Label Text="/"
+                   Grid.Row="3"
+                   Grid.ColumnSpan="2"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   FontSize="20"/>
             <Border
                 Stroke="#d9d9d9"
                 StrokeShape="RoundRectangle 10"
@@ -92,10 +108,9 @@
                 Padding="0"
                 Margin="10"
                 HorizontalOptions="Start">
-                <Entry 
-                x:Name="Entry_StockCost"
-                Placeholder="$0.00"
-                BackgroundColor="#d9d9d9"/>
+                <Picker 
+                    x:Name="Picker_CostUnit">
+                </Picker>
             </Border>
             <Button
                 x:Name="Button_Save"

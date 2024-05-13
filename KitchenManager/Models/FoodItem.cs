@@ -40,6 +40,10 @@ namespace KitchenManager.Models
             Cost = cost;
         }
 
+        public string QuantityMeasure { get =>
+            $"{Quantity.ToString("0.##")} {Measure}";
+        }
+
         //public override string ToString()
         //{
         //    if (Measure == "<unit>")

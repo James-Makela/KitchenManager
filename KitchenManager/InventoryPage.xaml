@@ -24,10 +24,12 @@
                                 x:DataType="local:InventoryItem">
                                 <SwipeView>
                                     <SwipeView.RightItems>
-                                        <SwipeItem Text="Delete"
-                                                   IconImageSource="delete.png"
-                                                   BackgroundColor="#800000"
-                                                   Invoked="SwipeItem_Invoked" />
+                                        <SwipeItems Mode="Execute">
+                                            <SwipeItem Text="Delete"
+                                                       IconImageSource="delete.png"
+                                                       BackgroundColor="#800000"
+                                                       Invoked="SwipeItem_Invoked" />
+                                        </SwipeItems>
                                     </SwipeView.RightItems>
                                     <Border
                                         Style="{DynamicResource ItemBorder}"
@@ -42,7 +44,7 @@
                                                 Grid.Column="2"
                                                 HorizontalOptions="End"/>
                                             <Label
-                                                Text="{Binding Unit, StringFormat=' {0}'}"
+                                                Text="{Binding StockUnit, StringFormat=' {0}'}"
                                                 Grid.Column="3"/>
                                         </Grid>
                                     </Border>
@@ -78,7 +80,7 @@
                                                 Grid.Column="2"
                                                 HorizontalOptions="End"/>
                                         <Label
-                                                Text="{Binding Unit, StringFormat='/{0}'}"
+                                                Text="{Binding CostUnit, StringFormat='/{0}'}"
                                                 Grid.Column="3"/>
                                     </Grid>
                                 </Border>
