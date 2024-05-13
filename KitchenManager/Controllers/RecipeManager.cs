@@ -9,6 +9,7 @@ namespace KitchenManager.Controllers
 {
     public class RecipeManager
     {
+        LocalDBService localDBService = new();
         public Recipe CurrentRecipe { get; set; }
 
         public RecipeManager() { }
@@ -29,6 +30,23 @@ namespace KitchenManager.Controllers
                     ingredient.GramsWeight = (oldGrams / oldYield) * newYield;
                 }
             });
+            await CalculateCosts();
+        }
+
+        public async Task CalculateCosts()
+        {
+            decimal? totalCost = 0;
+            foreach (FoodItem ingredient in CurrentRecipe.Ingredients)
+            {
+                InventoryItem? item = await localDBService.GetItem(ingredient.FoodName.ToLower());
+                if (item != null)
+                {
+                    ingredient.Cost = item.Cost / UnitHandler.GetCostUnits()[item.CostUnit] * ingredient.GramsWeight;
+                    totalCost += ingredient.Cost;
+                }
+                else { ingredient.Cost = 0; }
+            }
+            CurrentRecipe.TotalCost = totalCost;
         }
     }
 }

@@ -46,6 +46,7 @@ namespace KitchenManager.Models
         [TextBlob(nameof(CuisineTypeListBlobbed))]
         [JsonProperty("cuisineType")]
         public List<string>? CuisineTypeList {  get; set; }
+        public decimal? TotalCost { get; set; }
 
         public string HealthTagsBlobbed { get; set; }
         public string FoodCautionsBlobbed { get; set; }

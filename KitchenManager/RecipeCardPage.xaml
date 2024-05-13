@@ -178,7 +178,6 @@
                                    HorizontalOptions="End"
                                    Margin="10, 0"/>
                             <Label x:Name="Label_TotalCost"
-                                   Text="$0.00"
                                    Grid.Row="1"
                                    Grid.Column="2"
                                    VerticalOptions="End"

@@ -8,12 +8,13 @@ namespace KitchenManager;
 
 public partial class RecipeCardPage : ContentPage
 {
-    LocalDBService localDBService = new();
-
+    LocalDBService localDBService = ((App)Application.Current).localDBService;
     RecipeManager manager = ((App)Application.Current).recipeManager;
+
     public RecipeCardPage()
     {
         InitializeComponent();
+        BindingContext = manager.CurrentRecipe;
         PopulateFields(manager.CurrentRecipe);
     }
 
@@ -35,21 +36,8 @@ public partial class RecipeCardPage : ContentPage
         Label_RecipeYield.Text = $"{yield} People";
         Image_RecipeImage.Source = recipe.ImageLink;
 
-        // Calculate costs
-        //TODO: Move to Controllers
-        foreach (FoodItem ingredient in recipe.Ingredients)
-        {
-            InventoryItem? item = await localDBService.GetItem(ingredient.FoodName.ToLower());
-            if (item != null)
-            {
-                ingredient.Cost = item.Cost / UnitHandler.GetCostUnits()[item.CostUnit] * ingredient.GramsWeight;
-            }
-            else { ingredient.Cost = 0; }
-        }
-
         CollectionView_Ingredients.ItemsSource = recipe.Ingredients;
-
-        
+        DisplayTotals();
     }
 
     private async void Button_DecreaseYield_Pressed(object sender, EventArgs e)
@@ -66,6 +54,7 @@ public partial class RecipeCardPage : ContentPage
 
         CollectionView_Ingredients.ItemsSource = null;
         CollectionView_Ingredients.ItemsSource = manager.CurrentRecipe.Ingredients;
+        DisplayTotals();
     }
 
     private async void Button_IncreaseYield_Pressed(object sender, EventArgs e)
@@ -78,6 +67,15 @@ public partial class RecipeCardPage : ContentPage
 
         CollectionView_Ingredients.ItemsSource = null;
         CollectionView_Ingredients.ItemsSource = manager.CurrentRecipe.Ingredients;
+        DisplayTotals();
+    }
+
+    private void DisplayTotals()
+    {
+        decimal totalCost = (decimal)manager.CurrentRecipe.TotalCost;
+        decimal costPerServe = totalCost / (decimal)manager.CurrentRecipe.Yield;
+        Label_TotalCost.Text = totalCost.ToString("C");
+        Label_CostPerServe.Text = costPerServe.ToString("C");
     }
 
     private async void Button_RecipeSource_Pressed(object sender, EventArgs e)
