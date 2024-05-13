@@ -48,6 +48,7 @@
                 <Entry 
                     x:Name="Entry_StockAmount"
                     Placeholder="0"
+                    Keyboard="Numeric"
                     BackgroundColor="#d9d9d9"/>
             </Border>
             <Label 
@@ -89,6 +90,7 @@
                 <Entry 
                 x:Name="Entry_StockCost"
                 Placeholder="$0.00"
+                Keyboard="Numeric"
                 BackgroundColor="#d9d9d9"/>
             </Border>
             <Label Text="/"
@@ -127,5 +129,5 @@
                 Pressed="Button_Cancel_Pressed"/>
         </Grid>
     </Border>
-    
+
 </toolkit:Popup>

@@ -9,6 +9,7 @@ namespace KitchenManager.Controllers
 {
     public class RecipeManager
     {
+        APIService apiService = new();
         LocalDBService localDBService = new();
         public Recipe CurrentRecipe { get; set; }
 
@@ -47,6 +48,12 @@ namespace KitchenManager.Controllers
                 else { ingredient.Cost = 0; }
             }
             CurrentRecipe.TotalCost = totalCost;
+        }
+
+        public async Task<Recipe> GetRandomRecipe()
+        {
+            Recipe recipe = await apiService.GetRandom();
+            return recipe;
         }
     }
 }

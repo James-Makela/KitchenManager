@@ -91,11 +91,11 @@
 
                         <Border Style="{DynamicResource ItemBorder}">
                             <VerticalStackLayout>
-                                <Label Text="Font Size"
+                                <Label Text="Cook Now Mode"
                                        FontSize="18"
                                        FontAttributes="Bold"
                                        VerticalOptions="Center"/>
-                                <Picker x:Name="Picker_FontSize"/>
+                                <Picker x:Name="Picker_CookNowMode"/>
                             </VerticalStackLayout>
                         </Border>
 

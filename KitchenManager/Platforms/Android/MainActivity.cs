@@ -9,8 +9,8 @@ namespace KitchenManager
     {
         protected override void OnCreate(Bundle? savedInstanceState)
         {
-            Window.SetStatusBarColor(Android.Graphics.Color.ParseColor("#1b263b"));
-            Window.SetNavigationBarColor(Android.Graphics.Color.ParseColor("#1b263b"));
+            Window.SetStatusBarColor(Android.Graphics.Color.ParseColor("#000000"));
+            Window.SetNavigationBarColor(Android.Graphics.Color.ParseColor("#000000"));
 
             base.OnCreate(savedInstanceState);
         }

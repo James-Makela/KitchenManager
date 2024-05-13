@@ -9,6 +9,7 @@ public partial class RecipesPage : FramePage
     List<Recipe>? savedRecipes;
     LocalDBService localDBService = ((App)Application.Current).localDBService;
     RecipeManager recipeManager = ((App)Application.Current).recipeManager;
+    bool viewingSaved = false;
 
     public RecipesPage()
     {
@@ -29,6 +30,11 @@ public partial class RecipesPage : FramePage
         ActivityIndicator_Loading.IsRunning = false;
         CollectionView_Recipes.IsVisible = true;
         CollectionView_Recipes.SelectedItem = null;
+
+        if (viewingSaved)
+        {
+            CollectionView_Recipes.ItemsSource = savedRecipes;
+        }
     }
 
     async Task PopulateRecipes()
@@ -57,12 +63,14 @@ public partial class RecipesPage : FramePage
 
     protected override void LeftTab_Pressed()
     {
+        viewingSaved = false;
         base.LeftTab_Pressed();
         CollectionView_Recipes.ItemsSource = recipes;
     }
 
     protected override void RightTab_Pressed()
     {
+        viewingSaved = true;
         base.RightTab_Pressed();
         CollectionView_Recipes.ItemsSource = savedRecipes;
     }
@@ -88,7 +96,15 @@ public partial class RecipesPage : FramePage
 
     private async void RefreshView_Recipes_Refreshing(object sender, EventArgs e)
     {
-        await PopulateRecipes();
-        RefreshView_Recipes.IsRefreshing = false;
+        if (!viewingSaved)
+        {
+            await PopulateRecipes();
+            RefreshView_Recipes.IsRefreshing = false;
+        }
+        else
+        {
+            CollectionView_Recipes.ItemsSource = savedRecipes;
+            RefreshView_Recipes.IsRefreshing = false;
+        }
     }
 }

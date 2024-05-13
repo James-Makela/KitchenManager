@@ -13,7 +13,7 @@ namespace KitchenManager.Models
         public List<string>? MealType { get; set; }
         public List<string>? ReturnFields { get; set; }
 
-        public RecipeSearchQuery(string? query, List<string>? healthTags=null, List<string>? mealType=null)
+        public RecipeSearchQuery(string? query=null, List<string>? healthTags=null, List<string>? mealType=null)
         {
             Query = query;
             HealthTags = healthTags;

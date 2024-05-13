@@ -11,8 +11,8 @@
                 <Grid
                 RowDefinitions="1*"
                 Padding="0, 10, 0, 0">
-                <!-- Stock Levels Display -->
-                
+                    <!-- Stock Levels Display -->
+
                     <CollectionView
                         x:Name="CollectionView_Stock"
                         SelectionMode="Single"
@@ -56,13 +56,13 @@
                         </CollectionView.Footer>
                     </CollectionView>
 
-                        <!-- Costings Display -->
+                    <!-- Costings Display -->
                     <CollectionView
                             x:Name="CollectionView_Costs"
                             SelectionMode="Single"
                             ItemSizingStrategy="MeasureFirstItem"
                             IsVisible="False"
-                            Margin="10"
+                            Margin="10, 0"
                             SelectionChanged="CollectionView_Costs_SelectionChanged">
                         <CollectionView.ItemTemplate>
                             <DataTemplate 
@@ -90,7 +90,7 @@
                             <Button x:Name="Button_OtherAdd" Text="Add Item" Pressed="Button_Add_Pressed"/>
                         </CollectionView.Footer>
                     </CollectionView>
-                
+
                 </Grid>
             </Border>
         </ContentView>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#1b263b</color>
-    <color name="colorPrimaryDark">#a9b4cf</color>
+    <color name="colorPrimaryDark">@android:color/black</color>
     <color name="colorAccent">#1b363b</color>
 	<color name="ListViewSelected">#1b363b</color>
 

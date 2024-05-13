@@ -17,7 +17,7 @@ namespace KitchenManager.Controllers
 
         public APIService() { }
 
-        public async Task<List<Recipe>>? GetRecipes(RecipeSearchQuery searchQuery)
+        public async Task<List<Recipe>>? GetRecipes(RecipeSearchQuery searchQuery, int numbertoReturn=20)
         {
             RecipeList? recipeResults = new();
             List<Recipe>? recipes = new();
@@ -33,6 +33,14 @@ namespace KitchenManager.Controllers
             using (StreamReader reader = new StreamReader(stream))
             using (JsonReader jsonReader = new JsonTextReader(reader))
             {
+                if (numbertoReturn == 1)
+                {
+                    jsonReader.Read();
+                    recipeResults = serializer.Deserialize<RecipeList>(jsonReader);
+                    Hit hit = recipeResults.Results[0];
+                    recipes.Add(hit.Recipe);
+                    return recipes;
+                }
                 while (jsonReader.Read())
                 {
                     if (jsonReader.TokenType ==  JsonToken.StartObject)
@@ -50,7 +58,18 @@ namespace KitchenManager.Controllers
             return recipes;
         }
 
-        public async Task<string> GetSymbols(RecipeSearchQuery query)
+        public async Task<Recipe> GetRandom()
+        {
+            Recipe recipe = new();
+            RecipeSearchQuery searchQuery = new();
+            List<Recipe> singleRecipe = await GetRecipes(searchQuery, 1);
+            recipe = singleRecipe[0];
+
+
+            return recipe;
+        }
+
+        public async Task<string> GetSymbols(RecipeSearchQuery query, int returns=0)
         {
             string keysJson = await ReadTextFile("keys.json");
             APIKeys? accessKeys = JsonConvert.DeserializeObject<APIKeys>(keysJson);

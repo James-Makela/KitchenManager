@@ -21,9 +21,9 @@ namespace KitchenManager
             await Shell.Current.GoToAsync("//inventory", true);
         }
 
-        private void Button_CookNow_Pressed(object sender, EventArgs e)
+        private async void Button_CookNow_Pressed(object sender, EventArgs e)
         {
-
+            await Shell.Current.GoToAsync("//cooknow");
         }
 
         private async void Button_Settings_Pressed(object sender, EventArgs e)

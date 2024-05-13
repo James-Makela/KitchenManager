@@ -14,13 +14,19 @@ public partial class RecipeCardPage : ContentPage
     public RecipeCardPage()
     {
         InitializeComponent();
-        BindingContext = manager.CurrentRecipe;
         PopulateFields(manager.CurrentRecipe);
     }
 
     async Task PopulateFields(Recipe recipe)
     {
-        if (recipe.Ingredients == null || recipe.Label == null) { return; }
+        if (recipe == null) 
+        {
+            // Fetch a random recipe
+            Recipe randomRecipe = await manager.GetRandomRecipe();
+            manager.CurrentRecipe = randomRecipe;
+            recipe = manager.CurrentRecipe;
+        }
+
 
         if (await localDBService.CheckRecipeIsSaved(recipe.Label))
         {
@@ -96,7 +102,7 @@ public partial class RecipeCardPage : ContentPage
     private async void Button_SaveRecipe_Pressed(object sender, EventArgs e)
     {
         CancellationTokenSource cancellationTokenSource = new();
-        string message = "Recipe Saved.";
+        string message = "Recipe Saved";
         ToastDuration duration = ToastDuration.Short;
         double fontSize = 12;
 
@@ -110,7 +116,16 @@ public partial class RecipeCardPage : ContentPage
 
     private async void Button_DeleteRecipe_Pressed(object sender, EventArgs e)
     {
+        CancellationTokenSource cancellationTokenSource = new();
+        string message = "Recipe Deleted";
+        ToastDuration duration = ToastDuration.Short;
+        double fontSize = 12;
+
+        var toast = Toast.Make(message, duration, fontSize);
+
         await localDBService.RemoveRecipe(manager.CurrentRecipe);
+        await toast.Show(cancellationTokenSource.Token);
+
         ToggleButtons(true);
     }
 
