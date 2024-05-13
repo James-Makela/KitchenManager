@@ -1,189 +1,119 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<base:FramePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:base="clr-namespace:KitchenManager"
+             xmlns:local="clr-namespace:KitchenManager.Models"
              x:Class="KitchenManager.PreferencesPage"
-             x:Name="Preferences"
-             Title="Preferences"
-             BackgroundColor="#415a77">
-
-    <Shell.TitleView>
+             Title="Preferences">
+    <!--<Shell.TitleView>
         <Grid>
             <Label Text="{Binding Title, Source={x:Reference Preferences}}"
                    VerticalOptions="Center"
                    FontSize="Title"
-                   TextColor="#d9d9d9"
                    FontAttributes="Bold" />
         </Grid>
-    </Shell.TitleView>
+    </Shell.TitleView>-->
+    <ContentPage.Content>
+        <ContentView>
+            <Border x:Name="Border_CollectionView" 
+                    Style="{DynamicResource TabPageBackground}"
+                    Grid.Row="1"
+                    Grid.ColumnSpan="2"
+                    Padding="10">
+                <ScrollView>
+                    <VerticalStackLayout VerticalOptions="Center">
+                        <Border Style="{DynamicResource ItemBorder}">
+                            <VerticalStackLayout>
+                                <Label Text="Units"
+                                       FontSize="18"
+                                       FontAttributes="Bold"
+                                       VerticalOptions="Center"/>
+                                <Picker x:Name="Picker_Unit"
+                                    FontSize="15"
+                                    SelectedIndexChanged="Picker_Unit_SelectedIndexChanged">
+                                    <Picker.ItemsSource>
+                                        <x:Array Type="{x:Type x:String}">
+                                            <x:String>Metric</x:String>
+                                            <x:String>Imperial</x:String>
+                                        </x:Array>
+                                    </Picker.ItemsSource>
+                                </Picker>
+                            </VerticalStackLayout>
+                        </Border>
 
-    <Grid RowDefinitions="5*, 1*, 1*, 1*, 1*, 1*"
-          ColumnDefinitions="1*, auto, 1*"
-          Margin="10, 0">
+                        <Border Style="{DynamicResource ItemBorder}">
+                            <VerticalStackLayout>
+                                <Label Text="Number of People"
+                                       FontSize="18"
+                                       FontAttributes="Bold"
+                                       VerticalOptions="Center"/>
+                                <Picker x:Name="Picker_People"
+                                        FontSize="15"
+                                        SelectedIndexChanged="Picker_People_SelectedIndexChanged">
+                                    <Picker.ItemsSource>
+                                        <x:Array Type="{x:Type x:String}">
+                                            <x:String>1</x:String>
+                                            <x:String>2</x:String>
+                                            <x:String>3</x:String>
+                                            <x:String>4</x:String>
+                                            <x:String>5</x:String>
+                                            <x:String>6</x:String>
+                                            <x:String>7</x:String>
+                                            <x:String>8</x:String>
+                                            <x:String>9</x:String>
+                                            <x:String>10</x:String>
+                                        </x:Array>
+                                    </Picker.ItemsSource>
+                                </Picker>
+                            </VerticalStackLayout>
+                        </Border>
 
-        <Image Source="settings_icon"
-               Grid.Row="0"
-               Grid.ColumnSpan="3"
-               HeightRequest="175"
-               WidthRequest="175"
-               VerticalOptions="Center"
-               HorizontalOptions="Center"
-               Margin="40"/>
+                        <Border Style="{DynamicResource ItemBorder}">
+                            <VerticalStackLayout>
+                                <Label Text="Theme"
+                                       FontSize="18"
+                                       FontAttributes="Bold"
+                                       VerticalOptions="Center"/>
+                                <Picker x:Name="Picker_Theme"
+                                    Grid.Row="3"
+                                    Grid.Column="2"
+                                    FontSize="15"
+                                    SelectedIndexChanged="Picker_Theme_SelectedIndexChanged">
+                                    <Picker.ItemsSource>
+                                        <x:Array Type="{x:Type x:String}">
+                                            <x:String>Day</x:String>
+                                            <x:String>Night</x:String>
+                                        </x:Array>
+                                    </Picker.ItemsSource>
+                                </Picker>
+                            </VerticalStackLayout>
+                        </Border>
 
-        <Border Grid.Row="1"
-                Grid.RowSpan="5"
-                Grid.ColumnSpan="3"
-                BackgroundColor="#c5c4c4c4"
-                StrokeShape="RoundRectangle 10, 10, 0, 0"
-                StrokeThickness="0"/>
-        <Border Grid.Row="1"
-                Grid.ColumnSpan="3"
-                BackgroundColor="#d9d9d9"
-                StrokeShape="RoundRectangle 10, 10, 5, 5"
-                StrokeThickness="0"
-                Margin="1, 0.5"/>
-        <Border Grid.Row="2"
-                Grid.ColumnSpan="3"
-                BackgroundColor="#d9d9d9"
-                StrokeShape="RoundRectangle 5, 5, 5, 5"
-                StrokeThickness="0"
-                Margin="1, 0.5"/>
-        <Border Grid.Row="3"
-                Grid.ColumnSpan="3"
-                BackgroundColor="#d9d9d9"
-                StrokeShape="RoundRectangle 5, 5, 5, 5"
-                StrokeThickness="0"
-                Margin="1, 0.5"/>
-        <Border Grid.Row="4"
-                Grid.ColumnSpan="3"
-                BackgroundColor="#d9d9d9"
-                StrokeShape="RoundRectangle 5, 5, 5, 5"
-                StrokeThickness="0"
-                Margin="1, 0.5"/>
-        <Border Grid.Row="5"
-                Grid.ColumnSpan="3"
-                BackgroundColor="#d9d9d9"
-                StrokeShape="RoundRectangle 5, 5, 5, 5"
-                StrokeThickness="0"
-                Margin="1, 0.5"/>
+                        <Border Style="{DynamicResource ItemBorder}">
+                            <VerticalStackLayout>
+                                <Label Text="Font Size"
+                                       FontSize="18"
+                                       FontAttributes="Bold"
+                                       VerticalOptions="Center"/>
+                                <Picker x:Name="Picker_FontSize"/>
+                            </VerticalStackLayout>
+                        </Border>
 
+                        <Border Style="{DynamicResource ItemBorder}">
+                            <VerticalStackLayout>
+                                <Label Text="Report a Bug"
+                                       FontSize="18"
+                                       FontAttributes="Bold"
+                                       VerticalOptions="Center"/>
+                                <Picker x:Name="Picker_BugReport">
+                                
+                                </Picker>
+                            </VerticalStackLayout>
+                        </Border>
+                    </VerticalStackLayout>
+                </ScrollView>
+            </Border>
+        </ContentView>
 
-        <Label Text="Units"
-               Grid.Row="1"
-               FontSize="22"
-               FontAttributes="Bold"
-               VerticalOptions="Center"
-               Margin="20, 0"/>
-        <Border Grid.Row="1"
-                Grid.Column="2"
-                StrokeShape="RoundRectangle 50"
-                StrokeThickness="0"
-                BackgroundColor="#415a77"
-                HorizontalOptions="End"
-                WidthRequest="80"
-                Margin="10, 10"/>
-        <Picker x:Name="Picker_Unit"
-                Grid.Row="1"
-                Grid.Column="2"
-                FontSize="22"
-                TextColor="White"
-                VerticalOptions="Center"
-                HorizontalOptions="End"
-                HorizontalTextAlignment="Center"
-                Margin="20, 0"
-                SelectedIndexChanged="Picker_Unit_SelectedIndexChanged">
-            <Picker.ItemsSource>
-                <x:Array Type="{x:Type x:String}">
-                    <x:String>Metric</x:String>
-                    <x:String>Imperial</x:String>
-                </x:Array>
-            </Picker.ItemsSource>
-        </Picker>
-
-        <Label Text="People"
-                Grid.Row="2"
-                FontSize="22"
-                FontAttributes="Bold"
-                VerticalOptions="Center"
-                Margin="20, 0"/>
-        <Border Grid.Row="2"
-                Grid.Column="2"
-                StrokeShape="RoundRectangle 50"
-                StrokeThickness="0"
-                BackgroundColor="#415a77"
-                HorizontalOptions="End"
-                WidthRequest="65"
-                Margin="10, 10"/>
-        <Picker x:Name="Picker_People"
-                Grid.Row="2"
-                Grid.Column="2"
-                FontSize="22"
-                TextColor="White"
-                VerticalOptions="Center"
-                HorizontalOptions="End"
-                HorizontalTextAlignment="Center"
-                Margin="20, 0"
-                SelectedIndexChanged="Picker_People_SelectedIndexChanged">
-            <Picker.ItemsSource>
-                <x:Array Type="{x:Type x:String}">
-                    <x:String>1</x:String>
-                    <x:String>2</x:String>
-                    <x:String>3</x:String>
-                    <x:String>4</x:String>
-                    <x:String>5</x:String>
-                    <x:String>6</x:String>
-                    <x:String>7</x:String>
-                    <x:String>8</x:String>
-                    <x:String>9</x:String>
-                    <x:String>10</x:String>
-                </x:Array>
-            </Picker.ItemsSource>
-        </Picker>
-
-        <Label Text="Theme"
-                Grid.Row="3"
-                FontSize="22"
-                FontAttributes="Bold"
-                VerticalOptions="Center"
-                Margin="20, 0"/>
-        <Border Grid.Row="3"
-                Grid.Column="2"
-                StrokeShape="RoundRectangle 50"
-                StrokeThickness="0"
-                BackgroundColor="#415a77"
-                HorizontalOptions="End"
-                WidthRequest="70"
-                Margin="10, 10"/>
-        <Picker x:Name="Picker_Theme"
-                Grid.Row="3"
-                Grid.Column="2"
-                FontSize="22"
-                TextColor="White"
-                VerticalOptions="Center"
-                HorizontalOptions="End"
-                HorizontalTextAlignment="Center"
-                Margin="20, 0">
-            <Picker.ItemsSource>
-                <x:Array Type="{x:Type x:String}">
-                    <x:String>Day</x:String>
-                    <x:String>Night</x:String>
-                </x:Array>
-            </Picker.ItemsSource>
-        </Picker>
-
-        <Label Text="🪲 Report A Bug"
-                Grid.Row="4"
-                Grid.ColumnSpan="3"
-                FontSize="22"
-                FontAttributes="Bold"
-                VerticalOptions="Center"
-                Margin="20, 0"/>
-
-        <Label Text="ⓘ   About"
-                Grid.Row="5"
-                FontSize="22"
-                FontAttributes="Bold"
-                VerticalOptions="Center"
-                Margin="20, 0"/>
-
-    </Grid>
-</ContentPage>
+    </ContentPage.Content>
+</base:FramePage>

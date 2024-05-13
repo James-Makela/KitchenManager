@@ -24,6 +24,9 @@ namespace KitchenManager.Controllers
                 {
                     decimal oldQuantity = ingredient.Quantity;
                     ingredient.Quantity = (oldQuantity / oldYield) * newYield;
+
+                    decimal oldGrams = ingredient.GramsWeight;
+                    ingredient.GramsWeight = (oldGrams / oldYield) * newYield;
                 }
             });
         }

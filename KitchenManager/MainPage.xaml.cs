@@ -13,9 +13,7 @@ namespace KitchenManager
 
         private async void Button_Recipes_Clicked(object sender, EventArgs e)
         {
-            Button_Recipes.BackgroundColor = Color.Parse("#415a77");
             await Shell.Current.GoToAsync("//recipes", true);
-            Button_Recipes.BackgroundColor = Color.Parse("#778DA9");
         }
 
         private async void Button_Inventory_Pressed(object sender, EventArgs e)

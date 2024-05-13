@@ -37,6 +37,27 @@ namespace KitchenManager.Controllers
         public static void SetTheme(int value)
         {
             Preferences.Default.Set<int>("theme", value);
+            Preferences.Default.Set<bool>("themeSetByUser", true);
+        }
+
+        public static bool CheckThemeSet()
+        {
+            return Preferences.Default.Get<bool>("themeSetByUser", false);
+        }
+
+        public static void ApplyTheme()
+        {
+            int theme = Preferences.Get("theme", 0);
+            switch (theme)
+            {
+                case 0:
+                    Application.Current.UserAppTheme = AppTheme.Light;
+                    break;
+
+                case 1:
+                    Application.Current.UserAppTheme = AppTheme.Dark;
+                    break;
+            }
         }
     }
 }

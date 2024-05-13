@@ -2,12 +2,18 @@ using KitchenManager.Controllers;
 
 namespace KitchenManager;
 
-public partial class PreferencesPage : ContentPage
+public partial class PreferencesPage : FramePage
 {
 	public PreferencesPage()
 	{
 		InitializeComponent();
-		PopulateFields();
+        Button button_LeftTab = (Button)this.GetTemplateChild("Button_LeftTab");
+        Button button_RightTab = (Button)this.GetTemplateChild("Button_RightTab");
+        Image imageEdamamLogo = (Image)this.GetTemplateChild("Image_edamamLogo");
+        button_LeftTab.Text = "Settings";
+        button_RightTab.Text = "About";
+		imageEdamamLogo.IsVisible = false;
+        PopulateFields();
 	}
 
 	private void PopulateFields()
@@ -50,5 +56,11 @@ public partial class PreferencesPage : ContentPage
         });
 
         return true;
+    }
+
+    private void Picker_Theme_SelectedIndexChanged(object sender, EventArgs e)
+    {
+		PreferencesManager.SetTheme(Picker_Theme.SelectedIndex);
+		PreferencesManager.ApplyTheme();
     }
 }

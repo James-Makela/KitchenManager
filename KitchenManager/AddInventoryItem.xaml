@@ -4,14 +4,12 @@
                xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
                x:Class="KitchenManager.AddInventoryItem"
                Color="Transparent">
-    <Border StrokeShape="RoundRectangle 20"
-            Stroke="#415a77"
-            Background="#415a77">
+    <Border Style="{DynamicResource AddItemCard}">
         <Grid
             RowDefinitions="1*, 1*, 1*, 1*, 1*"
             ColumnDefinitions="1*, 1*"
             WidthRequest="250"
-            HeightRequest="300">
+            HeightRequest="320">
             <Border
                 Stroke="#d9d9d9"
                 StrokeShape="RoundRectangle 10"
@@ -104,9 +102,6 @@
                 Text="Save"
                 Grid.Row="5"
                 Margin="10"
-                BackgroundColor="#d9d9d9"
-                TextColor="#0d1b2a"
-                HeightRequest="35"
                 Pressed="Button_Save_Pressed"/>
             <Button
                 x:Name="Button_Cancel"
@@ -114,9 +109,6 @@
                 Grid.Row="5"
                 Grid.Column="1"
                 Margin="10"
-                BackgroundColor="#d9d9d9"
-                TextColor="#0d1b2a"
-                HeightRequest="35"
                 Pressed="Button_Cancel_Pressed"/>
         </Grid>
     </Border>

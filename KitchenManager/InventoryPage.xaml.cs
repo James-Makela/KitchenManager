@@ -26,25 +26,20 @@ public partial class InventoryPage : FramePage
     {
         base.LeftTab_Pressed();
         
-        Border_Costs.IsVisible = false;
-        Border_Stock.IsVisible = true;
+        CollectionView_Costs.IsVisible = false;
+        CollectionView_Stock.IsVisible = true;
     }
 
     protected override void RightTab_Pressed()
     {
         base.RightTab_Pressed();
-        Border_Stock.IsVisible = false;
-        Border_Costs.IsVisible = true;
+        CollectionView_Stock.IsVisible = false;
+        CollectionView_Costs.IsVisible = true;
     }
 
     private void CollectionView_Stock_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-
-    }
-
-    private async void Button_Add_Stock_Pressed(object sender, EventArgs e)
-    {
-        await AddItemPopUp();
+        
     }
 
     public async Task AddItemPopUp()
@@ -69,5 +64,17 @@ public partial class InventoryPage : FramePage
     private void CollectionView_Costs_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
 
+    }
+
+    private async void Button_Add_Pressed(object sender, EventArgs e)
+    {
+        await AddItemPopUp();
+    }
+
+    private async void SwipeItem_Invoked(object sender, EventArgs e)
+    {
+        InventoryItem item = (InventoryItem)CollectionView_Stock.SelectedItem;
+        await service.RemoveInventoryItem(item);
+        RefreshList();
     }
 }

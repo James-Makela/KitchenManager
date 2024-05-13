@@ -5,9 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:KitchenManager"
     Shell.FlyoutBehavior="Flyout"
-    Shell.BackgroundColor="#0d1b2a"
-    Shell.TitleColor="#d9d9d9"
-    Shell.FlyoutBackgroundColor="#0d1b2a"
+    FlyoutBackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Black}}"
     Title="KitchenManager">
 
     <FlyoutItem  Title="Home">

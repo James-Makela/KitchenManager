@@ -12,6 +12,25 @@ namespace KitchenManager
             InitializeComponent();
 
             MainPage = new AppShell();
+
+            PreferencesManager.ApplyTheme();
+            RequestedThemeChanged += App_RequestedThemeChanged;
+        }
+        private void App_RequestedThemeChanged(object sender, AppThemeChangedEventArgs e)
+        {
+            if (PreferencesManager.CheckThemeSet())
+            {
+                PreferencesManager.ApplyTheme();
+            }
+            switch (e.RequestedTheme)
+            {
+                case AppTheme.Light:
+                    Application.Current.UserAppTheme = AppTheme.Light;
+                    break;
+                case AppTheme.Dark:
+                    Application.Current.UserAppTheme = AppTheme.Dark;
+                    break;
+            }
         }
     }
 }
