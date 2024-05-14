@@ -8,16 +8,18 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using KitchenManager.Models;
+using System.Web;
 
 namespace KitchenManager.Controllers
 {
     internal class APIService
     {
         const string baseURL = "https://api.edamam.com/api/recipes/v2?type=public";
+        const string nutritionURL = " https://api.edamam.com/api/recipes/v2/by-uri?type=public";
 
         public APIService() { }
 
-        public async Task<List<Recipe>>? GetRecipes(RecipeSearchQuery searchQuery, int numbertoReturn=20)
+        public async Task<List<Recipe>>? GetRecipes(SearchQuery searchQuery, int numbertoReturn=20)
         {
             RecipeList? recipeResults = new();
             List<Recipe>? recipes = new();
@@ -58,10 +60,37 @@ namespace KitchenManager.Controllers
             return recipes;
         }
 
+        public async Task<NutritionInfo> GetNutrition(string recipeURI)
+        {
+            NutritionList? nutritionResults = new();
+            NutritionInfo nutritionInfo = new();
+
+            SearchQuery searchQuery = new();
+            searchQuery.QueryType = "nutrition";
+            searchQuery.URI = HttpUtility.UrlEncode(recipeURI);
+
+            using HttpClient client = new();
+            string fullUrl = await GetSymbols(searchQuery);
+
+            HttpResponseMessage response = await client.GetAsync(fullUrl);
+
+            JsonSerializer serializer = new();
+
+            using (Stream stream = await response.Content.ReadAsStreamAsync())
+            using (StreamReader reader = new StreamReader(stream))
+            using (JsonReader jsonReader = new JsonTextReader(reader))
+            {
+                jsonReader.Read();
+                nutritionResults = serializer.Deserialize<NutritionList>(jsonReader);
+                NutritionHit nutritionHit = nutritionResults.Results[0];
+                return nutritionHit.NutritionInfo;
+            }
+        }
+
         public async Task<Recipe> GetRandom()
         {
             Recipe recipe = new();
-            RecipeSearchQuery searchQuery = new();
+            SearchQuery searchQuery = new();
             List<Recipe> singleRecipe = await GetRecipes(searchQuery, 1);
             recipe = singleRecipe[0];
 
@@ -69,7 +98,7 @@ namespace KitchenManager.Controllers
             return recipe;
         }
 
-        public async Task<string> GetSymbols(RecipeSearchQuery query, int returns=0)
+        public async Task<string> GetSymbols(SearchQuery query, int returns=0)
         {
             string keysJson = await ReadTextFile("keys.json");
             APIKeys? accessKeys = JsonConvert.DeserializeObject<APIKeys>(keysJson);
@@ -82,6 +111,24 @@ namespace KitchenManager.Controllers
             }
 
             string fullURL = baseURL;
+
+            if (query.QueryType == "nutrition")
+            {
+                fullURL = nutritionURL;
+                fullURL += $"&uri={query.URI}";
+
+                fullURL += $"&app_id={accessKeys.app_id}";
+                fullURL += $"&app_key={accessKeys.api_key}";
+
+                foreach (string field in query.NutritionReturnFields)
+                {
+                    fullURL += $"&field={field}";
+                }
+
+                return fullURL;
+
+            }
+
             if (query.Query != null)
             {
                 fullURL += $"&q={query.Query}";

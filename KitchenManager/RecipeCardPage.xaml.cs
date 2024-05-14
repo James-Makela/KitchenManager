@@ -134,4 +134,23 @@ public partial class RecipeCardPage : ContentPage
         Button_SaveRecipe.IsVisible = wasSaved ? true : false;
         Button_DeleteRecipe.IsVisible = wasSaved ? false: true;
     }
+
+    private void Button_Ingredients_Pressed(object sender, EventArgs e)
+    {
+        Border_TableView.IsVisible = true;
+        Border_NutritionTableView.IsVisible = false;
+    }
+
+    private async void Button_Nutrition_Pressed(object sender, EventArgs e)
+    {
+        Border_TableView.IsVisible = false;
+        Border_NutritionTableView.IsVisible = true;
+
+        if (manager.NutritionInfo == null)
+        {
+            manager.NutritionInfo = await manager.GetNutrition();
+        }
+
+        CollectionView_Nutrition.ItemsSource = manager.NutritionInfo.NutritionItems;
+    }
 }

@@ -23,7 +23,8 @@
                     Background="Transparent"
                     TextColor="#d9d9d9"
                     FontSize="20"
-                    FontAttributes="Bold"/>
+                    FontAttributes="Bold"
+                    Pressed="Button_Ingredients_Pressed"/>
         </Border>
         <Border x:Name="Border_Nutrition"
                 Style="{DynamicResource UnselectedTabBorder}"
@@ -35,7 +36,8 @@
                     Background="Transparent"
                     TextColor="#415a77"
                     FontSize="20"
-                    FontAttributes="Bold"/>
+                    FontAttributes="Bold"
+                    Pressed="Button_Nutrition_Pressed"/>
         </Border>
 
         <!-- Main Background-->
@@ -105,6 +107,53 @@
                                         <Label Text="{Binding QuantityMeasure}" Grid.Column="0" Grid.Row="1" Margin="10, 0" VerticalOptions="Center"/>
                                         <Label Text="{Binding FoodName}" Grid.Column="2" Grid.Row="1" Margin="10, 0" VerticalOptions="Center"/>
                                         <Label Text="{Binding Cost, StringFormat='${0:F2}'}" Grid.Column="4" Margin="10, 0" Grid.Row="1" VerticalOptions="Center"/>
+
+                                        <!--<BoxView Grid.Column="1"
+                                             Grid.RowSpan="3"
+                                             BackgroundColor="Black"/>-->
+                                        <BoxView Grid.Column="1"
+                                             Grid.RowSpan="3"/>
+                                        <BoxView Grid.Column="3"
+                                             Grid.RowSpan="3"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </Border>
+
+                    <!-- Background for nutrition -->
+                    <Border x:Name="Border_NutritionTableView"
+                        IsVisible="False"
+                        Style="{DynamicResource IngredientsBorder}">
+                        <CollectionView x:Name="CollectionView_Nutrition"
+                                    Margin="3">
+                            <CollectionView.Header>
+                                <Grid ColumnDefinitions="2.8*, 1, 3*, 1, 1.3*"
+                                  RowDefinitions="2*, 4"
+                                  Margin="0">
+                                    <Label Text="Nutrient" Grid.Column="0" Margin="5, 0" FontAttributes="Bold"/>
+                                    <Label Text="Amount" Grid.Column="2" Margin="5, 0" FontAttributes="Bold"/>
+                                    <Label Text="Daily %" Grid.Column="4" Margin="5, 0" FontAttributes="Bold"/>
+                                    <BoxView HeightRequest="2"
+                                         Grid.ColumnSpan="5"
+                                         Grid.Row="1"
+                                         VerticalOptions="Center"
+                                         Margin="5, 4, 5, 0"/>
+
+                                    <BoxView Grid.Column="1"
+                                         Grid.RowSpan="2"/>
+                                    <BoxView Grid.Column="3"
+                                         Grid.RowSpan="2"/>
+                                </Grid>
+                            </CollectionView.Header>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="local:NutritionItem">
+                                    <Grid ColumnDefinitions="2.8*, 1, 3*, 1, 1.3*"
+                                      RowDefinitions="2, 1*, 2"
+                                      Margin="0">
+                                        <Label Text="{Binding Label}" Grid.Column="0" Grid.Row="1" Margin="10, 0" VerticalOptions="Center"/>
+                                        <Label Text="{Binding TotalAmount, StringFormat='{0:00}'}" Grid.Column="2" Grid.Row="1" Margin="10, 0" VerticalOptions="Center"/>
+                                        <Label Text="{Binding DailyPercentage, StringFormat='{0:0}%'}" Grid.Column="4" Margin="10, 0" Grid.Row="1" VerticalOptions="Center"/>
 
                                         <!--<BoxView Grid.Column="1"
                                              Grid.RowSpan="3"
@@ -192,7 +241,7 @@
                         <Button x:Name="Button_RecipeSource"
                         BackgroundColor="Transparent"
                         Padding="0"
-                        TextColor="Black"
+                        TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
                         HorizontalOptions="Start"
                         Margin="15, 0, 0, 0"
                         Pressed="Button_RecipeSource_Pressed"/>

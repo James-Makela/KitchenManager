@@ -46,7 +46,7 @@ public partial class RecipesPage : FramePage
     async Task<List<Recipe>> FetchRecipes(string? query=null)
     {
         APIService service = new APIService();
-        RecipeSearchQuery searchQuery = new RecipeSearchQuery(query);
+        SearchQuery searchQuery = new SearchQuery(query);
 
         return await service.GetRecipes(searchQuery);
     }

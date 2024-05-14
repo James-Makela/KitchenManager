@@ -12,6 +12,7 @@ namespace KitchenManager.Controllers
         APIService apiService = new();
         LocalDBService localDBService = new();
         public Recipe CurrentRecipe { get; set; }
+        public NutritionInfo NutritionInfo { get; set; }
 
         public RecipeManager() { }
 
@@ -54,6 +55,17 @@ namespace KitchenManager.Controllers
         {
             Recipe recipe = await apiService.GetRandom();
             return recipe;
+        }
+
+        public async Task<NutritionInfo>? GetNutrition()
+        {
+            if (CurrentRecipe.URI == null)
+            {
+                // TODO: Add error handling here
+                return null;
+            }
+            NutritionInfo nutritionInfo = await apiService.GetNutrition(CurrentRecipe.URI);
+            return nutritionInfo;
         }
     }
 }
