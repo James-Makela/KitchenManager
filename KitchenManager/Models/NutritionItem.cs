@@ -15,7 +15,7 @@ namespace KitchenManager.Models
         [JsonProperty("tag")]
         public string? NutritionTag { get;}
         [JsonProperty("total")]
-        public decimal? TotalAmount { get; set; }
+        public decimal TotalAmount { get; set; }
         [JsonProperty("hasRDI")]
         public bool? HasRDI { get; set; }
         [JsonProperty("daily")]
@@ -24,5 +24,9 @@ namespace KitchenManager.Models
         public string? Unit {  get; set; }
         [JsonProperty("sub")]
         public List<NutritionItem>? SubItems { get; set; }
+
+        public string TotalWithUnits { get =>
+                $"{TotalAmount.ToString("0")} {Unit}";
+        }
     }
 }

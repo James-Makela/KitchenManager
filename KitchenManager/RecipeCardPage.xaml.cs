@@ -145,12 +145,8 @@ public partial class RecipeCardPage : ContentPage
     {
         Border_TableView.IsVisible = false;
         Border_NutritionTableView.IsVisible = true;
+        manager.NutritionInfo = await manager.GetNutrition();
 
-        if (manager.NutritionInfo == null)
-        {
-            manager.NutritionInfo = await manager.GetNutrition();
-        }
-
-        CollectionView_Nutrition.ItemsSource = manager.NutritionInfo.NutritionItems;
+        CollectionView_Nutrition.ItemsSource = manager.NutritionInfo;
     }
 }

@@ -12,13 +12,15 @@ namespace KitchenManager.Controllers
         APIService apiService = new();
         LocalDBService localDBService = new();
         public Recipe CurrentRecipe { get; set; }
-        public NutritionInfo NutritionInfo { get; set; }
+        public List<NutritionItem> NutritionInfo { get; set; }
+        int OriginalYield {  get; set; }
 
         public RecipeManager() { }
 
         public async Task ChangeYield(int newYield)
         {
             int oldYield = Convert.ToInt32(CurrentRecipe.Yield);
+            OriginalYield = oldYield;
             CurrentRecipe.Yield = newYield;
             List<FoodItem> ingredients = new();
             await Task.Run(() =>
@@ -57,15 +59,38 @@ namespace KitchenManager.Controllers
             return recipe;
         }
 
-        public async Task<NutritionInfo>? GetNutrition()
+        public async Task<List<NutritionItem>?> GetNutrition()
         {
             if (CurrentRecipe.URI == null)
             {
                 // TODO: Add error handling here
                 return null;
             }
+            List<NutritionItem> nutritionItems = new();
+
             NutritionInfo nutritionInfo = await apiService.GetNutrition(CurrentRecipe.URI);
-            return nutritionInfo;
+
+            foreach (NutritionItem nutritionItem in nutritionInfo.NutritionItems)
+            {
+                if (nutritionItem == null) { return null; }
+
+                nutritionItem.TotalAmount = nutritionItem.TotalAmount / OriginalYield;
+                nutritionItem.DailyPercentage = nutritionItem.DailyPercentage / OriginalYield;
+
+                nutritionItems.Add(nutritionItem);
+                if (nutritionItem.SubItems != null)
+                {
+                    foreach (NutritionItem subItem in  nutritionItem.SubItems)
+                    {
+                        subItem.Label = $"- {subItem.Label}";
+                        subItem.TotalAmount = subItem.TotalAmount / OriginalYield;
+                        subItem.DailyPercentage = subItem.DailyPercentage / OriginalYield;
+                        nutritionItems.Add(subItem);
+                    }
+                }
+            }
+
+            return nutritionItems;
         }
     }
 }

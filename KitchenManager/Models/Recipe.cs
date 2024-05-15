@@ -33,7 +33,7 @@ namespace KitchenManager.Models
         public string? SourceLink { get; set; }
         [Column("yield")]
         [JsonProperty("yield")]
-        public decimal? Yield {  get; set; }
+        public decimal Yield { get; set; }
         [TextBlob(nameof(HealthTagsBlobbed))]
         [JsonProperty("healthLabels")]
         public List<string>? HealthTags { get; set; }
@@ -42,12 +42,11 @@ namespace KitchenManager.Models
         public List<string>? FoodCautions { get; set; }
         [TextBlob(nameof(IngredientsBlobbed))]
         [JsonProperty("ingredients")]
-        public List<FoodItem>? Ingredients {  get; set; }
+        public List<FoodItem>? Ingredients { get; set; }
         [TextBlob(nameof(CuisineTypeListBlobbed))]
         [JsonProperty("cuisineType")]
-        public List<string>? CuisineTypeList {  get; set; }
+        public List<string>? CuisineTypeList { get; set; }
         public decimal? TotalCost { get; set; }
-
         public string HealthTagsBlobbed { get; set; }
         public string FoodCautionsBlobbed { get; set; }
         public string CuisineTypeListBlobbed { get; set; }
