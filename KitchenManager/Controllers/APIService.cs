@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Json;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
 using KitchenManager.Models;
 using System.Web;
 
@@ -21,11 +13,16 @@ namespace KitchenManager.Controllers
 
         public async Task<List<Recipe>>? GetRecipes(SearchQuery searchQuery, int numbertoReturn=20)
         {
-            RecipeList? recipeResults = new();
+            RecipeList recipeResults = new();
             List<Recipe>? recipes = new();
 
             using HttpClient client = new();
-            string fullUrl = await GetSymbols(searchQuery);
+            string fullUrl = await GetUrl(searchQuery);
+
+            if (fullUrl.StartsWith("Error"))
+            {
+                return ReturnError("API");
+            }
 
             HttpResponseMessage response = await client.GetAsync(fullUrl);
 
@@ -51,6 +48,10 @@ namespace KitchenManager.Controllers
                     }
                 }
             }
+            if (recipeResults == null || recipeResults.Results == null)
+            {
+                return ReturnError("No Results");
+            }
 
             foreach (Hit result in recipeResults.Results)
             {
@@ -62,15 +63,14 @@ namespace KitchenManager.Controllers
 
         public async Task<NutritionInfo> GetNutrition(string recipeURI)
         {
-            NutritionList? nutritionResults = new();
-            NutritionInfo nutritionInfo = new();
-
-            SearchQuery searchQuery = new();
-            searchQuery.QueryType = "nutrition";
-            searchQuery.URI = HttpUtility.UrlEncode(recipeURI);
+            SearchQuery searchQuery = new()
+            {
+                QueryType = "nutrition",
+                URI = HttpUtility.UrlEncode(recipeURI)
+            };
 
             using HttpClient client = new();
-            string fullUrl = await GetSymbols(searchQuery);
+            string fullUrl = await GetUrl(searchQuery);
 
             HttpResponseMessage response = await client.GetAsync(fullUrl);
 
@@ -81,7 +81,7 @@ namespace KitchenManager.Controllers
             using (JsonReader jsonReader = new JsonTextReader(reader))
             {
                 jsonReader.Read();
-                nutritionResults = serializer.Deserialize<NutritionList>(jsonReader);
+                NutritionList nutritionResults = serializer.Deserialize<NutritionList>(jsonReader);
                 NutritionHit nutritionHit = nutritionResults.Results[0];
                 return nutritionHit.NutritionInfo;
             }
@@ -98,16 +98,18 @@ namespace KitchenManager.Controllers
             return recipe;
         }
 
-        public async Task<string> GetSymbols(SearchQuery query, int returns=0)
+        public async Task<string> GetUrl(SearchQuery query, int returns=0)
         {
-            string keysJson = await ReadTextFile("keys.json");
-            APIKeys? accessKeys = JsonConvert.DeserializeObject<APIKeys>(keysJson);
-
-            // TODO: Further implement a key error notification
-            // This must be fed through to the page that calls the function that calls this
-            if (accessKeys == null)
+            string keysJson;
+            APIKeys? accessKeys;
+            try
             {
-                return "keyError";
+                keysJson = await ReadKeysFile("keys.json");
+                accessKeys = JsonConvert.DeserializeObject<APIKeys>(keysJson);
+            }
+            catch (FileNotFoundException)
+            {
+                return "Error: API keys not configured.";
             }
 
             string fullURL = baseURL;
@@ -166,11 +168,22 @@ namespace KitchenManager.Controllers
             return fullURL;
         }
 
-        public async Task<string> ReadTextFile(string path)
+        public async Task<string> ReadKeysFile(string path)
         {
             using Stream fileStream = await FileSystem.Current.OpenAppPackageFileAsync(path);
             using StreamReader reader = new StreamReader(fileStream);
             return await reader.ReadToEndAsync();
+        }
+
+        public List<Recipe> ReturnError(string message, string details="")
+        {
+            Recipe errorMessage = new Recipe
+            {
+                Label = $"Error: {message}",
+                CuisineTypeList = [$"{details}"]
+            };
+            List<Recipe> error = [errorMessage];
+            return error;
         }
 
     }
