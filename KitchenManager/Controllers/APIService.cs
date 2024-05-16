@@ -11,7 +11,7 @@ namespace KitchenManager.Controllers
 
         public APIService() { }
 
-        public async Task<List<Recipe>>? GetRecipes(SearchQuery searchQuery, int numbertoReturn=20)
+        public async Task<List<Recipe>>? GetRecipes(SearchQuery searchQuery, int numbertoReturn = 20)
         {
             RecipeList recipeResults = new();
             List<Recipe>? recipes = new();
@@ -42,7 +42,7 @@ namespace KitchenManager.Controllers
                 }
                 while (jsonReader.Read())
                 {
-                    if (jsonReader.TokenType ==  JsonToken.StartObject)
+                    if (jsonReader.TokenType == JsonToken.StartObject)
                     {
                         recipeResults = serializer.Deserialize<RecipeList>(jsonReader);
                     }
@@ -98,7 +98,7 @@ namespace KitchenManager.Controllers
             return recipe;
         }
 
-        public async Task<string> GetUrl(SearchQuery query, int returns=0)
+        public async Task<string> GetUrl(SearchQuery query, int returns = 0)
         {
             string keysJson;
             APIKeys? accessKeys;
@@ -154,7 +154,7 @@ namespace KitchenManager.Controllers
 
             if (query.MealType != null)
             {
-                foreach (string mealType in  query.MealType)
+                foreach (string mealType in query.MealType)
                 {
                     fullURL += $"&mealType={mealType}";
                 }
@@ -175,7 +175,7 @@ namespace KitchenManager.Controllers
             return await reader.ReadToEndAsync();
         }
 
-        public List<Recipe> ReturnError(string message, string details="")
+        public List<Recipe> ReturnError(string message, string details = "")
         {
             Recipe errorMessage = new Recipe
             {

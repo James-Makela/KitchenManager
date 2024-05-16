@@ -43,7 +43,7 @@ public partial class RecipesPage : FramePage
         CollectionView_Recipes.ItemsSource = recipes;
     }
 
-    async Task<List<Recipe>> FetchRecipes(string? query=null)
+    async Task<List<Recipe>> FetchRecipes(string? query = null)
     {
         APIService service = new APIService();
         SearchQuery searchQuery = new SearchQuery(query);
