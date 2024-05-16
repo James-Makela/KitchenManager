@@ -6,11 +6,11 @@ namespace KitchenManager;
 
 public partial class AddInventoryItem : Popup
 {
-	public AddInventoryItem()
-	{
-		InitializeComponent();
+    public AddInventoryItem()
+    {
+        InitializeComponent();
         PopulatePicker();
-	}
+    }
 
     private async void Button_Save_Pressed(object sender, EventArgs e)
     {
@@ -20,13 +20,13 @@ public partial class AddInventoryItem : Popup
         string? costUnit = Picker_CostUnit.SelectedItem.ToString();
         string? stockUnit = Picker_StockUnit.SelectedItem.ToString();
 
-        if (costUnit == null || stockUnit == null )
+        if (costUnit == null || stockUnit == null)
         {
             return;
         }
 
         InventoryItem item = new(Entry_StockName.Text, stockUnit, costUnit, amount, cost);
-        
+
         await CloseAsync(item);
     }
 
