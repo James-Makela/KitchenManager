@@ -1,3 +1,4 @@
+using KitchenManager.Models;
 namespace TestKitchenManager
 {
     [TestClass]
@@ -6,6 +7,7 @@ namespace TestKitchenManager
         [TestMethod]
         public void TestMethod1()
         {
+            
         }
     }
 }
