@@ -20,7 +20,7 @@ public partial class RecipesPage : FramePage
         button_RightTab.Text = "Saved";
     }
 
-    protected override async void OnNavigatedTo(NavigatedToEventArgs args)
+    private async void ContentView_Loaded(object sender, EventArgs e)
     {
         if (recipes == null)
         {
@@ -37,18 +37,25 @@ public partial class RecipesPage : FramePage
         }
     }
 
-    async Task PopulateRecipes()
+    async Task PopulateRecipes(string? query=null)
     {
-        recipes = await FetchRecipes();
+        APIService service = new();
+        SearchQuery searchQuery = new SearchQuery(query);
+
+        try
+        {
+            recipes = await service.GetRecipes(searchQuery);
+        }
+        catch (Exception ex)
+        {
+            await DisplayError(ex);
+        }
         CollectionView_Recipes.ItemsSource = recipes;
     }
 
-    async Task<List<Recipe>> FetchRecipes(string? query = null)
+    private async Task DisplayError(Exception ex)
     {
-        APIService service = new APIService();
-        SearchQuery searchQuery = new SearchQuery(query);
-
-        return await service.GetRecipes(searchQuery);
+        await DisplayAlert("Error", ex.Message, "Ok");
     }
 
     private async void CollectionView_Recipes_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -88,8 +95,7 @@ public partial class RecipesPage : FramePage
         {
             ActivityIndicator_Loading.IsRunning = true;
             CollectionView_Recipes.ItemsSource = null;
-            recipes = await FetchRecipes(searchText);
-            CollectionView_Recipes.ItemsSource = recipes;
+            await PopulateRecipes(searchText);
             ActivityIndicator_Loading.IsRunning = false;
         }
     }

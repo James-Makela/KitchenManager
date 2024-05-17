@@ -21,7 +21,7 @@ namespace KitchenManager.Controllers
 
             if (fullUrl.StartsWith("Error"))
             {
-                return ReturnError("API");
+                throw new Exception("API not configured correctly.");
             }
 
             HttpResponseMessage response = await client.GetAsync(fullUrl);
@@ -50,7 +50,7 @@ namespace KitchenManager.Controllers
             }
             if (recipeResults == null || recipeResults.Results == null)
             {
-                return ReturnError("No Results");
+                throw new Exception("No recipes found. Try another search term");
             }
 
             foreach (Hit result in recipeResults.Results)
@@ -174,17 +174,5 @@ namespace KitchenManager.Controllers
             using StreamReader reader = new StreamReader(fileStream);
             return await reader.ReadToEndAsync();
         }
-
-        public List<Recipe> ReturnError(string message, string details = "")
-        {
-            Recipe errorMessage = new Recipe
-            {
-                Label = $"Error: {message}",
-                CuisineTypeList = [$"{details}"]
-            };
-            List<Recipe> error = [errorMessage];
-            return error;
-        }
-
     }
 }

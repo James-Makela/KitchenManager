@@ -6,7 +6,7 @@
              x:Class="KitchenManager.RecipesPage"
              Title="Recipes">
     <ContentPage.Content>
-        <ContentView>
+        <ContentView Loaded="ContentView_Loaded">
             <Grid 
                 RowDefinitions="1*, 10*"
                 ColumnDefinitions="1*, 1*"
@@ -81,6 +81,17 @@
                                     </Border>
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>
+                            <CollectionView.EmptyView>
+                                <ContentView>
+                                    <Border Style="{DynamicResource ItemBorder}"
+                                            HeightRequest="50"
+                                            VerticalOptions="Start">
+                                        <Label Text="No recipes to show"
+                                               HorizontalOptions="Center"
+                                               VerticalOptions="Center"/>
+                                    </Border>
+                                </ContentView>
+                            </CollectionView.EmptyView>
                         </CollectionView>
                     </RefreshView>
                 </Border>
