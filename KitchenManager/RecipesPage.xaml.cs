@@ -1,80 +1,110 @@
 using KitchenManager.Models;
-using KitchenManager.Services;
+using KitchenManager.Controllers;
 
 namespace KitchenManager;
 
-public partial class RecipesPage : ContentPage
+public partial class RecipesPage : FramePage
 {
-    List<Recipe> recipes;
+    List<Recipe>? recipes;
+    List<Recipe>? savedRecipes;
+    LocalDBService localDBService = ((App)Application.Current).localDBService;
+    RecipeManager recipeManager = ((App)Application.Current).recipeManager;
+    bool viewingSaved = false;
+
     public RecipesPage()
     {
         InitializeComponent();
+        Button button_LeftTab = (Button)this.GetTemplateChild("Button_LeftTab");
+        Button button_RightTab = (Button)this.GetTemplateChild("Button_RightTab");
+        button_LeftTab.Text = "New";
+        button_RightTab.Text = "Saved";
     }
 
     protected override async void OnNavigatedTo(NavigatedToEventArgs args)
     {
-        // MAUI android quirk
-        await Task.Delay(500);
-        await PopulateRecipes();
+        if (recipes == null)
+        {
+            await PopulateRecipes();
+        }
+        savedRecipes = await localDBService.GetSavedRecipes();
+        ActivityIndicator_Loading.IsRunning = false;
+        CollectionView_Recipes.IsVisible = true;
+        CollectionView_Recipes.SelectedItem = null;
+
+        if (viewingSaved)
+        {
+            CollectionView_Recipes.ItemsSource = savedRecipes;
+        }
     }
 
-    // Testing code
-    // ------------
     async Task PopulateRecipes()
     {
         recipes = await FetchRecipes();
         CollectionView_Recipes.ItemsSource = recipes;
     }
 
-    async Task<List<Recipe>> FetchRecipes()
+    async Task<List<Recipe>> FetchRecipes(string? query = null)
     {
         APIService service = new APIService();
-        RecipeSearchQuery query = new RecipeSearchQuery("Chicken", ["alcohol-free", "dairy-free"], ["Dinner"]);
+        SearchQuery searchQuery = new SearchQuery(query);
 
-        return await service.GetRecipes(query);
+        return await service.GetRecipes(searchQuery);
     }
-    // -------------------
-    // End of testing code
 
-
-    /// <summary>
-    /// Opens the recipe card for the selected recipe upon selection.
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
     private async void CollectionView_Recipes_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        Recipe selectedRecipe = (Recipe)CollectionView_Recipes.SelectedItem;
+        recipeManager.CurrentRecipe = (Recipe)CollectionView_Recipes.SelectedItem;
 
-        if (selectedRecipe != null)
+        if (recipeManager.CurrentRecipe != null)
         {
-            RecipeCardPage recipeCardPage = new RecipeCardPage(selectedRecipe);
-            await Navigation.PushModalAsync(recipeCardPage);
-            CollectionView_Recipes.SelectedItem = null;
+            await Shell.Current.GoToAsync($"recipecard");
         }
     }
 
-    private void Button_SavedRecipes_Pressed(object sender, EventArgs e)
+    protected override void LeftTab_Pressed()
     {
-        Border_SavedRecipes.Stroke = Color.Parse("#415a77");
-        Border_NewRecipes.Stroke = Color.Parse("#d9d9d9");
-        Border_SavedRecipes.Background = Color.Parse("#415a77");
-        Border_NewRecipes.Background = Color.Parse("#d9d9d9");
-        Button_SavedRecipes.TextColor = Color.Parse("#d9d9d9");
-        Button_NewRecipes.TextColor = Color.Parse("#415a77");
-
-        CollectionView_Recipes.ItemsSource = null;
+        viewingSaved = false;
+        base.LeftTab_Pressed();
+        CollectionView_Recipes.ItemsSource = recipes;
     }
 
-    private void Button_NewRecipes_Pressed(object sender, EventArgs e)
+    protected override void RightTab_Pressed()
     {
-        Border_NewRecipes.Stroke = Color.Parse("#415a77");
-        Border_SavedRecipes.Stroke = Color.Parse("#d9d9d9");
-        Border_NewRecipes.Background = Color.Parse("#415a77");
-        Border_SavedRecipes.Background = Color.Parse("#d9d9d9");
-        Button_NewRecipes.TextColor = Color.Parse("#d9d9d9");
-        Button_SavedRecipes.TextColor = Color.Parse("#415a77");
+        viewingSaved = true;
+        base.RightTab_Pressed();
+        CollectionView_Recipes.ItemsSource = savedRecipes;
+    }
 
-        CollectionView_Recipes.ItemsSource = recipes;
+    private async void SearchBar_SearchBox_SearchButtonPressed(object sender, EventArgs e)
+    {
+        string searchText = SearchBar_SearchBox.Text;
+
+        if (SearchBar_SearchBox.IsSoftInputShowing())
+        {
+            await SearchBar_SearchBox.HideSoftInputAsync(System.Threading.CancellationToken.None);
+        }
+
+        if (!string.IsNullOrEmpty(searchText))
+        {
+            ActivityIndicator_Loading.IsRunning = true;
+            CollectionView_Recipes.ItemsSource = null;
+            recipes = await FetchRecipes(searchText);
+            CollectionView_Recipes.ItemsSource = recipes;
+            ActivityIndicator_Loading.IsRunning = false;
+        }
+    }
+
+    private async void RefreshView_Recipes_Refreshing(object sender, EventArgs e)
+    {
+        if (!viewingSaved)
+        {
+            await PopulateRecipes();
+            RefreshView_Recipes.IsRefreshing = false;
+        }
+        else
+        {
+            CollectionView_Recipes.ItemsSource = savedRecipes;
+            RefreshView_Recipes.IsRefreshing = false;
+        }
     }
 }

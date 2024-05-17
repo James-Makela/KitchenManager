@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+               x:Class="KitchenManager.AddInventoryItem"
+               Color="Transparent">
+    <Border Style="{DynamicResource AddItemCard}">
+        <Grid
+            RowDefinitions="1*, 1*, 1*, 1*, 1*"
+            ColumnDefinitions="1*, 1*"
+            WidthRequest="250"
+            HeightRequest="320">
+            <Border
+                Stroke="#d9d9d9"
+                StrokeShape="RoundRectangle 10"
+                Background="#d9d9d9"
+                Grid.ColumnSpan="2"
+                HeightRequest="35"
+                Padding="0"
+                Margin="20">
+                <Entry
+                    x:Name="Entry_StockName"
+                    Placeholder="Ingredient Name"
+                    WidthRequest="180"
+                    TextColor="Black"
+                    FontAttributes="Bold"
+                    HorizontalTextAlignment="Center"
+                    VerticalTextAlignment="Center"
+                    VerticalOptions="Center"/>
+            </Border>
+            <Label
+                Text="Amount:"
+                Grid.Row="1"
+                HorizontalOptions="End"
+                VerticalOptions="Center"
+                Margin="10"/>
+            <Border
+                Stroke="#d9d9d9"
+                StrokeShape="RoundRectangle 10"
+                Background="#d9d9d9"
+                Grid.Row="1"
+                Grid.Column="1"
+                WidthRequest="50"
+                HeightRequest="35"
+                Padding="0"
+                Margin="10"
+                HorizontalOptions="Start">
+                <Entry 
+                    x:Name="Entry_StockAmount"
+                    Placeholder="0"
+                    Keyboard="Numeric"
+                    BackgroundColor="#d9d9d9"/>
+            </Border>
+            <Label 
+                Text="Unit:"
+                Grid.Row="2"
+                HorizontalOptions="End"
+                VerticalOptions="Center"
+                Margin="10"/>
+            <Border
+                Stroke="#d9d9d9"
+                StrokeShape="RoundRectangle 10"
+                Background="#d9d9d9"
+                Grid.Row="2"
+                Grid.Column="1"
+                WidthRequest="50"
+                HeightRequest="35"
+                Padding="0"
+                Margin="10"
+                HorizontalOptions="Start">
+                <Picker 
+                    x:Name="Picker_StockUnit"
+                    BackgroundColor="#d9d9d9">
+                </Picker>
+            </Border>
+            <Label 
+                Text="Cost:"
+                Grid.Row="3"
+                VerticalOptions="Center"
+                Margin="20, 10, 10, 10"/>
+            <Border Stroke="#d9d9d9"
+                    StrokeShape="RoundRectangle 10"
+                    Background="#d9d9d9"
+                    Grid.Row="3"
+                    WidthRequest="50"
+                    HeightRequest="35"
+                    Padding="0"
+                    Margin="10"
+                    HorizontalOptions="End">
+                <Entry 
+                x:Name="Entry_StockCost"
+                Placeholder="$0.00"
+                Keyboard="Numeric"
+                BackgroundColor="#d9d9d9"/>
+            </Border>
+            <Label Text="/"
+                   Grid.Row="3"
+                   Grid.ColumnSpan="2"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   FontSize="20"/>
+            <Border
+                Stroke="#d9d9d9"
+                StrokeShape="RoundRectangle 10"
+                Background="#d9d9d9"
+                Grid.Row="3"
+                Grid.Column="1"
+                WidthRequest="50"
+                HeightRequest="35"
+                Padding="0"
+                Margin="10"
+                HorizontalOptions="Start">
+                <Picker 
+                    x:Name="Picker_CostUnit">
+                </Picker>
+            </Border>
+            <Button
+                x:Name="Button_Save"
+                Text="Save"
+                Grid.Row="5"
+                Margin="10"
+                Pressed="Button_Save_Pressed"/>
+            <Button
+                x:Name="Button_Cancel"
+                Text="Cancel"
+                Grid.Row="5"
+                Grid.Column="1"
+                Margin="10"
+                Pressed="Button_Cancel_Pressed"/>
+        </Grid>
+    </Border>
+
+</toolkit:Popup>

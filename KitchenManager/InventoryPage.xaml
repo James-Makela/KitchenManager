@@ -1,12 +1,98 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<base:FramePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:base="clr-namespace:KitchenManager"
+             xmlns:local="clr-namespace:KitchenManager.Models"
              x:Class="KitchenManager.InventoryPage"
              Title="Inventory">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
-</ContentPage>
+    <ContentPage.Content>
+        <ContentView>
+            <Border BackgroundColor="Transparent" StrokeShape="RoundRectangle 10">
+                <Grid
+                RowDefinitions="1*"
+                Padding="0, 10, 0, 0">
+                    <!-- Stock Levels Display -->
+
+                    <CollectionView
+                        x:Name="CollectionView_Stock"
+                        SelectionMode="Single"
+                        ItemSizingStrategy="MeasureFirstItem"
+                        Margin="10, 0"
+                        SelectionChanged="CollectionView_Stock_SelectionChanged">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate 
+                                x:DataType="local:InventoryItem">
+                                <SwipeView>
+                                    <SwipeView.RightItems>
+                                        <SwipeItems Mode="Execute">
+                                            <SwipeItem Text="Delete"
+                                                       IconImageSource="delete.png"
+                                                       BackgroundColor="#800000"
+                                                       Invoked="SwipeItem_Invoked" />
+                                        </SwipeItems>
+                                    </SwipeView.RightItems>
+                                    <Border
+                                        Style="{DynamicResource ItemBorder}"
+                                        MinimumHeightRequest="40">
+                                        <Grid
+                                            ColumnDefinitions="1*, 1*, 1*, 1*">
+                                            <Label
+                                                Text="{Binding ItemName, Mode=OneWay}"
+                                                Grid.ColumnSpan="2"/>
+                                            <Label
+                                                Text="{Binding StockLevel}"
+                                                Grid.Column="2"
+                                                HorizontalOptions="End"/>
+                                            <Label
+                                                Text="{Binding StockUnit, StringFormat=' {0}'}"
+                                                Grid.Column="3"/>
+                                        </Grid>
+                                    </Border>
+                                </SwipeView>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                        <CollectionView.Footer>
+                            <Button x:Name="Button_Add" Text="Add Item" Pressed="Button_Add_Pressed"/>
+                        </CollectionView.Footer>
+                    </CollectionView>
+
+                    <!-- Costings Display -->
+                    <CollectionView
+                            x:Name="CollectionView_Costs"
+                            SelectionMode="Single"
+                            ItemSizingStrategy="MeasureFirstItem"
+                            IsVisible="False"
+                            Margin="10, 0"
+                            SelectionChanged="CollectionView_Costs_SelectionChanged">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate 
+                                        x:DataType="local:InventoryItem">
+                                <Border
+                                        Style="{DynamicResource ItemBorder}"
+                                        MinimumHeightRequest="40">
+                                    <Grid
+                                            ColumnDefinitions="1*, 1*, 1*, 1*">
+                                        <Label
+                                                Text="{Binding ItemName, Mode=OneWay}"
+                                                Grid.ColumnSpan="2"/>
+                                        <Label
+                                                Text="{Binding Cost, StringFormat='${0:F2}'}"
+                                                Grid.Column="2"
+                                                HorizontalOptions="End"/>
+                                        <Label
+                                                Text="{Binding CostUnit, StringFormat='/{0}'}"
+                                                Grid.Column="3"/>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                        <CollectionView.Footer>
+                            <Button x:Name="Button_OtherAdd" Text="Add Item" Pressed="Button_Add_Pressed"/>
+                        </CollectionView.Footer>
+                    </CollectionView>
+
+                </Grid>
+            </Border>
+        </ContentView>
+    </ContentPage.Content>
+</base:FramePage>

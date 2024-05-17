@@ -4,12 +4,39 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:KitchenManager"
-    Shell.FlyoutBehavior="Disabled"
+    Shell.FlyoutBehavior="Flyout"
+    FlyoutBackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Black}}"
     Title="KitchenManager">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <FlyoutItem  Title="Home">
+        <ShellContent Title="Home"
+                  ContentTemplate="{DataTemplate local:MainPage}"
+                  Route="home"/>
+    </FlyoutItem>
+
+    <FlyoutItem  Title="Inventory">
+        <ShellContent Title="Inventory"
+                      ContentTemplate="{DataTemplate local:InventoryPage}"
+                      Route="inventory" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Recipes">
+        <ShellContent Title="Recipes"
+                      ContentTemplate="{DataTemplate local:RecipesPage}"
+                      Route="recipes" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Cook Now">
+        <ShellContent Title="Cook Now"
+                      ContentTemplate="{DataTemplate local:RecipeCardPage}"
+                      Route="cooknow" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Preferences">
+        <ShellContent Title="Preferences"
+                      ContentTemplate="{DataTemplate local:PreferencesPage}" 
+                      Route="preferences" />
+    </FlyoutItem>
+
 
 </Shell>

@@ -7,20 +7,28 @@ namespace KitchenManager
 
         public MainPage()
         {
+            NavigationPage.SetHasNavigationBar(this, false);
             InitializeComponent();
         }
 
         private async void Button_Recipes_Clicked(object sender, EventArgs e)
         {
-            Button_Recipes.BackgroundColor = Color.Parse("#415a77");
-            RecipesPage recipiesPage = new RecipesPage();
-            await Navigation.PushModalAsync(recipiesPage);
-            Button_Recipes.BackgroundColor = Color.Parse("#778DA9");
+            await Shell.Current.GoToAsync("//recipes", true);
         }
 
-        private void Button_Inventory_Pressed(object sender, EventArgs e)
+        private async void Button_Inventory_Pressed(object sender, EventArgs e)
         {
+            await Shell.Current.GoToAsync("//inventory", true);
+        }
 
+        private async void Button_CookNow_Pressed(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync("//cooknow");
+        }
+
+        private async void Button_Settings_Pressed(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync("//preferences", true);
         }
     }
 

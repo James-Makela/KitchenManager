@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#512BD4</color>
-    <color name="colorPrimaryDark">#2B0B98</color>
-    <color name="colorAccent">#2B0B98</color>
+    <color name="colorPrimary">#1b263b</color>
+    <color name="colorPrimaryDark">@android:color/black</color>
+    <color name="colorAccent">#1b363b</color>
+	<color name="ListViewSelected">#1b363b</color>
+
+	<style name="SplashTheme" parent="Maui.SplashTheme">
+		<item name="android:statusBarColor">@color/colorPrimary</item>
+		<item name="android:navigationBarColor">@color/colorPrimary</item>
+	</style>
 </resources>
