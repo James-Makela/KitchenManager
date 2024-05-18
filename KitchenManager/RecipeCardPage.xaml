@@ -53,8 +53,10 @@
                 Grid.ColumnSpan="2"
                 Margin="0, 0, 0, 5"
                 >
-            <ScrollView Margin="0, 0, 0, 5">
-                <VerticalStackLayout>
+
+            <ScrollView x:Name="ScrollView_Recipe"
+                        Margin="0, 0, 0, 5">
+                <VerticalStackLayout VerticalOptions="FillAndExpand">
                     <!-- Image -->
                     <Border Stroke="Transparent"
                             StrokeThickness="1"
@@ -76,7 +78,14 @@
                            TextColor="#d9d9d9"/>
 
                     <!-- Background for ingredients -->
-                    <Border x:Name="Border_TableView" 
+                    <ActivityIndicator x:Name="ActivityIndicator_Loading"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Center"
+                                       IsRunning="True"
+                                       ZIndex="2"
+                                       Color="#415a77" />
+                    <Border x:Name="Border_TableView"
+                            IsVisible="False"
                         Style="{DynamicResource IngredientsBorder}">
                         <CollectionView x:Name="CollectionView_Ingredients"
                                     Margin="3">

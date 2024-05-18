@@ -27,23 +27,37 @@ public partial class RecipeCardPage : ContentPage
             recipe = manager.CurrentRecipe;
         }
 
-
+        // Check whether the recipe is saved or not
         if (await localDBService.CheckRecipeIsSaved(recipe.Label))
         {
             Button_SaveRecipe.IsVisible = false;
             Button_DeleteRecipe.IsVisible = true;
         }
+
+        // Get the desired yield setting
         int yield = PreferencesManager.GetPeople();
 
+        // Set the ingredients to match the desired yield
         await manager.ChangeYield(PreferencesManager.GetPeople());
 
+        // Display the non-ingredient data
         Label_RecipeLabel.Text = recipe.Label;
         Button_RecipeSource.Text = $"🔗 Source: {recipe.SourceName}";
         Label_RecipeYield.Text = $"{yield} People";
         Image_RecipeImage.Source = recipe.ImageLink;
 
+        // Set the Collectionview to display the ingredients
         CollectionView_Ingredients.ItemsSource = recipe.Ingredients;
-        DisplayTotals();
+
+        // Dispay the total costings
+        await DisplayTotals();
+
+        // Turn off the activityindicator
+        ActivityIndicator_Loading.IsRunning = false;
+        ActivityIndicator_Loading.IsVisible = false;
+
+        // Make the ingredients visible
+        Border_TableView.IsVisible = true;
     }
 
     private async void Button_DecreaseYield_Pressed(object sender, EventArgs e)
@@ -76,7 +90,7 @@ public partial class RecipeCardPage : ContentPage
         DisplayTotals();
     }
 
-    private void DisplayTotals()
+    private async Task DisplayTotals()
     {
         decimal totalCost = (decimal)manager.CurrentRecipe.TotalCost;
         decimal costPerServe = totalCost / (decimal)manager.CurrentRecipe.Yield;
@@ -137,16 +151,27 @@ public partial class RecipeCardPage : ContentPage
 
     private void Button_Ingredients_Pressed(object sender, EventArgs e)
     {
-        Border_TableView.IsVisible = true;
+
+        ActivityIndicator_Loading.IsVisible = true;
+        ActivityIndicator_Loading.IsRunning = true;
         Border_NutritionTableView.IsVisible = false;
+        ActivityIndicator_Loading.IsVisible = false;
+        ActivityIndicator_Loading.IsRunning = false;
+
+
+        Border_TableView.IsVisible = true;
     }
 
     private async void Button_Nutrition_Pressed(object sender, EventArgs e)
     {
+        ActivityIndicator_Loading.IsVisible = true;
+        ActivityIndicator_Loading.IsRunning = true;
         Border_TableView.IsVisible = false;
-        Border_NutritionTableView.IsVisible = true;
         manager.NutritionInfo = await manager.GetNutrition();
 
         CollectionView_Nutrition.ItemsSource = manager.NutritionInfo;
+        ActivityIndicator_Loading.IsRunning = false;
+        ActivityIndicator_Loading.IsVisible = false;
+        Border_NutritionTableView.IsVisible = true;
     }
 }
