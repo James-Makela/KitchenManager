@@ -21,7 +21,6 @@
                         SearchButtonPressed="SearchBar_SearchBox_SearchButtonPressed"/>
                 </Border>
 
-
                 <ActivityIndicator Grid.Row="1"
                                    Grid.ColumnSpan="2"
                                    VerticalOptions="Center" 
@@ -98,6 +97,4 @@
             </Grid>
         </ContentView>
     </ContentPage.Content>
-    
-    
 </base:FramePage>
