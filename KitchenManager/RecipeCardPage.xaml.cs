@@ -17,9 +17,16 @@ public partial class RecipeCardPage : ContentPage
         PopulateFields(manager.CurrentRecipe);
     }
 
+    protected override void OnDisappearing()
+    {
+        base.OnDisappearing();
+        manager.CurrentRecipe = null;
+        manager.NutritionInfo = null;
+    }
+
     async Task PopulateFields(Recipe recipe)
     {
-        if (recipe == null) 
+        if (recipe == null)
         {
             // Fetch a random recipe
             Recipe randomRecipe = await manager.GetRandomRecipe();
@@ -62,12 +69,12 @@ public partial class RecipeCardPage : ContentPage
 
     private async void Button_DecreaseYield_Pressed(object sender, EventArgs e)
     {
-		int.TryParse(Label_RecipeYield.Text.Split(" ")[0], out int yield);
-		if (yield == 1)
-		{
-			return;
-		}
-		yield--;
+        int.TryParse(Label_RecipeYield.Text.Split(" ")[0], out int yield);
+        if (yield == 1)
+        {
+            return;
+        }
+        yield--;
         Label_RecipeYield.Text = $"{yield} People";
 
         await manager.ChangeYield(yield);
@@ -146,7 +153,7 @@ public partial class RecipeCardPage : ContentPage
     private void ToggleButtons(bool wasSaved)
     {
         Button_SaveRecipe.IsVisible = wasSaved ? true : false;
-        Button_DeleteRecipe.IsVisible = wasSaved ? false: true;
+        Button_DeleteRecipe.IsVisible = wasSaved ? false : true;
     }
 
     private void Button_Ingredients_Pressed(object sender, EventArgs e)

@@ -37,7 +37,7 @@ public partial class RecipesPage : FramePage
         }
     }
 
-    async Task PopulateRecipes(string? query=null)
+    async Task PopulateRecipes(string? query = null)
     {
         APIService service = new();
         SearchQuery searchQuery = new SearchQuery(query);
@@ -64,7 +64,7 @@ public partial class RecipesPage : FramePage
 
         if (recipeManager.CurrentRecipe != null)
         {
-            await Shell.Current.GoToAsync($"recipecard");
+            await Shell.Current.GoToAsync("recipecard");
         }
     }
 

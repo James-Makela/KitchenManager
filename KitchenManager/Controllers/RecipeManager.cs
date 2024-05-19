@@ -11,9 +11,9 @@ namespace KitchenManager.Controllers
     {
         APIService apiService = new();
         LocalDBService localDBService = new();
-        public Recipe CurrentRecipe { get; set; }
-        public List<NutritionItem> NutritionInfo { get; set; }
-        int OriginalYield {  get; set; }
+        public Recipe? CurrentRecipe { get; set; }
+        public List<NutritionItem>? NutritionInfo { get; set; }
+        int OriginalYield { get; set; }
 
         public RecipeManager() { }
 
@@ -80,7 +80,7 @@ namespace KitchenManager.Controllers
                 nutritionItems.Add(nutritionItem);
                 if (nutritionItem.SubItems != null)
                 {
-                    foreach (NutritionItem subItem in  nutritionItem.SubItems)
+                    foreach (NutritionItem subItem in nutritionItem.SubItems)
                     {
                         subItem.Label = $"- {subItem.Label}";
                         subItem.TotalAmount = subItem.TotalAmount / OriginalYield;
