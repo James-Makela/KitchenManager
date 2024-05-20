@@ -5,75 +5,65 @@
                x:Class="KitchenManager.AddInventoryItem"
                Color="Transparent">
     <Border Style="{DynamicResource AddItemCard}">
-        <Grid
-            RowDefinitions="1*, 1*, 1*, 1*, 1*"
-            ColumnDefinitions="1*, 1*"
-            WidthRequest="250"
-            HeightRequest="320">
-            <Border
-                Style="{DynamicResource ItemBorder}"
-                Grid.ColumnSpan="2"
-                HeightRequest="40"
-                Padding="0"
-                Margin="20">
-                <Entry
-                    x:Name="Entry_StockName"
-                    Placeholder="Ingredient Name"
-                    WidthRequest="180"
-                    FontAttributes="Bold"
-                    HorizontalTextAlignment="Center"
-                    VerticalTextAlignment="Center"
-                    VerticalOptions="Center"/>
+        <Grid RowDefinitions="1*, 1*, 1*, 1*, 1*"
+              ColumnDefinitions="1*, 1*"
+              WidthRequest="250"
+              HeightRequest="320">
+            <Border Style="{DynamicResource ItemBorder}"
+                    Grid.ColumnSpan="2"
+                    HeightRequest="40"
+                    Padding="0"
+                    Margin="20">
+                <Entry x:Name="Entry_StockName"
+                       Placeholder="Ingredient Name"
+                       WidthRequest="180"
+                       FontAttributes="Bold"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       VerticalOptions="Center"/>
             </Border>
 
-            <Label
-                Text="Amount:"
-                Grid.Row="1"
-                HorizontalOptions="End"
-                VerticalOptions="Center"
-                Margin="10"/>
-            <Border
-                Style="{DynamicResource ItemBorder}"
-                Grid.Row="1"
-                Grid.Column="1"
-                WidthRequest="50"
-                HeightRequest="40"
-                Padding="0"
-                Margin="10"
-                HorizontalOptions="Start">
-                <Entry 
-                    x:Name="Entry_StockAmount"
-                    Placeholder="0"
-                    Keyboard="Numeric"
-                    BackgroundColor="#d9d9d9"/>
+            <Label Text="Amount:"
+                   Grid.Row="1"
+                   HorizontalOptions="End"
+                   VerticalOptions="Center"
+                   Margin="10"/>
+            <Border Style="{DynamicResource ItemBorder}"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    WidthRequest="50"
+                    HeightRequest="40"
+                    Padding="0"
+                    Margin="10"
+                    HorizontalOptions="Start">
+                <Entry x:Name="Entry_StockAmount"
+                       Placeholder="0"
+                       Keyboard="Numeric"
+                       BackgroundColor="#d9d9d9"/>
             </Border>
 
-            <Label 
-                Text="Unit:"
-                Grid.Row="2"
-                HorizontalOptions="End"
-                VerticalOptions="Center"
-                Margin="10"/>
-            <Border
-                Style="{DynamicResource ItemBorder}"
-                Grid.Row="2"
-                Grid.Column="1"
-                WidthRequest="50"
-                HeightRequest="40"
-                Padding="0"
-                Margin="10"
-                HorizontalOptions="Start">
-                <Picker 
-                    x:Name="Picker_StockUnit"
-                    BackgroundColor="#d9d9d9">
+            <Label Text="Unit:"
+                   Grid.Row="2"
+                   HorizontalOptions="End"
+                   VerticalOptions="Center"
+                   Margin="10"/>
+            <Border Style="{DynamicResource ItemBorder}"
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    WidthRequest="50"
+                    HeightRequest="40"
+                    Padding="0"
+                    Margin="10"
+                    HorizontalOptions="Start">
+                <Picker x:Name="Picker_StockUnit"
+                        BackgroundColor="#d9d9d9">
                 </Picker>
             </Border>
 
-            <Label 
-                Text="Cost:"
-                Grid.Row="3"
-                VerticalOptions="Center"
-                Margin="20, 10, 10, 10"/>
+            <Label Text="Cost:"
+                   Grid.Row="3"
+                   VerticalOptions="Center"
+                   Margin="20, 10, 10, 10"/>
             <Border Style="{DynamicResource ItemBorder}"
                     Grid.Row="3"
                     WidthRequest="50"
@@ -81,11 +71,10 @@
                     Padding="0"
                     Margin="10"
                     HorizontalOptions="End">
-                <Entry 
-                x:Name="Entry_StockCost"
-                Placeholder="$0.00"
-                Keyboard="Numeric"
-                BackgroundColor="#d9d9d9"/>
+                <Entry x:Name="Entry_StockCost"
+                       Placeholder="$0.00"
+                       Keyboard="Numeric"
+                       BackgroundColor="#d9d9d9"/>
             </Border>
 
             <Label Text="/"
@@ -94,33 +83,29 @@
                    HorizontalOptions="Center"
                    VerticalOptions="Center"
                    FontSize="20"/>
-            <Border
-                Style="{DynamicResource ItemBorder}"
-                Grid.Row="3"
-                Grid.Column="1"
-                WidthRequest="50"
-                HeightRequest="40"
-                Padding="0"
-                Margin="10"
-                HorizontalOptions="Start">
-                <Picker 
-                    x:Name="Picker_CostUnit">
+            <Border Style="{DynamicResource ItemBorder}"
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    WidthRequest="50"
+                    HeightRequest="40"
+                    Padding="0"
+                    Margin="10"
+                    HorizontalOptions="Start">
+                <Picker x:Name="Picker_CostUnit">
                 </Picker>
             </Border>
 
-            <Button
-                x:Name="Button_Save"
-                Text="Save"
-                Grid.Row="5"
-                Margin="10"
-                Pressed="Button_Save_Pressed"/>
-            <Button
-                x:Name="Button_Cancel"
-                Text="Cancel"
-                Grid.Row="5"
-                Grid.Column="1"
-                Margin="10"
-                Pressed="Button_Cancel_Pressed"/>
+            <Button x:Name="Button_Save"
+                    Text="Save"
+                    Grid.Row="5"
+                    Margin="10"
+                    Pressed="Button_Save_Pressed"/>
+            <Button x:Name="Button_Cancel"
+                    Text="Cancel"
+                    Grid.Row="5"
+                    Grid.Column="1"
+                    Margin="10"
+                    Pressed="Button_Cancel_Pressed"/>
         </Grid>
     </Border>
 
