@@ -79,19 +79,30 @@ namespace KitchenManager.Controllers
 
         public async Task<List<NutritionItem>?> GetNutrition()
         {
+            NutritionInfo? nutritionInfo;
+
             if (CurrentRecipe.URI == null)
             {
-                // TODO: Add error handling here
-                return null;
+                throw new ArgumentNullException("No URI available to get nutrition info.");
             }
             List<NutritionItem> nutritionItems = new();
 
-            NutritionInfo nutritionInfo = await apiService.GetNutrition(CurrentRecipe.URI);
+            try
+            {
+                nutritionInfo = await apiService.GetNutrition(CurrentRecipe.URI);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Internet Unavailable", ex);
+            }
+
+            if (nutritionInfo.NutritionItems == null)
+            {
+                throw new Exception();
+            }
 
             foreach (NutritionItem nutritionItem in nutritionInfo.NutritionItems)
             {
-                if (nutritionItem == null) { return null; }
-
                 nutritionItem.TotalAmount = nutritionItem.TotalAmount / OriginalYield;
                 nutritionItem.DailyPercentage = nutritionItem.DailyPercentage / OriginalYield;
 
@@ -107,7 +118,6 @@ namespace KitchenManager.Controllers
                     }
                 }
             }
-
             return nutritionItems;
         }
     }

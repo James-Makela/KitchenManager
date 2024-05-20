@@ -35,7 +35,7 @@ public partial class RecipeCardPage : ContentPage
         }
 
         manager.RunConversions();
-        
+
         // Check whether the recipe is saved or not
         if (await localDBService.CheckRecipeIsSaved(recipe.Label))
         {
@@ -180,7 +180,15 @@ public partial class RecipeCardPage : ContentPage
 
         if (manager.NutritionInfo == null)
         {
-            manager.NutritionInfo = await manager.GetNutrition();
+            try
+            {
+                manager.NutritionInfo = await manager.GetNutrition();
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error:", ex.Message, "Ok");
+            }
+
         }
 
         CollectionView_Nutrition.ItemsSource = manager.NutritionInfo;

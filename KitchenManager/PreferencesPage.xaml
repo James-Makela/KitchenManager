@@ -5,32 +5,22 @@
              xmlns:local="clr-namespace:KitchenManager.Models"
              x:Class="KitchenManager.PreferencesPage"
              Title="Preferences">
-    <!--<Shell.TitleView>
-        <Grid>
-            <Label Text="{Binding Title, Source={x:Reference Preferences}}"
-                   VerticalOptions="Center"
-                   FontSize="Title"
-                   FontAttributes="Bold" />
-        </Grid>
-    </Shell.TitleView>-->
     <ContentPage.Content>
         <ContentView>
             <Border x:Name="Border_CollectionView" 
                     Style="{DynamicResource TabPageBackground}"
-                    Grid.Row="1"
-                    Grid.ColumnSpan="2"
                     Padding="10">
                 <ScrollView>
                     <VerticalStackLayout>
                         <Border Style="{DynamicResource ItemBorder}">
                             <VerticalStackLayout>
                                 <Label Text="Units"
-                                       FontSize="18"
-                                       FontAttributes="Bold"
-                                       VerticalOptions="Center"/>
+                                    FontSize="18"
+                                    FontAttributes="Bold"
+                                    VerticalOptions="Center"/>
                                 <Picker x:Name="Picker_Unit"
-                                    FontSize="15"
-                                    SelectedIndexChanged="Picker_Unit_SelectedIndexChanged">
+                                        FontSize="15"
+                                        SelectedIndexChanged="Picker_Unit_SelectedIndexChanged">
                                     <Picker.ItemsSource>
                                         <x:Array Type="{x:Type x:String}">
                                             <x:String>Metric</x:String>
@@ -44,9 +34,9 @@
                         <Border Style="{DynamicResource ItemBorder}">
                             <VerticalStackLayout>
                                 <Label Text="Number of People"
-                                       FontSize="18"
-                                       FontAttributes="Bold"
-                                       VerticalOptions="Center"/>
+                                    FontSize="18"
+                                    FontAttributes="Bold"
+                                    VerticalOptions="Center"/>
                                 <Picker x:Name="Picker_People"
                                         FontSize="15"
                                         SelectedIndexChanged="Picker_People_SelectedIndexChanged">
@@ -71,14 +61,14 @@
                         <Border Style="{DynamicResource ItemBorder}">
                             <VerticalStackLayout>
                                 <Label Text="Theme"
-                                       FontSize="18"
-                                       FontAttributes="Bold"
-                                       VerticalOptions="Center"/>
+                                    FontSize="18"
+                                    FontAttributes="Bold"
+                                    VerticalOptions="Center"/>
                                 <Picker x:Name="Picker_Theme"
-                                    Grid.Row="3"
-                                    Grid.Column="2"
-                                    FontSize="15"
-                                    SelectedIndexChanged="Picker_Theme_SelectedIndexChanged">
+                                        Grid.Row="3"
+                                        Grid.Column="2"
+                                        FontSize="15"
+                                        SelectedIndexChanged="Picker_Theme_SelectedIndexChanged">
                                     <Picker.ItemsSource>
                                         <x:Array Type="{x:Type x:String}">
                                             <x:String>Day</x:String>
@@ -92,9 +82,9 @@
                         <Border Style="{DynamicResource ItemBorder}">
                             <VerticalStackLayout>
                                 <Label Text="Cook Now Mode"
-                                       FontSize="18"
-                                       FontAttributes="Bold"
-                                       VerticalOptions="Center"/>
+                                    FontSize="18"
+                                    FontAttributes="Bold"
+                                    VerticalOptions="Center"/>
                                 <Picker x:Name="Picker_CookNowMode"/>
                             </VerticalStackLayout>
                         </Border>
@@ -118,6 +108,5 @@
                 </ScrollView>
             </Border>
         </ContentView>
-
     </ContentPage.Content>
 </base:FramePage>

@@ -16,6 +16,18 @@ public partial class PreferencesPage : FramePage
 		PopulateFields();
 	}
 
+	protected override void RightTab_Pressed()
+	{
+		base.RightTab_Pressed();
+		Border_CollectionView.IsVisible = false;
+	}
+
+	protected override void LeftTab_Pressed()
+	{
+		base.LeftTab_Pressed();
+		Border_CollectionView.IsVisible = true;
+	}
+
 	private void PopulateFields()
 	{
 		bool unit = PreferencesManager.GetUnit();
