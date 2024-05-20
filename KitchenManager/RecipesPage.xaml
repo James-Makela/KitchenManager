@@ -6,7 +6,7 @@
              x:Class="KitchenManager.RecipesPage"
              Title="Recipes">
     <ContentPage.Content>
-        <ContentView>
+        <ContentView Loaded="ContentView_Loaded">
             <Grid 
                 RowDefinitions="1*, 10*"
                 ColumnDefinitions="1*, 1*"
@@ -20,7 +20,6 @@
                         Placeholder="Search"
                         SearchButtonPressed="SearchBar_SearchBox_SearchButtonPressed"/>
                 </Border>
-
 
                 <ActivityIndicator Grid.Row="1"
                                    Grid.ColumnSpan="2"
@@ -45,7 +44,7 @@
                                 x:Name="CollectionView_Recipes"
                                 SelectionMode="Single"
                                 ItemSizingStrategy="MeasureFirstItem"
-                                IsVisible="False"
+                                IsVisible="Hidden"
                                 SelectionChanged="CollectionView_Recipes_SelectionChanged">
                             <CollectionView.ItemTemplate>
                                 <DataTemplate x:DataType="local:Recipe">
@@ -81,12 +80,21 @@
                                     </Border>
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>
+                            <CollectionView.EmptyView>
+                                <ContentView>
+                                    <Border Style="{DynamicResource ItemBorder}"
+                                            HeightRequest="50"
+                                            VerticalOptions="Start">
+                                        <Label Text="No recipes to show"
+                                               HorizontalOptions="Center"
+                                               VerticalOptions="Center"/>
+                                    </Border>
+                                </ContentView>
+                            </CollectionView.EmptyView>
                         </CollectionView>
                     </RefreshView>
                 </Border>
             </Grid>
         </ContentView>
     </ContentPage.Content>
-    
-    
 </base:FramePage>

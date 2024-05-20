@@ -15,8 +15,8 @@
 
     <!-- Border Styles -->
     <Style x:Key="PrimaryBorder" TargetType="Border">
-        <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource OffBlack}}" />
-        <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource OffBlack}}" />
+        <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Primary}}" />
+        <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Primary}}" />
         <Setter Property="StrokeShape" Value="RoundRectangle 40, 40, 0, 0"/>
         <Setter Property="StrokeThickness" Value="0"/>
     </Style>
@@ -25,13 +25,13 @@
         <Setter Property="StrokeThickness" Value="0" />
         <Setter Property="Margin" Value="-1" />
         <Setter Property="StrokeShape" Value="RoundRectangle 0, 0, 10, 10" />
-        <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource OffBlack}}" />
-        <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource OffBlack}}" />
+        <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Primary}}" />
+        <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Primary}}" />
     </Style>
 
     <Style x:Key="TabBackgroundBorder" TargetType="Border">
-        <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource PrimaryDark}}" />
-        <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource PrimaryDark}}" />
+        <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource OffBlack}}" />
+        <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource OffBlack}}" />
         <Setter Property="StrokeShape" Value="RoundRectangle 10, 10, 0, 0" />
         <Setter Property="StrokeThickness" Value="0" />
     </Style>
@@ -39,17 +39,17 @@
     <Style x:Key="SelectedTabBorder" TargetType="Border">
         <Setter Property="Padding" Value="0" />
         <Setter Property="Margin" Value="-1" />
-        <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource OffBlack}}" />
+        <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Primary}}" />
         <Setter Property="StrokeThickness" Value="0" />
-        <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource OffBlack}}" />
+        <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Primary}}" />
         <Setter Property="StrokeShape" Value="RoundRectangle 10, 10, 0, 0" />
     </Style>
 
     <Style x:Key="UnselectedTabBorder" TargetType="Border">
         <Setter Property="Padding" Value="0" />
-        <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource PrimaryDark}}" />
+        <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource OffBlack}}" />
         <Setter Property="StrokeThickness" Value="1" />
-        <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource PrimaryDark}}" />
+        <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource OffBlack}}" />
         <Setter Property="StrokeShape" Value="RoundRectangle 10, 10, 0, 0" />
     </Style>
 
@@ -70,7 +70,8 @@
 
     <Style x:Key="SearchBorder" TargetType="Border">
         <Setter Property="StrokeShape" Value="RoundRectangle 50" />
-        <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}" />
+        <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource OffBlack}}" />
+        <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}" />
         <Setter Property="Margin" Value="10, 10, 10, 0" />
     </Style>
 
@@ -91,8 +92,8 @@
 
     <!-- Button Styles -->
     <Style TargetType="Button">
-        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}" />
-        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Secondary}, Dark={StaticResource SecondaryDark}}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}" />
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Secondary}, Dark={StaticResource Secondary}}" />
         <Setter Property="FontFamily" Value="OpenSansRegular"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="BorderWidth" Value="0"/>
@@ -128,6 +129,21 @@
         <Setter Property="FontFamily" Value="Roboto Flex" />
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
     </Style>
+
+    <Style x:Key="SelectedTabButton" TargetType="Button">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontAttributes" Value="Bold" />
+    </Style>
+
+    <Style x:Key="UnselectedTabButton" TargetType="Button">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Primary}}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontAttributes" Value="Bold" />
+    </Style>
+
 
     <Style TargetType="CheckBox">
         <Setter Property="Color" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}" />

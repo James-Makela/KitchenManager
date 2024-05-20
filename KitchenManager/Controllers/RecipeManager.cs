@@ -11,8 +11,10 @@ namespace KitchenManager.Controllers
     {
         APIService apiService = new();
         LocalDBService localDBService = new();
-        public Recipe CurrentRecipe { get; set; }
-        public List<NutritionItem> NutritionInfo { get; set; }
+
+        public Recipe? CurrentRecipe { get; set; }
+        public List<NutritionItem>? NutritionInfo { get; set; }
+
         int OriginalYield { get; set; }
 
         public RecipeManager() { }

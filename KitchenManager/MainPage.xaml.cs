@@ -23,7 +23,7 @@ namespace KitchenManager
 
         private async void Button_CookNow_Pressed(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync("//cooknow");
+            await Shell.Current.GoToAsync("recipecard");
         }
 
         private async void Button_Settings_Pressed(object sender, EventArgs e)
