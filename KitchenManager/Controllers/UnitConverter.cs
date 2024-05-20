@@ -7,6 +7,7 @@ namespace KitchenManager.Controllers
         public const decimal Gallon = 3785.41m;
 
         public static readonly string[] Liquids = ["ml", "millilitres", "pint", "quart", "fl oz", "fluid ounce", "gallon"];
+        public static readonly string[] Solids = ["g", "gm", "grams", "kg", "kilos", "oz", "ounce", "lb", "pound", "pounds"];
 
         public static decimal GetOunces(decimal grams)
         {
@@ -75,7 +76,7 @@ namespace KitchenManager.Controllers
             else return Tuple.Create<decimal, string>(Math.Round(GetGallons(grams), 1), "gal");
         }
 
-        public static Tuple<decimal, string> Convert(decimal grams, string oldMeasurement)
+        public static Tuple<decimal, string>? Convert(decimal grams, string oldMeasurement)
         {
             string unitSystem = PreferencesManager.GetUnit() ? "metric" : "imperial";
             if (unitSystem == "metric")
@@ -85,7 +86,11 @@ namespace KitchenManager.Controllers
                 {
                     return ConvertLiquidToMetric(grams);
                 }
-                return ConvertSolidToMetric(grams);
+                else if (Solids.Contains(oldMeasurement))
+                {
+                    return ConvertSolidToMetric(grams);
+                }
+                else return null;
             }
             else
             {
@@ -94,7 +99,11 @@ namespace KitchenManager.Controllers
                 {
                     return ConvertLiquidToImperial(grams);
                 }
-                return ConvertSolidToImperial(grams);
+                if (Solids.Contains(oldMeasurement))
+                {
+                    return ConvertSolidToImperial(grams);
+                }
+                else return null;
             }
         }
     }

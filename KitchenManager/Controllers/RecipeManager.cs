@@ -60,6 +60,10 @@ namespace KitchenManager.Controllers
             foreach (FoodItem ingredient in CurrentRecipe.Ingredients)
             {
                 Tuple<decimal, string> newMeasurement = UnitConverter.Convert(ingredient.GramsWeight, ingredient.Measure);
+                if (newMeasurement == null)
+                {
+                    continue;
+                }
                 ingredient.Quantity = newMeasurement.Item1;
                 ingredient.Measure = newMeasurement.Item2;
             }
