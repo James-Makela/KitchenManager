@@ -7,13 +7,13 @@ public partial class PreferencesPage : FramePage
 	public PreferencesPage()
 	{
 		InitializeComponent();
-        Button button_LeftTab = (Button)this.GetTemplateChild("Button_LeftTab");
-        Button button_RightTab = (Button)this.GetTemplateChild("Button_RightTab");
-        Image imageEdamamLogo = (Image)this.GetTemplateChild("Image_edamamLogo");
-        button_LeftTab.Text = "Settings";
-        button_RightTab.Text = "About";
+		Button button_LeftTab = (Button)this.GetTemplateChild("Button_LeftTab");
+		Button button_RightTab = (Button)this.GetTemplateChild("Button_RightTab");
+		Image imageEdamamLogo = (Image)this.GetTemplateChild("Image_edamamLogo");
+		button_LeftTab.Text = "Settings";
+		button_RightTab.Text = "About";
 		imageEdamamLogo.IsVisible = false;
-        PopulateFields();
+		PopulateFields();
 	}
 
 	private void PopulateFields()
@@ -28,8 +28,8 @@ public partial class PreferencesPage : FramePage
 		Picker_Theme.SelectedIndex = theme;
 	}
 
-    private void Picker_Unit_SelectedIndexChanged(object sender, EventArgs e)
-    {
+	private void Picker_Unit_SelectedIndexChanged(object sender, EventArgs e)
+	{
 		string? value = Picker_Unit.SelectedItem as string;
 		if (value == "Metric")
 		{
@@ -39,28 +39,43 @@ public partial class PreferencesPage : FramePage
 		{
 			PreferencesManager.SetUnit(false);
 		}
-		
-    }
 
-    private void Picker_People_SelectedIndexChanged(object sender, EventArgs e)
-    {
+	}
+
+	private void Picker_People_SelectedIndexChanged(object sender, EventArgs e)
+	{
 		PreferencesManager.SetPeople(Picker_People.SelectedIndex + 1);
-    }
+	}
 
-    protected override bool OnBackButtonPressed()
-    {
-        //Shell.Current.GoToAsync("home");
-        Dispatcher.Dispatch(async () =>
-        {
-            await Shell.Current.GoToAsync("////home");
-        });
+	protected override bool OnBackButtonPressed()
+	{
+		//Shell.Current.GoToAsync("home");
+		Dispatcher.Dispatch(async () =>
+		{
+			await Shell.Current.GoToAsync("////home");
+		});
 
-        return true;
-    }
+		return true;
+	}
 
-    private void Picker_Theme_SelectedIndexChanged(object sender, EventArgs e)
-    {
+	private void Picker_Theme_SelectedIndexChanged(object sender, EventArgs e)
+	{
 		PreferencesManager.SetTheme(Picker_Theme.SelectedIndex);
 		PreferencesManager.ApplyTheme();
-    }
+	}
+
+	private async void Button_ReportBug_Pressed(object sender, EventArgs e)
+	{
+		try
+		{
+			string? url = "https://github.com/James-Makela/KitchenManager/issues/new";
+			if (url == null) { return; }
+			Uri uri = new Uri(url);
+			await Browser.Default.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
+		}
+		catch (Exception ex)
+		{
+			// TODO: handle exceptions
+		}
+	}
 }

@@ -21,7 +21,7 @@
                     Grid.ColumnSpan="2"
                     Padding="10">
                 <ScrollView>
-                    <VerticalStackLayout VerticalOptions="Center">
+                    <VerticalStackLayout>
                         <Border Style="{DynamicResource ItemBorder}">
                             <VerticalStackLayout>
                                 <Label Text="Units"
@@ -101,13 +101,17 @@
 
                         <Border Style="{DynamicResource ItemBorder}">
                             <VerticalStackLayout>
-                                <Label Text="Report a Bug"
-                                       FontSize="18"
-                                       FontAttributes="Bold"
-                                       VerticalOptions="Center"/>
-                                <Picker x:Name="Picker_BugReport">
+                                <Button x:Name="Button_ReportBug"
+                                        Text="Report a Bug"
+                                        TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
+                                        FontSize="18"
+                                        FontAttributes="Bold"
+                                        Padding="0, 20"
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="Start"
+                                        Background="Transparent"
+                                        Pressed="Button_ReportBug_Pressed"/>
                                 
-                                </Picker>
                             </VerticalStackLayout>
                         </Border>
                     </VerticalStackLayout>
