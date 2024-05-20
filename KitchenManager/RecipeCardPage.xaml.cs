@@ -158,7 +158,7 @@ public partial class RecipeCardPage : ContentPage
 
     private void Button_Ingredients_Pressed(object sender, EventArgs e)
     {
-
+        ChangeTabColors(true);
         ActivityIndicator_Loading.IsVisible = true;
         ActivityIndicator_Loading.IsRunning = true;
         Border_NutritionTableView.IsVisible = false;
@@ -171,6 +171,7 @@ public partial class RecipeCardPage : ContentPage
 
     private async void Button_Nutrition_Pressed(object sender, EventArgs e)
     {
+        ChangeTabColors();
         ActivityIndicator_Loading.IsVisible = true;
         ActivityIndicator_Loading.IsRunning = true;
         Border_TableView.IsVisible = false;
@@ -180,5 +181,14 @@ public partial class RecipeCardPage : ContentPage
         ActivityIndicator_Loading.IsRunning = false;
         ActivityIndicator_Loading.IsVisible = false;
         Border_NutritionTableView.IsVisible = true;
+    }
+
+    private void ChangeTabColors(bool isLeftTab = false)
+    {
+        Border_Ingredients.Style = (Style)Resources[isLeftTab ? "SelectedTabBorderLocal" : "UnselectedTabBorderLocal"];
+        Button_Ingredients.Style = (Style)Resources[isLeftTab ? "SelectedTabButtonLocal" : "UnselectedTabButtonLocal"];
+
+        Border_Nutrition.Style = (Style)Resources[isLeftTab ? "UnselectedTabBorderLocal" : "SelectedTabBorderLocal"];
+        Button_Nutrition.Style = (Style)Resources[isLeftTab ? "UnselectedTabButtonLocal" : "SelectedTabButtonLocal"];
     }
 }

@@ -4,6 +4,13 @@
              xmlns:local="clr-namespace:KitchenManager.Models"
              x:Class="KitchenManager.RecipeCardPage"
              Title="Recipe Card">
+    <ContentPage.Resources>
+        <Style x:Key="SelectedTabBorderLocal" TargetType="Border" BasedOn="{StaticResource SelectedTabBorder}" />
+        <Style x:Key="UnselectedTabBorderLocal" TargetType="Border" BasedOn="{StaticResource UnselectedTabBorder}" />
+        <Style x:Key="SelectedTabButtonLocal" TargetType="Button" BasedOn="{StaticResource SelectedTabButton}" />
+        <Style x:Key="UnselectedTabButtonLocal" TargetType="Button" BasedOn="{StaticResource UnselectedTabButton}" />
+    </ContentPage.Resources>
+    
     <Grid RowDefinitions="0, 1*, 13*, 1*"
           ColumnDefinitions="1*, 1*"
           RowSpacing="0"
@@ -14,29 +21,21 @@
                 Grid.Row="1"
                 Grid.ColumnSpan="2" />
         <Border x:Name="Border_Ingredients"
-                Style="{DynamicResource SelectedTabBorder}"
+                Style="{DynamicResource SelectedTabBorderLocal}"
                 Grid.Row="1"
                 Grid.Column="0">
             <Button x:Name="Button_Ingredients"
                     Text="Ingredients"
-                    CornerRadius="10"
-                    Background="Transparent"
-                    TextColor="#d9d9d9"
-                    FontSize="20"
-                    FontAttributes="Bold"
+                    Style="{DynamicResource SelectedTabButtonLocal}"
                     Pressed="Button_Ingredients_Pressed"/>
         </Border>
         <Border x:Name="Border_Nutrition"
-                Style="{DynamicResource UnselectedTabBorder}"
+                Style="{DynamicResource UnselectedTabBorderLocal}"
                 Grid.Row="1"
                 Grid.Column="1">
             <Button x:Name="Button_Nutrition"
                     Text="Nutrition"
-                    CornerRadius="10"
-                    Background="Transparent"
-                    TextColor="#415a77"
-                    FontSize="20"
-                    FontAttributes="Bold"
+                    Style="{DynamicResource UnselectedTabButtonLocal}"
                     Pressed="Button_Nutrition_Pressed"/>
         </Border>
 
