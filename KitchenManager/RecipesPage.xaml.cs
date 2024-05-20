@@ -60,12 +60,15 @@ public partial class RecipesPage : FramePage
 
     private async void CollectionView_Recipes_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
+        if (CollectionView_Recipes.SelectedItem == null) return;
+
         recipeManager.CurrentRecipe = (Recipe)CollectionView_Recipes.SelectedItem;
 
         if (recipeManager.CurrentRecipe != null)
         {
             await Shell.Current.GoToAsync("recipecard");
         }
+        CollectionView_Recipes.SelectedItem = null;
     }
 
     protected override void LeftTab_Pressed()

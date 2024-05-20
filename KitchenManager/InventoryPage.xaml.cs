@@ -37,10 +37,13 @@ public partial class InventoryPage : FramePage
         CollectionView_Costs.IsVisible = true;
     }
 
-    private void CollectionView_Stock_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    private async void CollectionView_Stock_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
+        if (CollectionView_Stock.SelectedItem == null) return;
+
         InventoryItem itemToEdit = (InventoryItem)CollectionView_Stock.SelectedItem;
-        EditItemPopUp(itemToEdit);
+        await EditItemPopUp(itemToEdit);
+        CollectionView_Stock.SelectedItem = null;
     }
 
     public async Task AddItemPopUp()
@@ -86,10 +89,13 @@ public partial class InventoryPage : FramePage
         CollectionView_Costs.ItemsSource = items;
     }
 
-    private void CollectionView_Costs_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    private async void CollectionView_Costs_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
+        if (CollectionView_Costs.SelectedItem == null) return;
+
         InventoryItem itemToEdit = (InventoryItem)CollectionView_Costs.SelectedItem;
-        EditItemPopUp(itemToEdit);
+        await EditItemPopUp(itemToEdit);
+        CollectionView_Costs.SelectedItem = null;
     }
 
     private async void Button_Add_Pressed(object sender, EventArgs e)
