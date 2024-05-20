@@ -3,17 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="KitchenManager.FramePage"
              Title="Frame">
-    <!--<Shell.TitleView>
-        <Grid>
-            <Label Text="{Binding Title, Source={x:Reference Preferences}}"
-                   VerticalOptions="Center"
-                   FontSize="Title"
-                   FontAttributes="Bold" />
-        </Grid>
-    </Shell.TitleView>-->
     <ContentPage.Resources>
         <Style x:Key="SelectedTabBorderLocal" TargetType="Border" BasedOn="{StaticResource SelectedTabBorder}" />
         <Style x:Key="UnselectedTabBorderLocal" TargetType="Border" BasedOn="{StaticResource UnselectedTabBorder}" />
+        <Style x:Key="SelectedTabButtonLocal" TargetType="Button" BasedOn="{StaticResource SelectedTabButton}" />
+        <Style x:Key="UnselectedTabButtonLocal" TargetType="Button" BasedOn="{StaticResource UnselectedTabButton}" />
     </ContentPage.Resources>
     <ContentPage.ControlTemplate>
         <ControlTemplate>
@@ -30,22 +24,14 @@
                         Style="{DynamicResource SelectedTabBorder}"
                         Grid.Column="0">
                     <Button x:Name="Button_LeftTab"
-                            CornerRadius="10"
-                            Background="Transparent"
-                            TextColor="#d9d9d9"
-                            FontSize="20"
-                            FontAttributes="Bold"
+                            Style="{DynamicResource SelectedTabButton}"
                             Pressed="Button_LeftTab_Pressed"/>
                 </Border>
                 <Border x:Name="Border_RightTab"
                         Style="{DynamicResource UnselectedTabBorder}"
                         Grid.Column="1">
                     <Button x:Name="Button_RightTab"
-                            CornerRadius="10"
-                            Background="Transparent"
-                            TextColor="#415a77"
-                            FontSize="20"
-                            FontAttributes="Bold"
+                            Style="{DynamicResource UnselectedTabButton}"
                             Pressed="Button_RightTab_Pressed"/>
                 </Border>
 
