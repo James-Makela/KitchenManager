@@ -6,10 +6,16 @@ namespace KitchenManager;
 
 public partial class AddInventoryItem : Popup
 {
-    public AddInventoryItem()
+    public AddInventoryItem(InventoryItem? inventoryItem = null)
     {
         InitializeComponent();
         PopulatePicker();
+        if (inventoryItem != null)
+        {
+            Entry_StockName.Text = inventoryItem.ItemName;
+            Entry_StockName.IsEnabled = false;
+
+        }
     }
 
     private async void Button_Save_Pressed(object sender, EventArgs e)

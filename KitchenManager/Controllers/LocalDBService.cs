@@ -54,6 +54,19 @@ namespace KitchenManager.Controllers
             }
         }
 
+        public async Task<bool> EditInventoryItem(InventoryItem changedItem)
+        {
+            try
+            {
+                await _connection.InsertOrReplaceAsync(changedItem);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
         public async Task<InventoryItem?> FindInventoryItem(string itemName)
         {
             try

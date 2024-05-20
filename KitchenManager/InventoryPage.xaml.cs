@@ -39,7 +39,8 @@ public partial class InventoryPage : FramePage
 
     private void CollectionView_Stock_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        var editPopup = new AddInventoryItem();
+        InventoryItem itemToEdit = (InventoryItem)CollectionView_Stock.SelectedItem;
+        EditItemPopUp(itemToEdit);
     }
 
     public async Task AddItemPopUp()
@@ -52,9 +53,28 @@ public partial class InventoryPage : FramePage
         {
             success = await service.AddInventoryItem(newItem);
         }
+        else return;
         if (!success)
         {
             await DisplayAlert("Error", "Unable to add item", "Ok");
+        }
+        RefreshList();
+    }
+
+    public async Task EditItemPopUp(InventoryItem item)
+    {
+        bool success = false;
+        var editPopup = new AddInventoryItem(item);
+        InventoryItem? newItem = await this.ShowPopupAsync(editPopup) as InventoryItem;
+
+        if (newItem != null)
+        {
+            success = await service.EditInventoryItem(newItem);
+        }
+        else return;
+        if (!success)
+        {
+            await DisplayAlert("Error", "Unable to edit item", "Ok");
         }
         RefreshList();
     }
@@ -68,7 +88,8 @@ public partial class InventoryPage : FramePage
 
     private void CollectionView_Costs_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-
+        InventoryItem itemToEdit = (InventoryItem)CollectionView_Costs.SelectedItem;
+        EditItemPopUp(itemToEdit);
     }
 
     private async void Button_Add_Pressed(object sender, EventArgs e)
