@@ -8,9 +8,9 @@ public partial class InventoryPage : FramePage
 {
     private readonly LocalDBService service = new();
 
-	public InventoryPage()
-	{
-		InitializeComponent();
+    public InventoryPage()
+    {
+        InitializeComponent();
 
         // TODO: Tidy this up
         Button button_LeftTab = (Button)this.GetTemplateChild("Button_LeftTab");
@@ -20,12 +20,12 @@ public partial class InventoryPage : FramePage
         button_RightTab.Text = "Costs";
         imageEdamamLogo.IsVisible = false;
         RefreshList();
-	}
+    }
 
     protected override void LeftTab_Pressed()
     {
         base.LeftTab_Pressed();
-        
+
         CollectionView_Costs.IsVisible = false;
         CollectionView_Stock.IsVisible = true;
     }
@@ -39,17 +39,22 @@ public partial class InventoryPage : FramePage
 
     private void CollectionView_Stock_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        
+        var editPopup = new AddInventoryItem();
     }
 
     public async Task AddItemPopUp()
     {
+        bool success = false;
         var addPopup = new AddInventoryItem();
         InventoryItem? newItem = await this.ShowPopupAsync(addPopup) as InventoryItem;
 
         if (newItem != null)
         {
-            await service.AddInventoryItem(newItem);
+            success = await service.AddInventoryItem(newItem);
+        }
+        if (!success)
+        {
+            await DisplayAlert("Error", "Unable to add item", "Ok");
         }
         RefreshList();
     }

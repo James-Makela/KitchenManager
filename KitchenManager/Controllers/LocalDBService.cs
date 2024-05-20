@@ -41,9 +41,17 @@ namespace KitchenManager.Controllers
             return await _connection.Table<InventoryItem>().Where(x => x.ItemName == name).FirstOrDefaultAsync();
         }
 
-        public async Task AddInventoryItem(InventoryItem item)
+        public async Task<bool> AddInventoryItem(InventoryItem item)
         {
-            await _connection.InsertAsync(item);
+            try
+            {
+                await _connection.InsertAsync(item);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         public async Task<InventoryItem?> FindInventoryItem(string itemName)
@@ -80,11 +88,11 @@ namespace KitchenManager.Controllers
             {
                 await _connection.InsertWithChildrenAsync(recipe);
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 // TODO: What do I want to happen here?
             }
-            
+
         }
 
         public async Task RemoveRecipe(Recipe recipe)
@@ -117,9 +125,9 @@ namespace KitchenManager.Controllers
                 {
                     return true;
                 }
-                else 
-                { 
-                    return false; 
+                else
+                {
+                    return false;
                 }
             }
             catch (Exception)
