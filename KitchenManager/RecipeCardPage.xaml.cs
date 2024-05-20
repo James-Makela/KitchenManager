@@ -34,6 +34,8 @@ public partial class RecipeCardPage : ContentPage
             recipe = manager.CurrentRecipe;
         }
 
+        manager.RunConversions();
+        
         // Check whether the recipe is saved or not
         if (await localDBService.CheckRecipeIsSaved(recipe.Label))
         {

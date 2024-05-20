@@ -11,8 +11,10 @@ namespace KitchenManager.Controllers
     {
         APIService apiService = new();
         LocalDBService localDBService = new();
+
         public Recipe? CurrentRecipe { get; set; }
         public List<NutritionItem>? NutritionInfo { get; set; }
+
         int OriginalYield { get; set; }
 
         public RecipeManager() { }
@@ -51,6 +53,22 @@ namespace KitchenManager.Controllers
                 else { ingredient.Cost = 0; }
             }
             CurrentRecipe.TotalCost = totalCost;
+        }
+
+        public void RunConversions()
+        {
+            if (CurrentRecipe.Ingredients == null) { return; }
+
+            foreach (FoodItem ingredient in CurrentRecipe.Ingredients)
+            {
+                Tuple<decimal, string> newMeasurement = UnitConverter.Convert(ingredient.GramsWeight, ingredient.Measure);
+                if (newMeasurement == null)
+                {
+                    continue;
+                }
+                ingredient.Quantity = newMeasurement.Item1;
+                ingredient.Measure = newMeasurement.Item2;
+            }
         }
 
         public async Task<Recipe> GetRandomRecipe()
