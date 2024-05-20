@@ -175,7 +175,11 @@ public partial class RecipeCardPage : ContentPage
         ActivityIndicator_Loading.IsVisible = true;
         ActivityIndicator_Loading.IsRunning = true;
         Border_TableView.IsVisible = false;
-        manager.NutritionInfo = await manager.GetNutrition();
+
+        if (manager.NutritionInfo == null)
+        {
+            manager.NutritionInfo = await manager.GetNutrition();
+        }
 
         CollectionView_Nutrition.ItemsSource = manager.NutritionInfo;
         ActivityIndicator_Loading.IsRunning = false;

@@ -44,7 +44,7 @@
                                 x:Name="CollectionView_Recipes"
                                 SelectionMode="Single"
                                 ItemSizingStrategy="MeasureFirstItem"
-                                IsVisible="False"
+                                IsVisible="Hidden"
                                 SelectionChanged="CollectionView_Recipes_SelectionChanged">
                             <CollectionView.ItemTemplate>
                                 <DataTemplate x:DataType="local:Recipe">
