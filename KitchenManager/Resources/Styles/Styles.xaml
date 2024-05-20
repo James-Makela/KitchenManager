@@ -79,8 +79,8 @@
         <Setter Property="StrokeThickness" Value="0" />
         <Setter Property="Margin" Value="-1" />
         <Setter Property="StrokeShape" Value="RoundRectangle 10, 10, 10, 10" />
-        <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Secondary}}" />
-        <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Secondary}}" />
+        <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource OffBlack}}" />
+        <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource OffBlack}}" />
         <Setter Property="Padding" Value="10" />
     </Style>
 

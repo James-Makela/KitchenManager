@@ -11,23 +11,21 @@
             WidthRequest="250"
             HeightRequest="320">
             <Border
-                Stroke="#d9d9d9"
-                StrokeShape="RoundRectangle 10"
-                Background="#d9d9d9"
+                Style="{DynamicResource ItemBorder}"
                 Grid.ColumnSpan="2"
-                HeightRequest="35"
+                HeightRequest="40"
                 Padding="0"
                 Margin="20">
                 <Entry
                     x:Name="Entry_StockName"
                     Placeholder="Ingredient Name"
                     WidthRequest="180"
-                    TextColor="Black"
                     FontAttributes="Bold"
                     HorizontalTextAlignment="Center"
                     VerticalTextAlignment="Center"
                     VerticalOptions="Center"/>
             </Border>
+
             <Label
                 Text="Amount:"
                 Grid.Row="1"
@@ -35,13 +33,11 @@
                 VerticalOptions="Center"
                 Margin="10"/>
             <Border
-                Stroke="#d9d9d9"
-                StrokeShape="RoundRectangle 10"
-                Background="#d9d9d9"
+                Style="{DynamicResource ItemBorder}"
                 Grid.Row="1"
                 Grid.Column="1"
                 WidthRequest="50"
-                HeightRequest="35"
+                HeightRequest="40"
                 Padding="0"
                 Margin="10"
                 HorizontalOptions="Start">
@@ -51,6 +47,7 @@
                     Keyboard="Numeric"
                     BackgroundColor="#d9d9d9"/>
             </Border>
+
             <Label 
                 Text="Unit:"
                 Grid.Row="2"
@@ -58,13 +55,11 @@
                 VerticalOptions="Center"
                 Margin="10"/>
             <Border
-                Stroke="#d9d9d9"
-                StrokeShape="RoundRectangle 10"
-                Background="#d9d9d9"
+                Style="{DynamicResource ItemBorder}"
                 Grid.Row="2"
                 Grid.Column="1"
                 WidthRequest="50"
-                HeightRequest="35"
+                HeightRequest="40"
                 Padding="0"
                 Margin="10"
                 HorizontalOptions="Start">
@@ -73,17 +68,16 @@
                     BackgroundColor="#d9d9d9">
                 </Picker>
             </Border>
+
             <Label 
                 Text="Cost:"
                 Grid.Row="3"
                 VerticalOptions="Center"
                 Margin="20, 10, 10, 10"/>
-            <Border Stroke="#d9d9d9"
-                    StrokeShape="RoundRectangle 10"
-                    Background="#d9d9d9"
+            <Border Style="{DynamicResource ItemBorder}"
                     Grid.Row="3"
                     WidthRequest="50"
-                    HeightRequest="35"
+                    HeightRequest="40"
                     Padding="0"
                     Margin="10"
                     HorizontalOptions="End">
@@ -93,6 +87,7 @@
                 Keyboard="Numeric"
                 BackgroundColor="#d9d9d9"/>
             </Border>
+
             <Label Text="/"
                    Grid.Row="3"
                    Grid.ColumnSpan="2"
@@ -100,13 +95,11 @@
                    VerticalOptions="Center"
                    FontSize="20"/>
             <Border
-                Stroke="#d9d9d9"
-                StrokeShape="RoundRectangle 10"
-                Background="#d9d9d9"
+                Style="{DynamicResource ItemBorder}"
                 Grid.Row="3"
                 Grid.Column="1"
                 WidthRequest="50"
-                HeightRequest="35"
+                HeightRequest="40"
                 Padding="0"
                 Margin="10"
                 HorizontalOptions="Start">
@@ -114,6 +107,7 @@
                     x:Name="Picker_CostUnit">
                 </Picker>
             </Border>
+
             <Button
                 x:Name="Button_Save"
                 Text="Save"
