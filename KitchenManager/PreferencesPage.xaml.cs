@@ -20,12 +20,15 @@ public partial class PreferencesPage : FramePage
 	{
 		base.RightTab_Pressed();
 		Border_CollectionView.IsVisible = false;
+		Border_About.IsVisible = true;
 	}
 
 	protected override void LeftTab_Pressed()
 	{
 		base.LeftTab_Pressed();
+		Border_About.IsVisible = false;
 		Border_CollectionView.IsVisible = true;
+
 	}
 
 	private void PopulateFields()

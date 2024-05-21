@@ -7,106 +7,114 @@
              Title="Preferences">
     <ContentPage.Content>
         <ContentView>
-            <Border x:Name="Border_CollectionView" 
+            <Grid RowDefinitions="1*">
+                <Border x:Name="Border_CollectionView" 
                     Style="{DynamicResource TabPageBackground}"
                     Padding="10">
-                <ScrollView>
-                    <VerticalStackLayout>
-                        <Border Style="{DynamicResource ItemBorder}">
-                            <VerticalStackLayout>
-                                <Label Text="Units"
-                                    FontSize="18"
-                                    FontAttributes="Bold"
-                                    VerticalOptions="Center"/>
-                                <Picker x:Name="Picker_Unit"
-                                        FontSize="15"
-                                        SelectedIndexChanged="Picker_Unit_SelectedIndexChanged">
-                                    <Picker.ItemsSource>
-                                        <x:Array Type="{x:Type x:String}">
-                                            <x:String>Metric</x:String>
-                                            <x:String>Imperial</x:String>
-                                        </x:Array>
-                                    </Picker.ItemsSource>
-                                </Picker>
-                            </VerticalStackLayout>
-                        </Border>
-
-                        <Border Style="{DynamicResource ItemBorder}">
-                            <VerticalStackLayout>
-                                <Label Text="Number of People"
-                                    FontSize="18"
-                                    FontAttributes="Bold"
-                                    VerticalOptions="Center"/>
-                                <Picker x:Name="Picker_People"
-                                        FontSize="15"
-                                        SelectedIndexChanged="Picker_People_SelectedIndexChanged">
-                                    <Picker.ItemsSource>
-                                        <x:Array Type="{x:Type x:String}">
-                                            <x:String>1</x:String>
-                                            <x:String>2</x:String>
-                                            <x:String>3</x:String>
-                                            <x:String>4</x:String>
-                                            <x:String>5</x:String>
-                                            <x:String>6</x:String>
-                                            <x:String>7</x:String>
-                                            <x:String>8</x:String>
-                                            <x:String>9</x:String>
-                                            <x:String>10</x:String>
-                                        </x:Array>
-                                    </Picker.ItemsSource>
-                                </Picker>
-                            </VerticalStackLayout>
-                        </Border>
-
-                        <Border Style="{DynamicResource ItemBorder}">
-                            <VerticalStackLayout>
-                                <Label Text="Theme"
-                                    FontSize="18"
-                                    FontAttributes="Bold"
-                                    VerticalOptions="Center"/>
-                                <Picker x:Name="Picker_Theme"
-                                        Grid.Row="3"
-                                        Grid.Column="2"
-                                        FontSize="15"
-                                        SelectedIndexChanged="Picker_Theme_SelectedIndexChanged">
-                                    <Picker.ItemsSource>
-                                        <x:Array Type="{x:Type x:String}">
-                                            <x:String>Day</x:String>
-                                            <x:String>Night</x:String>
-                                        </x:Array>
-                                    </Picker.ItemsSource>
-                                </Picker>
-                            </VerticalStackLayout>
-                        </Border>
-
-                        <Border Style="{DynamicResource ItemBorder}">
-                            <VerticalStackLayout>
-                                <Label Text="Cook Now Mode"
-                                    FontSize="18"
-                                    FontAttributes="Bold"
-                                    VerticalOptions="Center"/>
-                                <Picker x:Name="Picker_CookNowMode"/>
-                            </VerticalStackLayout>
-                        </Border>
-
-                        <Border Style="{DynamicResource ItemBorder}">
-                            <VerticalStackLayout>
-                                <Button x:Name="Button_ReportBug"
-                                        Text="Report a Bug"
-                                        TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
+                    <ScrollView>
+                        <VerticalStackLayout>
+                            <Border Style="{DynamicResource ItemBorder}">
+                                <VerticalStackLayout>
+                                    <Label Text="Units"
                                         FontSize="18"
                                         FontAttributes="Bold"
-                                        Padding="0, 20"
-                                        VerticalOptions="Center"
-                                        HorizontalOptions="Start"
-                                        Background="Transparent"
-                                        Pressed="Button_ReportBug_Pressed"/>
-                                
-                            </VerticalStackLayout>
-                        </Border>
+                                        VerticalOptions="Center"/>
+                                    <Picker x:Name="Picker_Unit"
+                                            FontSize="15"
+                                            SelectedIndexChanged="Picker_Unit_SelectedIndexChanged">
+                                        <Picker.ItemsSource>
+                                            <x:Array Type="{x:Type x:String}">
+                                                <x:String>Metric</x:String>
+                                                <x:String>Imperial</x:String>
+                                            </x:Array>
+                                        </Picker.ItemsSource>
+                                    </Picker>
+                                </VerticalStackLayout>
+                            </Border>
+
+                            <Border Style="{DynamicResource ItemBorder}">
+                                <VerticalStackLayout>
+                                    <Label Text="Number of People"
+                                        FontSize="18"
+                                        FontAttributes="Bold"
+                                        VerticalOptions="Center"/>
+                                    <Picker x:Name="Picker_People"
+                                            FontSize="15"
+                                            SelectedIndexChanged="Picker_People_SelectedIndexChanged">
+                                        <Picker.ItemsSource>
+                                            <x:Array Type="{x:Type x:String}">
+                                                <x:String>1</x:String>
+                                                <x:String>2</x:String>
+                                                <x:String>3</x:String>
+                                                <x:String>4</x:String>
+                                                <x:String>5</x:String>
+                                                <x:String>6</x:String>
+                                                <x:String>7</x:String>
+                                                <x:String>8</x:String>
+                                                <x:String>9</x:String>
+                                                <x:String>10</x:String>
+                                            </x:Array>
+                                        </Picker.ItemsSource>
+                                    </Picker>
+                                </VerticalStackLayout>
+                            </Border>
+
+                            <Border Style="{DynamicResource ItemBorder}">
+                                <VerticalStackLayout>
+                                    <Label Text="Theme"
+                                        FontSize="18"
+                                        FontAttributes="Bold"
+                                        VerticalOptions="Center"/>
+                                    <Picker x:Name="Picker_Theme"
+                                            Grid.Row="3"
+                                            Grid.Column="2"
+                                            FontSize="15"
+                                            SelectedIndexChanged="Picker_Theme_SelectedIndexChanged">
+                                        <Picker.ItemsSource>
+                                            <x:Array Type="{x:Type x:String}">
+                                                <x:String>Day</x:String>
+                                                <x:String>Night</x:String>
+                                            </x:Array>
+                                        </Picker.ItemsSource>
+                                    </Picker>
+                                </VerticalStackLayout>
+                            </Border>
+
+                            <Border Style="{DynamicResource ItemBorder}">
+                                <VerticalStackLayout>
+                                    <Button x:Name="Button_ReportBug"
+                                            Text="Report a Bug"
+                                            TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
+                                            FontSize="18"
+                                            FontAttributes="Bold"
+                                            Padding="0, 20"
+                                            VerticalOptions="Center"
+                                            HorizontalOptions="Start"
+                                            Background="Transparent"
+                                            Pressed="Button_ReportBug_Pressed"/>
+
+                                </VerticalStackLayout>
+                            </Border>
+                        </VerticalStackLayout>
+                    </ScrollView>
+                </Border>
+                <Border x:Name="Border_About"
+                        Style="{DynamicResource ItemBorder}"
+                        Padding="15"
+                        Margin="9"
+                        IsVisible="False">
+                    <VerticalStackLayout VerticalOptions="Center">
+                        <Label Text="About"
+                               FontSize="20"
+                               FontAttributes="Bold"
+                               HorizontalTextAlignment="Center"/>
+                        <Label Text="This mobile application was created as part of the Cert IV in Programming. It aims to allow users to discover and save recipes, and manage their kitchen inventory and costs."
+                               FontSize="15"
+                               Margin="10"
+                               HorizontalTextAlignment="Center"/>
                     </VerticalStackLayout>
-                </ScrollView>
-            </Border>
+                </Border>
+            </Grid>
         </ContentView>
     </ContentPage.Content>
 </base:FramePage>
