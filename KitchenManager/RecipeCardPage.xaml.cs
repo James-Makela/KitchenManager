@@ -77,7 +77,7 @@ public partial class RecipeCardPage : ContentPage
             return;
         }
         yield--;
-        Label_RecipeYield.Text = $"{yield} People";
+        Label_RecipeYield.Text = $"{yield} {((yield > 1) ? "People" : "Person")}";
 
         await manager.ChangeYield(yield);
 
