@@ -11,10 +11,7 @@
         <Style x:Key="UnselectedTabButtonLocal" TargetType="Button" BasedOn="{StaticResource UnselectedTabButton}" />
     </ContentPage.Resources>
     
-    <Grid RowDefinitions="0, 1*, 13*, 1*"
-          ColumnDefinitions="1*, 1*"
-          RowSpacing="0"
-          Margin="5, 0">
+    <Grid Style="{DynamicResource RecipeCardGrid}">
 
         <!-- Tabs -->
         <Border Style="{DynamicResource TabBackgroundBorder}"
@@ -44,11 +41,23 @@
                 Grid.Row="2"
                 Grid.ColumnSpan="2"/>
 
+        <Border Style="{DynamicResource LandscapeImageBorder}"
+                Stroke="Transparent"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 30"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Grid.Column="2"
+                Grid.RowSpan="3"
+                IsVisible="False">
+            <Image x:Name="Image_LandscapeRecipeImage"/>
+        </Border>
 
         <Border StrokeShape="RoundRectangle 10"
                 Background="Transparent"
                 Stroke="Transparent"
                 Grid.Row="2"
+                Grid.RowSpan="2"
                 Grid.ColumnSpan="2"
                 Margin="0, 0, 0, 5"
                 >
@@ -57,7 +66,8 @@
                         Margin="0, 0, 0, 5">
                 <VerticalStackLayout VerticalOptions="FillAndExpand">
                     <!-- Image -->
-                    <Border Stroke="Transparent"
+                    <Border Style="{DynamicResource PortraitImageBorder}"
+                            Stroke="Transparent"
                             StrokeThickness="1"
                             StrokeShape="RoundRectangle 30"
                             Margin="0, 20, 0, 0"

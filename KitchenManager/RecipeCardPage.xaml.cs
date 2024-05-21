@@ -28,7 +28,6 @@ public partial class RecipeCardPage : ContentPage
     {
         if (recipe == null)
         {
-            // Fetch a random recipe
             Recipe randomRecipe = await manager.GetRandomRecipe();
             manager.CurrentRecipe = randomRecipe;
             recipe = manager.CurrentRecipe;
@@ -36,36 +35,29 @@ public partial class RecipeCardPage : ContentPage
 
         manager.RunConversions();
 
-        // Check whether the recipe is saved or not
         if (await localDBService.CheckRecipeIsSaved(recipe.Label))
         {
             Button_SaveRecipe.IsVisible = false;
             Button_DeleteRecipe.IsVisible = true;
         }
 
-        // Get the desired yield setting
         int yield = PreferencesManager.GetPeople();
 
-        // Set the ingredients to match the desired yield
         await manager.ChangeYield(PreferencesManager.GetPeople());
 
-        // Display the non-ingredient data
         Label_RecipeLabel.Text = recipe.Label;
         Button_RecipeSource.Text = $"🔗 Source: {recipe.SourceName}";
         Label_RecipeYield.Text = $"{yield} People";
         Image_RecipeImage.Source = recipe.ImageLink;
+        Image_LandscapeRecipeImage.Source = recipe.ImageLink;
 
-        // Set the Collectionview to display the ingredients
         CollectionView_Ingredients.ItemsSource = recipe.Ingredients;
 
-        // Dispay the total costings
         await DisplayTotals();
 
-        // Turn off the activityindicator
         ActivityIndicator_Loading.IsRunning = false;
         ActivityIndicator_Loading.IsVisible = false;
 
-        // Make the ingredients visible
         Border_TableView.IsVisible = true;
     }
 
@@ -118,7 +110,7 @@ public partial class RecipeCardPage : ContentPage
         }
         catch (Exception ex)
         {
-            // TODO: handle exceptions
+            await DisplayAlert("Error", ex.Message, "Ok");
         }
     }
 
