@@ -15,6 +15,14 @@ public partial class RecipeCardPage : ContentPage
     {
         InitializeComponent();
         PopulateFields(manager.CurrentRecipe);
+        DeviceDisplay.Current.MainDisplayInfoChanged += (sender, args) =>
+        {
+            CollectionView_Ingredients.ItemsSource = null;
+            CollectionView_Nutrition.ItemsSource = null;
+
+            CollectionView_Ingredients.ItemsSource = manager.CurrentRecipe.Ingredients;
+            CollectionView_Nutrition.ItemsSource = manager.NutritionInfo;
+        };
     }
 
     protected override void OnDisappearing()
@@ -56,11 +64,14 @@ public partial class RecipeCardPage : ContentPage
 
         CollectionView_Ingredients.ItemsSource = recipe.Ingredients;
 
+        CollectionView_Nutrition.ItemsSource = manager.NutritionInfo;
+
         await DisplayTotals();
 
         ActivityIndicator_Loading.IsRunning = false;
         ActivityIndicator_Loading.IsVisible = false;
 
+        Border_TableView.IsVisible = false;
         Border_TableView.IsVisible = true;
     }
 

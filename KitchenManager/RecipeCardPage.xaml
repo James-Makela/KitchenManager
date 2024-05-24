@@ -15,11 +15,11 @@
 
         <!-- Tabs -->
         <Border Style="{DynamicResource TabBackgroundBorder}"
-                Grid.Row="1"
+                Grid.Row="0"
                 Grid.ColumnSpan="2" />
         <Border x:Name="Border_Ingredients"
                 Style="{DynamicResource SelectedTabBorderLocal}"
-                Grid.Row="1"
+                Grid.Row="0"
                 Grid.Column="0">
             <Button x:Name="Button_Ingredients"
                     Text="Ingredients"
@@ -28,7 +28,7 @@
         </Border>
         <Border x:Name="Border_Nutrition"
                 Style="{DynamicResource UnselectedTabBorderLocal}"
-                Grid.Row="1"
+                Grid.Row="0"
                 Grid.Column="1">
             <Button x:Name="Button_Nutrition"
                     Text="Nutrition"
@@ -38,13 +38,13 @@
 
         <!-- Main Background-->
         <Border Style="{DynamicResource TabPageBackground}"
-                Grid.Row="2"
+                Grid.Row="1"
                 Grid.ColumnSpan="2"/>
 
         <!-- Landscape Items -->
         <Border Style="{DynamicResource LandscapeRHSBorder}"
                 StrokeShape="RoundRectangle 10"
-                Grid.Row="2"
+                Grid.Row="1"
                 Grid.Column="2"
                 Grid.RowSpan="2"
                 Margin="5, 5, 5, 0"/>
@@ -55,8 +55,9 @@
                 StrokeShape="RoundRectangle 30"
                 HorizontalOptions="Center"
                 VerticalOptions="Center"
+                Grid.Row="0"
                 Grid.Column="2"
-                Grid.RowSpan="3"
+                Grid.RowSpan="2"
                 IsVisible="False">
             <Image x:Name="Image_LandscapeRecipeImage"/>
         </Border>
@@ -127,14 +128,7 @@
             </Grid>
         </Border>
 
-        <Border StrokeShape="RoundRectangle 10"
-                Background="Transparent"
-                Stroke="Transparent"
-                Grid.Row="2"
-                Grid.RowSpan="1"
-                Grid.ColumnSpan="2"
-                Margin="0, 0, 0, 5"
-                >
+        <Border Style="{DynamicResource ScrollViewHolderBorder}">
 
             <ScrollView x:Name="ScrollView_Recipe"
                         Margin="0, 0, 0, 5">
@@ -368,13 +362,13 @@
         <!-- Save/Delete recipe buttons -->
         <Button x:Name="Button_SaveRecipe"
                 Text="Save"
-                Grid.Row="8"
+                Grid.Row="7"
                 CornerRadius="10"
                 Margin="0, 5, 10, 5"
                 Pressed="Button_SaveRecipe_Pressed" />
         <Button x:Name="Button_DeleteRecipe"
                 Text="Delete"
-                Grid.Row="8"
+                Grid.Row="7"
                 IsVisible="False"
                 Style="{DynamicResource DeleteButton}"
                 Pressed="Button_DeleteRecipe_Pressed" />
