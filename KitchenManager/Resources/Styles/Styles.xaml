@@ -65,6 +65,34 @@
         </Setter>
     </Style>
 
+    <Style x:Key="EdamamImage" TargetType="Image">
+        <Setter Property="Grid.Row" Value="8"/>
+        <Setter Property="HorizontalOptions" Value="End"/>
+        <Setter Property="Margin" Value="12"/>
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup>
+                    <VisualState x:Name="Portrait">
+                        <VisualState.StateTriggers>
+                            <OrientationStateTrigger Orientation="Portrait"/>
+                        </VisualState.StateTriggers>
+                        <VisualState.Setters>
+                            <Setter Property="Grid.Column" Value="1"/>
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Landscape">
+                        <VisualState.StateTriggers>
+                            <OrientationStateTrigger Orientation="Landscape"/>
+                        </VisualState.StateTriggers>
+                        <VisualState.Setters>
+                            <Setter Property="Grid.Column" Value="2"/>
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
     <!-- Special Grid Styles for page Orientation -->
     <Style x:Key="RecipeCardGrid" TargetType="Grid">
         <Setter Property="RowSpacing" Value="0"/>
@@ -86,7 +114,7 @@
                             <OrientationStateTrigger Orientation="Landscape"/>
                         </VisualState.StateTriggers>
                         <VisualState.Setters>
-                            <Setter Property="RowDefinitions" Value="0, 2*, 6*, 7*, 3*"/>
+                            <Setter Property="RowDefinitions" Value="0, 2*, 4*, 7*, 2.5*"/>
                             <Setter Property="ColumnDefinitions" Value="1*, 1*, 2*" />
                         </VisualState.Setters>
                     </VisualState>
@@ -133,6 +161,32 @@
         </Setter>
     </Style>
 
+    <Style x:Key="LandscapeRHSBorder" TargetType="Border">
+        <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Primary}}"/>
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup>
+                    <VisualState x:Name="Portrait">
+                        <VisualState.StateTriggers>
+                            <OrientationStateTrigger Orientation="Portrait"/>
+                        </VisualState.StateTriggers>
+                        <VisualState.Setters>
+                            <Setter Property="IsVisible" Value="False"/>
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Landscape">
+                        <VisualState.StateTriggers>
+                            <OrientationStateTrigger Orientation="Landscape"/>
+                        </VisualState.StateTriggers>
+                        <VisualState.Setters>
+                            <Setter Property="IsVisible" Value="True"/>
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
     <Style x:Key="TabBackgroundBorder" TargetType="Border">
         <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource OffBlack}}" />
         <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource OffBlack}}" />
@@ -155,7 +209,7 @@
                             <OrientationStateTrigger Orientation="Landscape"/>
                         </VisualState.StateTriggers>
                         <VisualState.Setters>
-                            <Setter Property="Grid.ColumnSpan" Value="1" />
+                            <Setter Property="Grid.ColumnSpan" Value="2" />
                         </VisualState.Setters>
                     </VisualState>
                 </VisualStateGroup>
@@ -195,6 +249,68 @@
         <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}" />
     </Style>
 
+    <Style x:Key="CostingBorder" TargetType="Border">
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Margin" Value="5" />
+        <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 10" />
+        <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}" />
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup>
+                    <VisualState x:Name="Portrait">
+                        <VisualState.StateTriggers>
+                            <OrientationStateTrigger Orientation="Portrait"/>
+                        </VisualState.StateTriggers>
+                        <VisualState.Setters>
+                            <Setter Property="IsVisible" Value="True"/>
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Landscape">
+                        <VisualState.StateTriggers>
+                            <OrientationStateTrigger Orientation="Landscape"/>
+                        </VisualState.StateTriggers>
+                        <VisualState.Setters>
+                            <Setter Property="IsVisible" Value="False"/>
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
+    <Style x:Key="CostingBorderLandscape" TargetType="Border">
+        <Setter Property="Padding" Value="10" />
+        <Setter Property="Margin" Value="15" />
+        <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 10" />
+        <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}" />
+        <Setter Property="Grid.Row" Value="3"/>
+        <Setter Property="Grid.Column" Value="2"/>
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup>
+                    <VisualState x:Name="Portrait">
+                        <VisualState.StateTriggers>
+                            <OrientationStateTrigger Orientation="Portrait"/>
+                        </VisualState.StateTriggers>
+                        <VisualState.Setters>
+                            <Setter Property="IsVisible" Value="False"/>
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Landscape">
+                        <VisualState.StateTriggers>
+                            <OrientationStateTrigger Orientation="Landscape"/>
+                        </VisualState.StateTriggers>
+                        <VisualState.Setters>
+                            <Setter Property="IsVisible" Value="True"/>
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
     <Style x:Key="SearchBorder" TargetType="Border">
         <Setter Property="StrokeShape" Value="RoundRectangle 50" />
         <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource OffBlack}}" />
@@ -215,6 +331,38 @@
 
     <Style TargetType="BoxView">
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
+    </Style>
+
+    <Style x:Key="RecipeTitleLabel" TargetType="Label">
+        <Setter Property="HorizontalOptions" Value="Center"/>
+        <Setter Property="VerticalOptions" Value="Center"/>
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
+        <Setter Property="HorizontalTextAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="10"/>
+        <Setter Property="TextColor" Value="{StaticResource White}"/>
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup>
+                    <VisualState x:Name="Portrait">
+                        <VisualState.StateTriggers>
+                            <OrientationStateTrigger Orientation="Portrait"/>
+                        </VisualState.StateTriggers>
+                        <VisualState.Setters>
+                            <Setter Property="IsVisible" Value="True"/>
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Landscape">
+                        <VisualState.StateTriggers>
+                            <OrientationStateTrigger Orientation="Landscape"/>
+                        </VisualState.StateTriggers>
+                        <VisualState.Setters>
+                            <Setter Property="IsVisible" Value="False"/>
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
     </Style>
 
     <!-- Button Styles -->

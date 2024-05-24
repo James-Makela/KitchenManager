@@ -41,6 +41,8 @@ public partial class RecipeCardPage : ContentPage
             Button_DeleteRecipe.IsVisible = true;
         }
 
+        this.Title = recipe.Label;
+
         int yield = PreferencesManager.GetPeople();
 
         await manager.ChangeYield(PreferencesManager.GetPeople());
@@ -48,6 +50,7 @@ public partial class RecipeCardPage : ContentPage
         Label_RecipeLabel.Text = recipe.Label;
         Button_RecipeSource.Text = $"🔗 Source: {recipe.SourceName}";
         Label_RecipeYield.Text = $"{yield} People";
+        Label_RecipeYieldLandscape.Text = $"{yield} People";
         Image_RecipeImage.Source = recipe.ImageLink;
         Image_LandscapeRecipeImage.Source = recipe.ImageLink;
 
@@ -70,6 +73,7 @@ public partial class RecipeCardPage : ContentPage
         }
         yield--;
         Label_RecipeYield.Text = $"{yield} {((yield > 1) ? "People" : "Person")}";
+        Label_RecipeYieldLandscape.Text = $"{yield} {((yield > 1) ? "People" : "Person")}";
 
         await manager.ChangeYield(yield);
 
@@ -83,6 +87,7 @@ public partial class RecipeCardPage : ContentPage
         int.TryParse(Label_RecipeYield.Text.Split(" ")[0], out int yield);
         yield++;
         Label_RecipeYield.Text = $"{yield} People";
+        Label_RecipeYieldLandscape.Text = $"{yield} People";
 
         await manager.ChangeYield(yield);
 
@@ -96,7 +101,9 @@ public partial class RecipeCardPage : ContentPage
         decimal totalCost = (decimal)manager.CurrentRecipe.TotalCost;
         decimal costPerServe = totalCost / (decimal)manager.CurrentRecipe.Yield;
         Label_TotalCost.Text = totalCost.ToString("C");
+        Label_TotalCostLandscape.Text = totalCost.ToString("C");
         Label_CostPerServe.Text = costPerServe.ToString("C");
+        Label_CostPerServeLandscape.Text = costPerServe.ToString("C");
     }
 
     private async void Button_RecipeSource_Pressed(object sender, EventArgs e)
