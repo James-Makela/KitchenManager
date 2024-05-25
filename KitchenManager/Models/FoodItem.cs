@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace KitchenManager.Models
 {
@@ -12,7 +7,7 @@ namespace KitchenManager.Models
         private string measure;
 
         [JsonProperty("foodId")]
-        public string ID {  get; set; }
+        public string ID { get; set; }
         [JsonProperty("quantity")]
         public decimal Quantity { get; set; }
         [JsonProperty("measure")]
@@ -29,7 +24,7 @@ namespace KitchenManager.Models
 
         public FoodItem() { }
 
-        public FoodItem(string iD, decimal quantity, string measure, string foodName, decimal gramsWeight, string foodType, decimal cost=0)
+        public FoodItem(string iD, decimal quantity, string measure, string foodName, decimal gramsWeight, string foodType, decimal cost = 0)
         {
             ID = iD;
             Quantity = quantity;
@@ -40,7 +35,9 @@ namespace KitchenManager.Models
             Cost = cost;
         }
 
-        public string QuantityMeasure { get =>
+        public string QuantityMeasure
+        {
+            get =>
             $"{Quantity.ToString("0.##")} {Measure}";
         }
 
@@ -54,5 +51,5 @@ namespace KitchenManager.Models
         //}
     }
 
-    
+
 }

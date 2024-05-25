@@ -1,6 +1,4 @@
-﻿using KitchenManager;
-
-namespace KitchenManager
+﻿namespace KitchenManager
 {
     public partial class MainPage : ContentPage
     {

@@ -1,4 +1,3 @@
-using KitchenManager.Models;
 namespace TestKitchenManager
 {
     [TestClass]

@@ -1,6 +1,4 @@
-﻿using KitchenManager.Controllers;
-
-namespace KitchenManager
+﻿namespace KitchenManager
 {
     public partial class AppShell : Shell
     {
