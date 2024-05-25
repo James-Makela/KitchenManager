@@ -29,7 +29,7 @@ namespace KitchenManager.Controllers
             {
                 items = await _connection.Table<InventoryItem>().ToListAsync();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return items;
             }
@@ -103,7 +103,7 @@ namespace KitchenManager.Controllers
             }
             catch (Exception ex)
             {
-                // TODO: What do I want to happen here?
+                throw new Exception(ex.Message);
             }
 
         }
@@ -122,7 +122,7 @@ namespace KitchenManager.Controllers
             }
             catch (Exception ex)
             {
-                return items;
+                throw new Exception(ex.Message);
             }
             return items;
         }

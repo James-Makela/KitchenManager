@@ -15,6 +15,8 @@ public partial class RecipeCardPage : ContentPage
     {
         InitializeComponent();
         PopulateFields(manager.CurrentRecipe);
+
+
         DeviceDisplay.Current.MainDisplayInfoChanged += (sender, args) =>
         {
             CollectionView_Ingredients.ItemsSource = null;
@@ -43,13 +45,13 @@ public partial class RecipeCardPage : ContentPage
 
         manager.RunConversions();
 
-        if (await localDBService.CheckRecipeIsSaved(recipe.Label))
+        if (recipe.Label != null && await localDBService.CheckRecipeIsSaved(recipe.Label))
         {
             Button_SaveRecipe.IsVisible = false;
             Button_DeleteRecipe.IsVisible = true;
         }
 
-        this.Title = recipe.Label;
+        Title = recipe.Label;
 
         int yield = PreferencesManager.GetPeople();
 
@@ -90,7 +92,7 @@ public partial class RecipeCardPage : ContentPage
 
         CollectionView_Ingredients.ItemsSource = null;
         CollectionView_Ingredients.ItemsSource = manager.CurrentRecipe.Ingredients;
-        DisplayTotals();
+        await DisplayTotals();
     }
 
     private async void Button_IncreaseYield_Pressed(object sender, EventArgs e)
@@ -104,7 +106,7 @@ public partial class RecipeCardPage : ContentPage
 
         CollectionView_Ingredients.ItemsSource = null;
         CollectionView_Ingredients.ItemsSource = manager.CurrentRecipe.Ingredients;
-        DisplayTotals();
+        await DisplayTotals();
     }
 
     private async Task DisplayTotals()
@@ -141,7 +143,14 @@ public partial class RecipeCardPage : ContentPage
 
         var toast = Toast.Make(message, duration, fontSize);
 
-        await localDBService.AddRecipe(manager.CurrentRecipe);
+        try
+        {
+            await localDBService.AddRecipe(manager.CurrentRecipe);
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Error", ex.Message, "Ok");
+        }
         await toast.Show(cancellationTokenSource.Token);
 
         ToggleButtons(false);

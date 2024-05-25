@@ -9,7 +9,7 @@ namespace KitchenManager.Controllers
 {
     public class RecipeManager
     {
-        APIService apiService = new();
+        readonly APIService apiService = new();
         LocalDBService localDBService = new();
 
         public Recipe? CurrentRecipe { get; set; }
@@ -21,6 +21,8 @@ namespace KitchenManager.Controllers
 
         public async Task ChangeYield(int newYield)
         {
+            if (CurrentRecipe == null || CurrentRecipe.Ingredients == null) { return; }
+
             int oldYield = Convert.ToInt32(CurrentRecipe.Yield);
             OriginalYield = oldYield;
             CurrentRecipe.Yield = newYield;
@@ -42,6 +44,9 @@ namespace KitchenManager.Controllers
         public async Task CalculateCosts()
         {
             decimal? totalCost = 0;
+
+            if (CurrentRecipe == null || CurrentRecipe.Ingredients == null) { return; }
+
             foreach (FoodItem ingredient in CurrentRecipe.Ingredients)
             {
                 InventoryItem? item = await localDBService.GetItem(ingredient.FoodName.ToLower());
@@ -57,7 +62,7 @@ namespace KitchenManager.Controllers
 
         public void RunConversions()
         {
-            if (CurrentRecipe.Ingredients == null) { return; }
+            if (CurrentRecipe == null || CurrentRecipe.Ingredients == null) { return; }
 
             foreach (FoodItem ingredient in CurrentRecipe.Ingredients)
             {
@@ -80,12 +85,14 @@ namespace KitchenManager.Controllers
         public async Task<List<NutritionItem>?> GetNutrition()
         {
             NutritionInfo? nutritionInfo;
+            List<NutritionItem> nutritionItems = new();
+
+            if (CurrentRecipe == null) { return nutritionItems; }
 
             if (CurrentRecipe.URI == null)
             {
                 throw new ArgumentNullException("No URI available to get nutrition info.");
             }
-            List<NutritionItem> nutritionItems = new();
 
             try
             {
