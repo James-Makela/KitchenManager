@@ -1,12 +1,18 @@
+using KitchenManager.Models;
+using KitchenManager.Controllers;
+
 namespace TestKitchenManager
 {
     [TestClass]
     public class UnitTest1
     {
         [TestMethod]
-        public void TestMethod1()
+        public async Task TestMethod1()
         {
-            Assert.AreEqual(1, 1);
+            RecipeManager manager = new RecipeManager();
+            Recipe newRecipe = await manager.GetRandomRecipe();
+
+            Assert.AreEqual(newRecipe, manager.CurrentRecipe);
         }
     }
 }
