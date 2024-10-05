@@ -4,6 +4,9 @@ using System.Web;
 
 namespace KitchenManager.Controllers
 {
+    /// <summary>
+    /// Handles all calls and responses to the edamam API.
+    /// <summary>
     internal class APIService
     {
         const string baseURL = "https://api.edamam.com/api/recipes/v2?type=public";
@@ -11,6 +14,16 @@ namespace KitchenManager.Controllers
 
         public APIService() { }
 
+        /// <summary>
+        /// Fetches a list of recipe objects from the edamam API.
+        /// </summary>
+        /// <param name="searchQuery">
+        /// A searchQuery object containing all the details required to perform a search.
+        /// </param>
+        /// <param name="numbertoReturn">
+        /// The number of results you would like to return.
+        /// </param>
+        /// <returns>A list of recipe objects.</returns>
         public async Task<List<Recipe>>? GetRecipes(SearchQuery searchQuery, int numbertoReturn = 20)
         {
             RecipeList recipeResults = new();
@@ -61,6 +74,13 @@ namespace KitchenManager.Controllers
             return recipes;
         }
 
+        /// <summary>
+        /// Retrieves a nutrition info object containing all the 
+        /// nutrition information for a recipe.
+        /// <param name="recipeURI">
+        /// The URI of the recipe you would like to retrieve nutrition information for.
+        /// </param>
+        /// <returns>NutritionObject</returns>
         public async Task<NutritionInfo> GetNutrition(string recipeURI)
         {
             SearchQuery searchQuery = new()
@@ -87,6 +107,10 @@ namespace KitchenManager.Controllers
             }
         }
 
+        /// <summary>
+        /// Retrieves a random recipe from the Edamam API.
+        /// </summary>
+        /// <returns>A random recipe</returns>
         public async Task<Recipe> GetRandom()
         {
             Recipe recipe = new();
@@ -98,6 +122,15 @@ namespace KitchenManager.Controllers
             return recipe;
         }
 
+        /// <summary>
+        /// Assembles a url to query the Edamam API.
+        /// </summary>
+        /// <param name="query">
+        /// The search query you would like to pass into the url.
+        /// <param>
+        /// <returns>
+        /// A URL string to send to the Edamam API.
+        /// </returns>
         public async Task<string> GetUrl(SearchQuery query, int returns = 0)
         {
             string keysJson;
@@ -168,6 +201,9 @@ namespace KitchenManager.Controllers
             return fullURL;
         }
 
+        /// <summary>
+        /// Simply reads the keys file for the URL maker to parse.
+        /// </summary>
         public async Task<string> ReadKeysFile(string path)
         {
             using Stream fileStream = await FileSystem.Current.OpenAppPackageFileAsync(path);
